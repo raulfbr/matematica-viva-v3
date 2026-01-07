@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sementes de Sabedoria | Devocionais do Reino Contado</title>
+    <meta name="description"
+        content="Devocionais infantis com os Guardiões do Reino Contado. Versículos, histórias e orações para crianças de 4-7 anos.">
+
+    <!-- Fontes -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Outfit:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+
+    <!-- Design System -->
+    <link rel="stylesheet" href="../assets/css/main.css">
+
+    <style>
+        .devocionais-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .devocionais-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .devocionais-header h1 {
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .devocionais-header p {
+            color: var(--verde-claro);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* GRID DE GUARDIÕES */
+        .series-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .serie-card {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            text-decoration: none;
+            transition: transform 0.2s, box-shadow 0.2s;
+            border: 2px solid transparent;
+        }
+
+        .serie-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+        }
+
+        .serie-card.melquior {
+            border-color: #D4A84B;
+        }
+
+        .serie-card.noe {
+            border-color: #6B8FAD;
+        }
+
+        .serie-card.celeste {
+            border-color: #C77D4A;
+        }
+
+        .serie-card.bernardo {
+            border-color: #8B6B4A;
+        }
+
+        .serie-card.iris {
+            border-color: #7BA38C;
+        }
+
+        .serie-card img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 1rem;
+        }
+
+        .serie-card h3 {
+            color: var(--verde-escuro);
+            margin-bottom: 0.3rem;
+        }
+
+        .serie-card .virtude {
+            font-size: 0.9rem;
+            color: var(--verde-claro);
+            font-style: italic;
+            margin-bottom: 0.5rem;
+        }
+
+        .serie-card .status {
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.8rem;
+            color: var(--dourado-antigo);
+        }
+
+        /* INFO BOX */
+        .info-box {
+            background: rgba(184, 155, 94, 0.1);
+            border-left: 4px solid var(--dourado-antigo);
+            padding: 1.5rem;
+            border-radius: 0 12px 12px 0;
+            margin-bottom: 2rem;
+        }
+
+        .info-box h3 {
+            margin-bottom: 0.5rem;
+        }
+
+        .info-box ul {
+            margin-left: 1.5rem;
+            line-height: 1.8;
+        }
+
+        /* FOOTER */
+        .devocionais-footer {
+            text-align: center;
+            margin-top: 3rem;
+            padding: 2rem 0;
+            border-top: 1px solid var(--creme-escuro);
+        }
+
+        .devocionais-footer a {
+            color: var(--dourado-antigo);
+        }
+
+        @media print {
+            @page {
+                margin: 1cm;
+            }
+
+            body {
+                background: white;
+            }
+
+            .devocionais-header a,
+            .info-box,
+            .devocionais-footer {
+                display: none;
+            }
+
+            .devocionais-container {
+                padding: 0;
+                max-width: 100%;
+            }
+
+            .series-grid {
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 1rem;
+            }
+
+            .serie-card {
+                break-inside: avoid;
+                border: 1px solid #ddd !important;
+                box-shadow: none !important;
+            }
+
+            h1 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="devocionais-container">
+
+        <!-- HEADER -->
+        <header class="devocionais-header">
+            <a href="../painel.html" style="text-decoration: none; color: var(--verde-escuro);">← Voltar ao Início</a>
+            <h1 style="margin-top: 1rem;">🌱 Sementes de Sabedoria</h1>
+            <p>Devocionais diários com os Guardiões do Reino Contado para crianças de 4-7 anos</p>
+        </header>
+
+        <!-- INFO BOX -->
+        <div class="info-box">
+            <h3>📖 Como usar</h3>
+            <ul>
+                <li>Escolha um Guardião para a semana</li>
+                <li>Leia um devocional por dia (5-10 minutos)</li>
+                <li>Cada série tem 7 dias sobre uma virtude</li>
+                <li>Use o ritual de abertura e fechamento</li>
+            </ul>
+        </div>
+
+        <!-- GRID DE SÉRIES -->
+        <section class="series-grid">
+
+            <!-- NOMES DE JESUS (NOVO) -->
+            <a href="nomes-de-jesus.html" class="serie-card melquior" style="border-style: dashed;">
+                <div style="font-size: 4rem; line-height: 100px; margin-bottom: 1rem;">✝️</div>
+                <h3>Nomes de Jesus</h3>
+                <p class="virtude">Refúgio na Soberania</p>
+                <p class="status" style="font-size: 0.75rem; color: #777;">ensinar quem Jesus é</p>
+                <p class="status">🖨️ Kit Premium</p>
+            </a>
+
+            <!-- FRUTOS DO ESPÍRITO (NOVO) -->
+            <a href="frutos-do-espirito.html" class="serie-card iris"
+                style="border-style: dashed; border-color: #6B8F71;">
+                <div style="font-size: 4rem; line-height: 100px; margin-bottom: 1rem;">🍇</div>
+                <h3>Frutos do Espírito</h3>
+                <p class="virtude">Evidências da Graça</p>
+                <p class="status" style="font-size: 0.75rem; color: #777;">virtudes como fruto, não esforço</p>
+                <p class="status">🖨️ Kit Premium</p>
+            </a>
+
+
+
+            <!-- ABC DA CRIAÇÃO (NOVO) -->
+            <a href="abc-da-criacao.html" class="serie-card"
+                style="border-style: solid; border-color: var(--verde-claro);">
+                <div style="font-size: 4rem; line-height: 100px; margin-bottom: 1rem;">🎨</div>
+                <h3>ABC da Criação</h3>
+                <p class="virtude">Encantamento & Doxologia</p>
+                <p class="status" style="font-size: 0.75rem; color: #777;">alfabetização cosmovisional</p>
+                <p class="status">🖼️ Poster A3</p>
+            </a>
+
+            <!-- LITURGIA DO SONO (NOVO) -->
+            <a href="liturgia-do-sono.html" class="serie-card" style="border-style: dotted; border-color: #4A4A4A;">
+                <div style="font-size: 4rem; line-height: 100px; margin-bottom: 1rem;">🛌</div>
+                <h3>Liturgia do Sono</h3>
+                <p class="virtude">Confiança na Providência</p>
+                <p class="status" style="font-size: 0.75rem; color: #777;">o guarda de israel</p>
+                <p class="status">🌙 Card Noturno</p>
+            </a>
+
+            <!-- MELQUIOR -->
+            <a href="melquior/dia-01.html" class="serie-card melquior">
+                <img src="../assets/imagens/cards/web/guardioes/melquior-leao.png" alt="Melquior">
+                <h3>🦁 Melquior</h3>
+                <p class="virtude">Sabedoria</p>
+                <p class="status">7 devocionais</p>
+            </a>
+
+            <!-- NOÉ -->
+            <a href="noe/dia-01.html" class="serie-card noe">
+                <img src="../assets/imagens/cards/web/guardioes/noe-coruja.png" alt="Noé">
+                <h3>🦉 Noé</h3>
+                <p class="virtude">Paciência</p>
+                <p class="status">Em breve</p>
+            </a>
+
+            <!-- CELESTE -->
+            <a href="celeste/dia-01.html" class="serie-card celeste">
+                <img src="../assets/imagens/cards/web/guardioes/celeste-raposa.png" alt="Celeste">
+                <h3>🦊 Celeste</h3>
+                <p class="virtude">Curiosidade</p>
+                <p class="status">Em breve</p>
+            </a>
+
+            <!-- BERNARDO -->
+            <a href="bernardo/dia-01.html" class="serie-card bernardo">
+                <img src="../assets/imagens/cards/web/guardioes/bernardo-urso.png" alt="Bernardo">
+                <h3>🐻 Bernardo</h3>
+                <p class="virtude">Persistência</p>
+                <p class="status">Em breve</p>
+            </a>
+
+            <!-- ÍRIS -->
+            <a href="iris/dia-01.html" class="serie-card iris">
+                <img src="../assets/imagens/cards/web/guardioes/iris-passarinho.png" alt="Íris">
+                <h3>🐦 Íris</h3>
+                <p class="virtude">Atenção</p>
+                <p class="status">Em breve</p>
+            </a>
+
+        </section>
+
+        <!-- VERSÍCULO DO DIA -->
+        <div style="text-align: center; background: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+            <p style="font-size: 0.9rem; color: var(--verde-claro); margin-bottom: 0.5rem;">Versículo do Kit</p>
+            <p style="font-size: 1.2rem; font-style: italic; color: var(--verde-escuro);">
+                "Porque Deus amou o mundo de tal maneira que deu o seu Filho único,
+                para que todo aquele que nele crê não pereça, mas tenha a vida eterna."
+            </p>
+            <p style="color: var(--dourado-antigo); margin-top: 0.5rem;">— João 3:16 (NVT)</p>
+        </div>
+
+        <!-- FOOTER -->
+        <footer class="devocionais-footer">
+            <p>Sementes de Sabedoria — Devocionais do Reino Contado</p>
+            <p style="margin-top: 0.5rem;">
+                <a href="../index.html">← Voltar ao Matemática Viva</a>
+            </p>
+        </footer>
+
+    </div>
+</body>
+
+</html>

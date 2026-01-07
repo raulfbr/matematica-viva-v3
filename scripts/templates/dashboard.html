@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#304837">
+    <title>O Mirante do Reino | Matemática Viva</title>
+    <!-- Noble CSS & Mirante Premium -->
+    <link rel="stylesheet" href="assets/css/noble.css">
+    <link rel="stylesheet" href="assets/css/mirante.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&display=swap"
+        rel="stylesheet">
+</head>
+
+<body class="dashboard-mirante">
+
+    <main class="container" style="max-width: 1000px;">
+
+        <header class="hero-section" style="background: transparent; border: none; padding-top: 2rem;">
+            <p class="mirante-subtitle">Família Rodrigues apresenta</p>
+            <h1 class="mirante-title" style="font-size: 3.5rem; margin-bottom: 0.5rem; color: var(--mirante-dark);">O
+                Mirante do Reino</h1>
+            <p
+                style="color: var(--mirante-gold); font-size: 1.2rem; font-style: italic; font-family: 'Merriweather', serif;">
+                "Onde a alma contempla a Ordem e o horizonte dos Números."</p>
+            <p style="color: var(--mirante-emerald); font-size: 0.9rem; opacity: 0.8; margin-top: 0.5rem;">A Árvore da
+                Maturidade Matemática (v3.5 Sovereign Positive)</p>
+
+            <nav style="margin-top: 2rem; display: flex; flex-wrap: wrap; justify-content: center; gap: 15px;">
+                <a href="start.html" class="glass-card"
+                    style="padding: 0.8rem 1.5rem; border-radius: 50px; text-decoration: none; font-size: 0.9rem; font-weight: bold; color: var(--mirante-gold);">
+                    🚀 Comece Por Aqui
+                </a>
+                <a href="biblioteca.html" class="glass-card"
+                    style="padding: 0.8rem 1.5rem; border-radius: 50px; text-decoration: none; font-size: 0.9rem; font-weight: bold; color: var(--mirante-emerald);">
+                    📚 Biblioteca
+                </a>
+                <a href="familia.html" class="glass-card"
+                    style="padding: 0.8rem 1.5rem; border-radius: 50px; text-decoration: none; font-size: 0.9rem; color: var(--mirante-dark);">
+                    📜 O Manifesto
+                </a>
+            </nav>
+        </header>
+
+        <!-- 🌳 A ÁRVORE DA MATURIDADE (Visualização Interativa) -->
+        <section class="tree-container">
+            <h2 class="mirante-title" style="text-align: center; margin-bottom: 2rem; font-size: 1.5rem;">Círculos de
+                Conhecimento</h2>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px;">
+                {% for phase_key, cycle in cycles.items() %}
+                {% if cycle.lessons %}
+                <div class="glass-card"
+                    style="padding: 1.5rem; text-align: center; border-radius: 20px; background: white; border: 1px solid rgba(48, 72, 55, 0.1);">
+                    <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">
+                        {{ cycle.icon }}
+                    </div>
+                    <h3 class="mirante-title" style="font-size: 1.1rem; margin-bottom: 5px;">{{ cycle.display_name }}
+                    </h3>
+                    <p class="mirante-subtitle" style="font-size: 0.7rem;">{{ cycle.age_range }}</p>
+
+                    <div class="progress-bar">
+                        {% set progress = 100 if phase_key == 'ouro' else (cycle.lessons|length / 30 * 100)|round %}
+                        <div class="progress-fill" style="width: {{ progress }}%;">
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+                {% endfor %}
+            </div>
+        </section>
+
+        <!-- 📑 LISTAGEM DE MISSÕES -->
+        {% for phase_key, cycle in cycles.items() %}
+        {% if cycle.lessons %}
+        <section style="margin-top: 4rem;">
+            <div
+                style="display: flex; align-items: baseline; gap: 15px; margin-bottom: 1.5rem; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 10px;">
+                <h2 class="mirante-title" style="font-size: 1.8rem; color: var(--mirante-dark);">{{ cycle.display_name
+                    }}</h2>
+                <span class="mirante-subtitle">{{ cycle.internal_name }}</span>
+            </div>
+
+            <div class="lesson-grid">
+                {% for lesson in cycle.lessons %}
+                <a href="{{ lesson.path }}" class="lesson-card-mirante phase-{{ phase_key }}">
+                    <div style="display: flex; justify-content: space-between; align-items: start;">
+                        <span class="mirante-title" style="font-size: 1.1rem; color: var(--mirante-dark);">{{
+                            lesson.title
+                            }}</span>
+                        <span class="guardian-icon-mirante" title="{{ lesson.guardian }}">{{ lesson.guardian_icon
+                            }}</span>
+                    </div>
+
+                    <div style="display: flex; flex-direction: column; gap: 4px; margin-top: auto;">
+                        <span style="font-size: 0.85rem; color: var(--mirante-emerald); opacity: 0.8;">
+                            ⏱️ {{ lesson.duration }} • <span style="color: var(--mirante-gold); font-weight: bold;">{{
+                                lesson.guardian }}</span>
+                        </span>
+
+                        {% if lesson.tgtb %}
+                        <span
+                            style="font-size: 0.7rem; background-color: rgba(212, 175, 55, 0.1); color: var(--mirante-gold); padding: 2px 8px; border-radius: 4px; width: fit-content; border: 1px solid rgba(212, 175, 55, 0.2);">
+                            📘 {{ lesson.tgtb }}
+                        </span>
+                        {% endif %}
+                    </div>
+                </a>
+                {% endfor %}
+            </div>
+        </section>
+        {% endif %}
+        {% endfor %}
+
+        <footer style="text-align: center; margin-top: 6rem; padding-bottom: 4rem; opacity: 0.9;">
+            <div style="margin-bottom: 2rem;">
+                <span style="font-size: 2rem; filter: grayscale(1) opacity(0.5);">🔭🌲</span>
+            </div>
+            <p class="mirante-title" style="color: var(--mirante-emerald); font-size: 1.2rem;">🛡️ Fidelidade
+                Acadêmica & Doxológica</p>
+            <p style="color: var(--mirante-dark); font-size: 0.8rem; margin-top: 0.5rem; opacity: 0.6;">Matemática Viva
+                v3.5 | Onde o Olhar se eleva à Verdade</p>
+        </footer>
+
+    </main>
+
+</body>
+
+</html>

@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liturgia do Sono | O Guarda de Israel</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Outfit:wght@300;400;500;600&family=Pinyon+Script&display=swap"
+        rel="stylesheet">
+
+    <style>
+        :root {
+            --verde-escuro: #304837;
+            --verde-claro: #5C7C65;
+            --dourado: #B89B5E;
+            --creme: #FAF8F3;
+            --papel: #FFFDF7;
+            --borda: #EAE2D0;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        body {
+            background: #e0e0e0;
+            font-family: 'Outfit', sans-serif;
+            padding: 2cm;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        /* TIPOGRAFIA PREMIUM */
+        .script-font {
+            font-family: 'Libre Baskerville', serif;
+            font-style: italic;
+            font-weight: 700;
+        }
+
+        .serif-font {
+            font-family: 'Libre Baskerville', serif;
+        }
+
+        /* ESTILOS DE PÁGINA A4 */
+        .page {
+            background: white;
+            width: 21cm;
+            height: 29.7cm;
+            padding: 1.5cm;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            position: relative;
+            page-break-after: always;
+            overflow: hidden;
+        }
+
+        .page-label {
+            position: absolute;
+            top: 0.5cm;
+            left: 1.5cm;
+            font-size: 0.7rem;
+            color: #ccc;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* --- PÁGINA 1: CAPA/CARTA --- */
+        .cover-content {
+            height: 100%;
+            border: 1px solid var(--dourado);
+            outline: 4px double var(--dourado);
+            outline-offset: -6px;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            text-align: center;
+            color: var(--verde-escuro);
+            background-image:
+                linear-gradient(rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.95)),
+                url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23B89B5E' fill-opacity='0.1' fill-rule='evenodd'%3E%3Ccircle cx='3' cy='3' r='1'/%3E%3Ccircle cx='13' cy='13' r='1'/%3E%3C/g%3E%3C/svg%3E");
+        }
+
+        .cover-title {
+            font-family: 'Libre Baskerville', serif;
+            font-weight: 700;
+            font-size: 4.5rem;
+            margin-bottom: 0rem;
+            color: var(--dourado);
+            line-height: 1;
+        }
+
+        .cover-subtitle {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 3rem;
+            color: var(--verde-escuro);
+            border-top: 1px solid var(--borda);
+            border-bottom: 1px solid var(--borda);
+            padding: 0.5rem 0;
+            display: inline-block;
+            align-self: center;
+        }
+
+        .cover-objective {
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.8rem;
+            color: #777;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: -2rem;
+            margin-bottom: 2rem;
+        }
+
+        .letter-body {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 1.15rem;
+            line-height: 1.9;
+            margin-bottom: 3rem;
+            text-align: justify;
+            padding: 1rem;
+        }
+
+        .instructions-box {
+            background: var(--creme);
+            padding: 2rem;
+            border-radius: 4px;
+            text-align: left;
+            position: relative;
+            border: 1px solid var(--borda);
+        }
+
+        .instructions-box h3 {
+            color: var(--dourado);
+            margin-bottom: 1rem;
+            font-size: 1.4rem;
+            font-family: 'Libre Baskerville', serif;
+            font-style: italic;
+            font-weight: 700;
+        }
+
+        /* --- PÁGINA 2: CARDS (FRENTE) --- */
+        .grid-cards {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-template-rows: repeat(4, 1fr);
+            gap: 15px;
+            height: 100%;
+        }
+
+        .card {
+            background: var(--papel);
+            border: 1px solid #eee;
+            padding: 8px;
+            display: flex;
+        }
+
+        .card-inner {
+            border: 2px solid var(--dourado);
+            outline: 1px solid var(--borda);
+            outline-offset: -4px;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 0.5rem;
+            position: relative;
+            background: white;
+            box-shadow: inset 0 0 20px rgba(184, 155, 94, 0.05);
+        }
+
+        .card-header {
+            font-family: 'Pinyon Script', cursive;
+            font-size: 2.2rem;
+            color: var(--verde-escuro);
+            margin-bottom: 0.2rem;
+            margin-top: 0.5rem;
+            line-height: 1;
+        }
+
+        .card-img-placeholder {
+            width: 70px;
+            height: 70px;
+            background: var(--creme);
+            border-radius: 50%;
+            margin-bottom: 0px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            color: #ccc;
+            border: 1px solid var(--dourado);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .card .versiculo {
+            font-family: 'Libre Baskerville', serif;
+            font-style: italic;
+            font-size: 0.75rem;
+            color: #555;
+            margin: 0.5rem 0;
+            text-align: center;
+            line-height: 1.4;
+            max-width: 90%;
+            flex-grow: 1;
+            display: flex;
+            align-items: center;
+        }
+
+        .card .ref {
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.6rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--dourado);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            border-top: 1px solid var(--borda);
+            padding-top: 4px;
+            width: 50%;
+            text-align: center;
+        }
+
+        /* --- PÁGINA 3: VERSO (PADRÃO) --- */
+        .pattern-bg {
+            width: 100%;
+            height: 100%;
+            background-color: var(--papel);
+            background-image:
+                radial-gradient(var(--dourado) 0.5px, transparent 0.5px),
+                radial-gradient(var(--verde-escuro) 0.5px, transparent 0.5px);
+            background-size: 20px 20px;
+            background-position: 0 0, 10px 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 20px solid white;
+        }
+
+        .watermark {
+            font-family: 'Pinyon Script', cursive;
+            font-size: 4rem;
+            color: var(--dourado);
+            opacity: 0.2;
+            transform: rotate(-15deg);
+        }
+
+        /* --- PÁGINA 4: ENVELOPE --- */
+        .envelope-template {
+            width: 100%;
+            height: 100%;
+            border: 1px dashed #ccc;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .envelope-body {
+            width: 72%;
+            height: 62%;
+            border: 2px solid var(--dourado);
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .wax-seal {
+            width: 60px;
+            height: 60px;
+            background: var(--dourado);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255, 255, 255, 0.8);
+            font-family: 'Pinyon Script', cursive;
+            font-size: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2), inset 0 2px 5px rgba(255, 255, 255, 0.2);
+            border: 4px solid rgba(0, 0, 0, 0.1);
+            margin-bottom: 1rem;
+        }
+
+        .flap {
+            position: absolute;
+            font-size: 0.7rem;
+            color: #999;
+            text-transform: uppercase;
+        }
+
+        /* NÃO IMPRIMIR NA TELA */
+        .no-print {
+            text-align: center;
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            max-width: 600px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            border-top: 5px solid var(--dourado);
+        }
+
+        @media print {
+            @page {
+                margin: 0;
+            }
+
+            body {
+                background: none;
+                padding: 0;
+                display: block;
+            }
+
+
+            .no-print {
+                display: none;
+            }
+
+            .page {
+                box-shadow: none;
+                margin: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="no-print">
+        <h1 class="script-font" style="color: var(--dourado); font-size: 3rem;">Liturgia do Sono</h1>
+        <p style="font-family: 'Libre Baskerville'; font-style: italic;">O Guarda de Israel (Cartão de Cabeceira)</p>
+
+        <!-- PERSONALIZAÇÃO -->
+        <div
+            style="background: var(--creme); padding: 1rem; border-radius: 8px; margin: 1rem 0; border: 1px solid var(--dourado); width: 100%; max-width: 400px; display: inline-block;">
+            <label
+                style="font-family: 'Outfit'; font-size: 0.9rem; color: var(--verde-escuro); display: block; margin-bottom: 0.5rem;">🛌
+                Personalize para o quarto:</label>
+            <input type="text" id="childNameInput" placeholder="Nome da Criança (Ex: Raul)"
+                style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; font-family: 'Libre Baskerville'; text-align: center;"
+                oninput="updateChildName(this.value)">
+        </div>
+
+        <hr style="border: 0; border-top: 1px solid #eee; margin: 1.5rem 0;">
+        <button onclick="window.print()"
+            style="padding: 12px 25px; background: var(--dourado); color: white; border: none; font-size: 1.1rem; cursor: pointer; border-radius: 50px; font-family: 'Outfit'; font-weight: 500; box-shadow: 0 4px 10px rgba(184, 155, 94, 0.3);">🖨️
+            Imprimir Liturgia</button>
+        <br><br>
+        <a href="catalogo.html" style="color: var(--verde-claro); text-decoration: none; font-size: 0.9rem;">← Voltar ao
+            Catálogo</a>
+        <p style="margin-top: 2rem; font-size: 0.75rem; color: #aaa; border-top: 1px solid #eee; padding-top: 1rem;">
+            Este material foi criado por <strong>Sementes de Sabedoria</strong> • Parte do projeto <a
+                href="https://matematicaviva.com" style="color: var(--dourado);">Matemática Viva</a><br>
+            <em>"Revelando a ordem de Deus — na Palavra e nos Números"</em>
+        </p>
+    </div>
+
+    <!-- PÁGINA ÚNICA: LITURGIA -->
+    <div class="page">
+        <div class="page-label">Liturgia do Sono • Salmo 121</div>
+        <div class="cover-content">
+            <h1 class="cover-title" style="font-size: 3.5rem;">O Guarda de Israel</h1>
+            <p class="cover-subtitle" style="margin-bottom: 2rem;">Liturgia da Noite para <span id="childNameDisplay"
+                    style="color: var(--dourado); font-weight: bold;">Pequenos Guerreiros</span></p>
+
+            <div class="cover-objective" style="color: var(--verde-escuro);">Propósito: Descanso na Soberania Divina
+            </div>
+
+            <!-- SALMO 121 -->
+            <div style="margin: 2rem 0; text-align: center;">
+                <p
+                    style="font-family: 'Libre Baskerville'; font-size: 1.4rem; color: var(--dourado); font-style: italic; margin-bottom: 1rem;">
+                    "Ele não permitirá que os teus pés vacilem;<br>
+                    não dormitará aquele que te guarda."
+                </p>
+                <p style="font-family: 'Outfit'; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px;">
+                    Salmo 121:3</p>
+            </div>
+
+            <hr style="border: 0; border-top: 1px dashed var(--borda); margin: 2rem auto; width: 60%;">
+
+            <!-- RITUAL / LITANIA -->
+            <div class="instructions-box"
+                style="background: white; border: 2px solid var(--dourado); padding: 2rem; max-width: 80%;">
+                <h3 style="text-align: center; margin-bottom: 1.5rem;">🌙 Diálogo de Confiança</h3>
+
+                <div
+                    style="display: grid; grid-template-columns: 80px 1fr; gap: 1rem; align-items: baseline; text-align: left; margin-bottom: 0.8rem;">
+                    <span
+                        style="font-family: 'Outfit'; font-weight: bold; color: #999; text-transform: uppercase; font-size: 0.7rem; text-align: right;">Mãe/Pai:</span>
+                    <span class="serif-font" style="font-size: 1.1rem; color: var(--verde-escuro);">Quem vigia esta casa
+                        enquanto dormimos?</span>
+                </div>
+
+                <div
+                    style="display: grid; grid-template-columns: 80px 1fr; gap: 1rem; align-items: baseline; text-align: left; margin-bottom: 0.8rem;">
+                    <span
+                        style="font-family: 'Outfit'; font-weight: bold; color: var(--dourado); text-transform: uppercase; font-size: 0.7rem; text-align: right;">Criança:</span>
+                    <span class="serif-font" style="font-size: 1.1rem; color: var(--verde-escuro); font-weight: bold;">O
+                        Senhor, o Guarda de Israel.</span>
+                </div>
+
+                <div
+                    style="display: grid; grid-template-columns: 80px 1fr; gap: 1rem; align-items: baseline; text-align: left; margin-bottom: 0.8rem;">
+                    <span
+                        style="font-family: 'Outfit'; font-weight: bold; color: #999; text-transform: uppercase; font-size: 0.7rem; text-align: right;">Mãe/Pai:</span>
+                    <span class="serif-font" style="font-size: 1.1rem; color: var(--verde-escuro);">Ele sente sono ou
+                        cansaço?</span>
+                </div>
+
+                <div
+                    style="display: grid; grid-template-columns: 80px 1fr; gap: 1rem; align-items: baseline; text-align: left; margin-bottom: 0.8rem;">
+                    <span
+                        style="font-family: 'Outfit'; font-weight: bold; color: var(--dourado); text-transform: uppercase; font-size: 0.7rem; text-align: right;">Criança:</span>
+                    <span class="serif-font"
+                        style="font-size: 1.1rem; color: var(--verde-escuro); font-weight: bold;">Não. Ele nunca
+                        dorme.</span>
+                </div>
+
+                <div
+                    style="display: grid; grid-template-columns: 80px 1fr; gap: 1rem; align-items: baseline; text-align: left;">
+                    <span
+                        style="font-family: 'Outfit'; font-weight: bold; color: #999; text-transform: uppercase; font-size: 0.7rem; text-align: right;">Mãe/Pai:</span>
+                    <span class="serif-font" style="font-size: 1.1rem; color: var(--verde-escuro);">Então, você pode
+                        descansar agora?</span>
+                </div>
+                <div
+                    style="display: grid; grid-template-columns: 80px 1fr; gap: 1rem; align-items: baseline; text-align: left; margin-top: 0.8rem;">
+                    <span
+                        style="font-family: 'Outfit'; font-weight: bold; color: var(--dourado); text-transform: uppercase; font-size: 0.7rem; text-align: right;">Criança:</span>
+                    <span class="serif-font"
+                        style="font-size: 1.1rem; color: var(--verde-escuro); font-weight: bold;">Sim. Em paz me deito e
+                        logo pego no sono.</span>
+                </div>
+            </div>
+
+            <div style="margin-top: 3rem;">
+                <p style="font-family: 'Pinyon Script'; font-size: 2rem; color: var(--dourado);">Boa noite, <span
+                        id="childNameSignature">Guerreiro(a)</span>.</p>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        function updateChildName(name) {
+            const display = document.getElementById('childNameDisplay');
+            const signature = document.getElementById('childNameSignature');
+
+            if (name.trim() === '') {
+                display.innerText = 'Pequenos Guerreiros';
+                signature.innerText = 'Guerreiro(a)';
+                display.style.textDecoration = 'none';
+            } else {
+                display.innerText = name;
+                signature.innerText = name;
+                display.style.textDecoration = 'underline';
+                display.style.textUnderlineOffset = '5px';
+            }
+        }
+    </script>
+
+</body>
+
+</html>

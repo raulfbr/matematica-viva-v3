@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Primeiros Passos no Matemática Viva: Um guia prático para pais. Materiais, rotina e como começar.">
+    <title>Primeiros Passos | Matemática Viva</title>
+
+    <!-- Noble CSS -->
+    <link rel="stylesheet" href="assets/css/noble.css">
+
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&display=swap"
+        rel="stylesheet">
+
+    <style>
+        .step-number {
+            background-color: var(--cor-destaque-dourado);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--fonte-ui);
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        .material-list {
+            list-style: none;
+            padding: 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .material-item {
+            background: var(--cor-papel-fundo);
+            padding: 1rem;
+            border-radius: var(--raio-botao);
+            border: 1px solid var(--borda-fina);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .faq-item {
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid var(--borda-fina);
+            padding-bottom: 1rem;
+        }
+
+        .faq-question {
+            font-family: var(--fonte-ui);
+            font-weight: bold;
+            color: var(--cor-tinta-primaria);
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="lesson-header">
+        <div class="container">
+            <span
+                style="color: var(--cor-lapis-verde); font-weight: bold; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 2px;">Guia
+                Prático</span>
+            <h1>Comece Por Aqui</h1>
+            <p style="color: var(--cor-tinta-secundaria);">A ponte entre a filosofia e a segunda-feira de manhã.</p>
+        </div>
+    </header>
+
+    <main class="container">
+
+        <!-- 1. O RITUAL (A Rotina) -->
+        <section class="card-narrativa">
+            <h2><span class="step-number">1</span> O Ritual (Rotina)</h2>
+            <p>O Matemática Viva não é uma "aula" escolar. É um momento de conexão. Recomendamos o seguinte ritmo:</p>
+            <ul>
+                <li><strong>Frequência:</strong> 3 vezes por semana (ex: Seg, Qua, Sex).</li>
+                <li><strong>Duração:</strong> Máximo 15 minutos (use um timer!).</li>
+                <li><strong>O Sinal:</strong> Acenda uma vela ou toque um sino para marcar o início do "Tempo Sagrado"
+                    (sem telas/notificações).</li>
+            </ul>
+        </section>
+
+        <!-- 2. O ARSENAL (Materiais) -->
+        <section class="card-atividade">
+            <h2><span class="step-number">2</span> O Arsenal (Materiais)</h2>
+            <p>Você não precisa de muito, mas precisa do essencial. O método é <strong>Concreto</strong>.</p>
+
+            <ul class="material-list">
+                <li class="material-item">
+                    <span>🪵</span> Blocos de Madeira
+                </li>
+                <li class="material-item">
+                    <span>🌰</span> Sementes ou Feijões
+                </li>
+                <li class="material-item">
+                    <span>🐚</span> Conchas ou Pedras
+                </li>
+                <li class="material-item">
+                    <span>🕯️</span> Vela (Ritual)
+                </li>
+                <li class="material-item">
+                    <span>📓</span> Caderno (Raízes)
+                </li>
+            </ul>
+            <p style="font-size: 0.8rem; margin-top: 1rem; color: var(--cor-tinta-secundaria);">*Qualquer objeto pequeno
+                e seguro pode servir para contagem.</p>
+        </section>
+
+        <!-- 3. FAQ (Medos Comuns) -->
+        <section class="card-mestra">
+            <h2><span class="step-number">3</span> Dúvidas da Mestra</h2>
+
+            <div class="faq-item">
+                <span class="faq-question">"Eu não sou boa em matemática. Posso ensinar?"</span>
+                <p>Sim! O currículo é roteirizado ("scripted"). Você aprende junto com seu filho. Melquior guia vocês
+                    dois.</p>
+            </div>
+
+            <div class="faq-item">
+                <span class="faq-question">"Meu filho é muito agitado."</span>
+                <p>As lições são curtas (15 min) e envolvem movimento e manuseio de objetos. É feito para crianças
+                    reais.</p>
+            </div>
+
+            <div class="faq-item">
+                <span class="faq-question">"Preciso imprimir tudo?"</span>
+                <p>Não. Você pode ler o roteiro no celular (Modo Pai) e usar apenas os materiais concretos com a
+                    criança.</p>
+            </div>
+        </section>
+
+        <!-- CTA -->
+        <div style="text-align: center; margin-top: 3rem;">
+            <a href="index.html"
+                style="background-color: var(--cor-destaque-dourado); color: white; padding: 1rem 2rem; border-radius: 50px; text-decoration: none; font-weight: bold;">Ir
+                para o Dashboard</a>
+        </div>
+
+    </main>
+
+    <footer style="text-align: center; padding: 4rem 0; font-size: 0.8rem; color: var(--cor-tinta-secundaria);">
+        <p>Matemática Viva v3.0</p>
+    </footer>
+
+</body>
+
+</html>

@@ -1,0 +1,286 @@
+/**
+ * Livro Dumont — Living Book Stylesheet
+ * ======================================
+ * CSS externo para todos os capítulos do livro.
+ * Criado para reduzir ruído no HTML e permitir reutilização.
+ * 
+ * Estrutura:
+ * 1. Tokens (cores, fontes)
+ * 2. Base (body, container)
+ * 3. Typography (headings, paragraphs)
+ * 4. Characters (falas coloridas)
+ * 5. Components (boxes, separators)
+ */
+
+/* ==========================================================================
+   1. TOKENS (Design System)
+   ========================================================================== */
+:root {
+    /* Cores Base */
+    --creme-quente: #F8F5E9;
+    --verde-floresta: #304837;
+    --dourado-antigo: #B89B5E;
+    --papel-antigo: #FAF9F6;
+    /* Cream Paper (Optimized) */
+
+    /* Fontes */
+    --font-titulo: 'Libre Baskerville', serif;
+    --font-texto: 'Outfit', sans-serif;
+    --font-mono: 'Courier New', monospace;
+
+    /* Cores dos Personagens */
+    --bento-azul: #1565C0;
+    --tomas-marrom: #4E342E;
+    --liz-mostarda: #F9A825;
+    --mamae-rosa: #D88E8E;
+    --dumont-aco: #546E7A;
+}
+
+/* ==========================================================================
+   2. BASE
+   ========================================================================== */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-texto);
+    background-color: var(--papel-antigo);
+    color: #3e2723;
+    line-height: 1.85;
+    font-size: 19px;
+    /* Optimized for Moms reading at night */
+    margin: 0;
+    padding: 0;
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23B89B5E' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+
+.livro-container {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 2.5rem 1.8rem 6rem;
+}
+
+/* ==========================================================================
+   3. TYPOGRAPHY
+   ========================================================================== */
+h1,
+h2,
+h3 {
+    font-family: var(--font-titulo);
+    color: var(--verde-floresta);
+}
+
+h2 {
+    margin-top: 3rem;
+    font-size: 1.6rem;
+    border-bottom: 1px solid var(--dourado-antigo);
+    padding-bottom: 0.5rem;
+}
+
+p {
+    margin-bottom: 1.2rem;
+}
+
+em {
+    font-style: italic;
+}
+
+strong {
+    font-weight: 600;
+}
+
+/* Header do Capítulo */
+.capitulo-header {
+    text-align: center;
+    margin-bottom: 4rem;
+    border-bottom: 2px solid var(--dourado-antigo);
+    padding-bottom: 2.5rem;
+}
+
+.capitulo-num {
+    font-family: var(--font-texto);
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    font-size: 0.8rem;
+    color: var(--dourado-antigo);
+    font-weight: 700;
+    display: block;
+    margin-bottom: 1rem;
+}
+
+.capitulo-titulo {
+    font-size: 2.8rem;
+    line-height: 1.15;
+    margin: 0 0 1.2rem;
+    color: var(--verde-floresta);
+}
+
+.capitulo-conceito {
+    font-size: 1rem;
+    color: #777;
+    font-style: italic;
+}
+
+/* Drop Cap */
+.drop-cap {
+    float: left;
+    font-family: var(--font-titulo);
+    font-size: 4.2rem;
+    line-height: 0.75;
+    margin-right: 0.5rem;
+    margin-top: 0.2rem;
+    color: var(--dourado-antigo);
+}
+
+/* ==========================================================================
+   4. PERSONAGENS (Cores de Fala)
+   ========================================================================== */
+.fala-bento {
+    color: var(--bento-azul);
+    font-weight: 500;
+}
+
+.fala-tomas {
+    color: var(--tomas-marrom);
+    font-weight: 500;
+}
+
+.fala-liz {
+    color: var(--liz-mostarda);
+    font-weight: 600;
+}
+
+.fala-mamae {
+    color: var(--mamae-rosa);
+    font-weight: 500;
+}
+
+.fala-dumont {
+    color: var(--dumont-aco);
+    font-weight: 500;
+}
+
+.nome-bento {
+    color: var(--bento-azul);
+    font-weight: 600;
+}
+
+.nome-tomas {
+    color: var(--tomas-marrom);
+    font-weight: 600;
+}
+
+.nome-liz {
+    color: var(--liz-mostarda);
+    font-weight: 700;
+}
+
+/* ==========================================================================
+   5. COMPONENTES
+   ========================================================================== */
+
+/* Explicação de Francês */
+.frances {
+    background: linear-gradient(135deg, #E8F5E9, #fff);
+    padding: 0.25rem 0.6rem;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    font-style: italic;
+    margin-left: 0.3rem;
+    border: 1px solid #C8E6C9;
+}
+
+/* Separador de Cena */
+.separator {
+    text-align: center;
+    color: var(--dourado-antigo);
+    font-size: 1.8rem;
+    margin: 3.5rem 0;
+    letter-spacing: 1rem;
+    opacity: 0.5;
+}
+
+/* Prisma da Liz (Glossário) */
+.prisma-box {
+    background: linear-gradient(135deg, rgba(249, 168, 37, 0.08), rgba(255, 255, 255, 0.95));
+    border-left: 4px solid var(--liz-mostarda);
+    padding: 1.8rem;
+    margin: 3rem 0;
+    border-radius: 0 12px 12px 0;
+}
+
+.prisma-box h3 {
+    margin-top: 0;
+    font-size: 1.1rem;
+    color: var(--liz-mostarda);
+}
+
+/* Verdade Histórica */
+.verdade-historica {
+    background-color: #EFEBE9;
+    padding: 2rem;
+    border-left: 4px solid var(--tomas-marrom);
+    margin: 3rem 0;
+    border-radius: 0 12px 12px 0;
+}
+
+.verdade-historica h3 {
+    margin-top: 0;
+    color: var(--tomas-marrom);
+    font-size: 1.2rem;
+}
+
+.verdade-historica blockquote {
+    font-style: italic;
+    font-family: var(--font-titulo);
+    margin: 0 0 1.5rem 0;
+    padding-left: 1rem;
+    border-left: 2px solid var(--tomas-marrom);
+    opacity: 0.8;
+}
+
+/* Caderno do Tomás (Desafio) */
+.caderno-tomas {
+    background-color: #fff;
+    background-image: linear-gradient(#E3F2FD 1px, transparent 1px), linear-gradient(90deg, #E3F2FD 1px, transparent 1px);
+    background-size: 22px 22px;
+    border: 1px solid #BBDEFB;
+    padding: 2rem;
+    margin: 3rem 0;
+    font-family: var(--font-mono);
+    box-shadow: 3px 5px 12px rgba(0, 0, 0, 0.06);
+    transform: rotate(-0.5deg);
+    font-size: 0.95rem;
+}
+
+.caderno-tomas h4 {
+    margin-top: 0;
+    color: var(--tomas-marrom);
+    font-family: var(--font-texto);
+    font-weight: 600;
+    border-bottom: 1px dashed var(--tomas-marrom);
+    padding-bottom: 8px;
+}
+
+/* Box de Narração */
+.narracao-box {
+    background: linear-gradient(135deg, #E3F2FD, #fff);
+    border: 2px dashed var(--bento-azul);
+    padding: 1.8rem;
+    margin: 3rem 0;
+    border-radius: 12px;
+}
+
+.narracao-box strong {
+    color: var(--bento-azul);
+}
+
+/* Ornamento Final */
+.ornamento-final {
+    text-align: center;
+    font-size: 2.5rem;
+    color: var(--dourado-antigo);
+    margin-top: 4rem;
+    opacity: 0.6;
+}

@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frutos do Espírito | Kit Ultra-Premium</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Outfit:wght@300;400;500;600&family=Pinyon+Script&display=swap"
+        rel="stylesheet">
+
+    <style>
+        :root {
+            /* Paleta Botânica (Videira) */
+            --verde-terra: #4A6354;
+            --verde-folha: #6B8F71;
+            --uva-profunda: #5D405D;
+            --creme: #FAF8F3;
+            --papel: #FFFDF7;
+            --borda: #EAE2D0;
+            --dourado-suave: #C5B085;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        body {
+            background: #e0e0e0;
+            font-family: 'Outfit', sans-serif;
+            padding: 2cm;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        /* TIPOGRAFIA PREMIUM */
+        .script-font {
+            font-family: 'Libre Baskerville', serif;
+            font-style: italic;
+            font-weight: 700;
+        }
+
+        .serif-font {
+            font-family: 'Libre Baskerville', serif;
+        }
+
+        /* ESTILOS DE PÁGINA A4 */
+        .page {
+            background: white;
+            width: 21cm;
+            height: 29.7cm;
+            padding: 1.5cm;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            position: relative;
+            page-break-after: always;
+            overflow: hidden;
+        }
+
+        .page-label {
+            position: absolute;
+            top: 0.5cm;
+            left: 1.5cm;
+            font-size: 0.7rem;
+            color: #ccc;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* --- PÁGINA 1: CAPA/CARTA --- */
+        .cover-content {
+            height: 100%;
+            border: 1px solid var(--verde-terra);
+            outline: 4px double var(--verde-terra);
+            outline-offset: -6px;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            text-align: center;
+            color: var(--verde-terra);
+            background-image:
+                linear-gradient(rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.95)),
+                url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%234A6354' fill-opacity='0.1' fill-rule='evenodd'%3E%3Ccircle cx='3' cy='3' r='1'/%3E%3Ccircle cx='13' cy='13' r='1'/%3E%3C/g%3E%3C/svg%3E");
+        }
+
+        .cover-title {
+            font-family: 'Libre Baskerville', serif;
+            font-weight: 700;
+            font-size: 4.5rem;
+            /* Fonte Script Grande */
+            margin-bottom: 0rem;
+            color: var(--verde-terra);
+            line-height: 1;
+        }
+
+        .cover-subtitle {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 3rem;
+            color: var(--uva-profunda);
+            border-top: 1px solid var(--dourado-suave);
+            border-bottom: 1px solid var(--dourado-suave);
+            padding: 0.5rem 0;
+            display: inline-block;
+            align-self: center;
+        }
+
+        .cover-objective {
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.8rem;
+            color: #777;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: -2rem;
+            margin-bottom: 2rem;
+        }
+
+        .letter-body {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 1.15rem;
+            line-height: 1.9;
+            margin-bottom: 3rem;
+            text-align: justify;
+            /* background: rgba(255, 255, 255, 0.9); */
+            padding: 1rem;
+        }
+
+        .instructions-box {
+            background: var(--creme);
+            padding: 2rem;
+            border-radius: 4px;
+            text-align: left;
+            position: relative;
+            border: 1px solid var(--borda);
+        }
+
+        .instructions-box h3 {
+            color: var(--uva-profunda);
+            margin-bottom: 1rem;
+            font-size: 1.4rem;
+            font-family: 'Libre Baskerville', serif;
+            font-style: italic;
+            font-weight: 700;
+        }
+
+        /* --- PÁGINA 2: CARDS (FRENTE) --- */
+        .grid-cards {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-template-rows: repeat(4, 1fr);
+            gap: 15px;
+            height: 100%;
+        }
+
+        .card {
+            background: var(--papel);
+            border: 1px solid #eee;
+            /* Linha de corte bem sutil */
+            padding: 8px;
+            /* Margem branca para corte */
+            display: flex;
+        }
+
+        .card-inner {
+            border: 2px solid var(--verde-terra);
+            outline: 1px solid var(--dourado-suave);
+            outline-offset: -4px;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 0.5rem;
+            position: relative;
+            background: white;
+            box-shadow: inset 0 0 20px rgba(74, 99, 84, 0.05);
+            /* Vinheta suave interna */
+        }
+
+        .card-header {
+            font-family: 'Pinyon Script', cursive;
+            font-size: 2.2rem;
+            color: var(--uva-profunda);
+            margin-bottom: 0.2rem;
+            margin-top: 0.5rem;
+            line-height: 1;
+        }
+
+        .card-img-placeholder {
+            width: 70px;
+            height: 70px;
+            background: var(--creme);
+            border-radius: 50%;
+            /* Moldura redonda clássica */
+            margin-bottom: 0px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            color: var(--verde-folha);
+            border: 1px solid var(--dourado-suave);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .card .virtue-label {
+            /* Pequena etiqueta acima do nome se precisar, mas o Script já é o nome */
+            display: none;
+        }
+
+        .card .versiculo {
+            font-family: 'Libre Baskerville', serif;
+            font-style: italic;
+            font-size: 0.75rem;
+            color: #555;
+            margin: 0.5rem 0;
+            text-align: center;
+            line-height: 1.4;
+            max-width: 90%;
+            flex-grow: 1;
+            display: flex;
+            align-items: center;
+        }
+
+        .card .ref {
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.6rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--verde-terra);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            border-top: 1px solid var(--borda);
+            padding-top: 4px;
+            width: 50%;
+            text-align: center;
+        }
+
+        /* --- PÁGINA 3: VERSO (PADRÃO) --- */
+        .pattern-bg {
+            width: 100%;
+            height: 100%;
+            background-color: var(--papel);
+            background-image:
+                radial-gradient(var(--uva-profunda) 0.5px, transparent 0.5px),
+                radial-gradient(var(--verde-terra) 0.5px, transparent 0.5px);
+            background-size: 20px 20px;
+            background-position: 0 0, 10px 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 20px solid white;
+            /* Margem branca de segurança */
+        }
+
+        .watermark {
+            font-family: 'Pinyon Script', cursive;
+            font-size: 4rem;
+            color: var(--verde-terra);
+            opacity: 0.2;
+            transform: rotate(-15deg);
+        }
+
+        /* --- PÁGINA 4: ENVELOPE --- */
+        .envelope-template {
+            width: 100%;
+            height: 100%;
+            border: 1px dashed #ccc;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23FAF8F3' fill-rule='evenodd'%3E%3Cpath d='M0 40L40 0H20L0 20M40 40V20L20 40'/%3E%3C/g%3E%3C/svg%3E");
+            /* Textura sutil */
+        }
+
+        .envelope-body {
+            width: 72%;
+            height: 62%;
+            border: 2px solid var(--verde-terra);
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
+        }
+
+        /* Selo de Cera Simulado */
+        .wax-seal {
+            width: 60px;
+            height: 60px;
+            background: var(--uva-profunda);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255, 255, 255, 0.8);
+            font-family: 'Pinyon Script', cursive;
+            font-size: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2), inset 0 2px 5px rgba(255, 255, 255, 0.2);
+            border: 4px solid rgba(0, 0, 0, 0.1);
+            margin-bottom: 1rem;
+        }
+
+        .flap {
+            position: absolute;
+            font-size: 0.7rem;
+            color: #999;
+            text-transform: uppercase;
+        }
+
+        /* NÃO IMPRIMIR NA TELA */
+        .no-print {
+            text-align: center;
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            max-width: 600px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            border-top: 5px solid var(--verde-terra);
+        }
+
+        @media print {
+            @page {
+                margin: 0;
+            }
+
+            body {
+                background: none;
+                padding: 0;
+                display: block;
+            }
+
+            .no-print {
+                display: none;
+            }
+
+            .page {
+                box-shadow: none;
+                margin: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="no-print">
+        <h1 class="script-font" style="color: var(--verde-terra); font-size: 3rem;">Frutos do Espírito</h1>
+        <p style="font-family: 'Libre Baskerville'; font-style: italic;">Edição Ultra-Premium (5 Páginas)</p>
+
+        <!-- PERSONALIZAÇÃO -->
+        <div
+            style="background: var(--creme); padding: 1rem; border-radius: 8px; margin: 1rem 0; border: 1px solid var(--verde-terra); width: 100%; max-width: 400px; display: inline-block;">
+            <label
+                style="font-family: 'Outfit'; font-size: 0.9rem; color: var(--uva-profunda); display: block; margin-bottom: 0.5rem;">💎
+                Personalize para sua casa:</label>
+            <input type="text" id="familyNameInput" placeholder="Sobrenome da Família (Ex: Silva)"
+                style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; font-family: 'Libre Baskerville'; text-align: center;"
+                oninput="updateFamilyName(this.value)">
+        </div>
+
+        <hr style="border: 0; border-top: 1px solid #eee; margin: 1.5rem 0;">
+        <button onclick="window.print()"
+            style="padding: 12px 25px; background: var(--verde-terra); color: white; border: none; font-size: 1.1rem; cursor: pointer; border-radius: 50px; font-family: 'Outfit'; font-weight: 500; box-shadow: 0 4px 10px rgba(74, 99, 84, 0.3);">🖨️
+            Imprimir Obra de Arte</button>
+        <br><br>
+        <a href="catalogo.html" style="color: var(--verde-folha); text-decoration: none; font-size: 0.9rem;">← Voltar ao
+            Catálogo</a>
+        <p style="margin-top: 2rem; font-size: 0.75rem; color: #aaa; border-top: 1px solid #eee; padding-top: 1rem;">
+            Este material foi criado por <strong>Sementes de Sabedoria</strong> • Parte do projeto <a
+                href="https://matematicaviva.com" style="color: var(--verde-terra);">Matemática Viva</a><br>
+            <em>"Revelando a ordem de Deus — na Palavra e nos Números"</em>
+        </p>
+    </div>
+
+    <!-- PÁGINA 1: MANIFESTO TEOLÓGICO -->
+    <div class="page">
+        <div class="page-label">Página 1: Manifesto de Abertura</div>
+        <div class="cover-content">
+            <h1 class="cover-title">Frutos do Espírito</h1>
+            <p class="cover-subtitle">O Segredo da Videira</p>
+
+            <div class="cover-objective">Propósito: Evidências da Graça (Vida no Espírito)</div>
+
+            <div class="letter-body" style="font-size: 1.25rem;">
+                <p>Querida Família <span id="familyNameDisplay"
+                        style="color: var(--verde-terra); font-weight: bold;"></span>,</p>
+                <p>Quantas vezes já nos pegamos dizendo: <em>"Seja bonzinho!", "Tenha paciência!", "Onde está sua
+                        alegria?"</em>? Nossa tendência natural é tratar as virtudes cristãs como metas de comportamento
+                    que a criança deve atingir pelo esforço.</p>
+                <p>Isso gera cansaço. E, eventualmente, hipocrisia. Ninguém consegue produzir paciência por força de
+                    vontade, assim como um galho solto no chão não consegue produzir uvas fazendo força.</p>
+                <p>O segredo não está na força do galho, mas na <strong>Seiva da Videira</strong>.</p>
+                <p>Em João 15, Jesus nos dá a chave: <em>"Eu sou a videira; vocês são os ramos. Quem permanece em mim dá
+                        muito fruto."</em></p>
+                <p>Este kit, <strong>"O Jardim do Coração"</strong>, foi criado para mudar o foco da sua casa. Ele não
+                    serve para cobrar comportamento. Ele serve para celebrar a presença. O fruto do Espírito não é o que
+                    fazemos para Deus; é o que Deus está fazendo em nós.</p>
+
+                <br>
+                <p
+                    style="text-align: right; font-family: 'Pinyon Script'; font-size: 2.5rem; color: var(--uva-profunda);">
+                    Matemática Viva</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- PÁGINA 2: GUIA PRÁTICO -->
+    <div class="page">
+        <div class="page-label">Página 2: Como Cultivar (Sem Moralismo)</div>
+        <div class="cover-content" style="border-style: dashed; border-color: #ddd; background: none;">
+            <h2 class="script-font" style="color: var(--uva-profunda); font-size: 3rem; margin-bottom: 2rem;">Cultivando
+                a Graça</h2>
+
+            <div class="instructions-box" style="background: white; border: 1px solid var(--verde-terra);">
+                <h3 style="color: var(--verde-terra);">1. A Celebração da Evidência</h3>
+                <p style="margin-bottom: 1.5rem; line-height: 1.6;">Use os cards para "flagrar" a obra do Espírito
+                    Santo. Quando seu filho demonstrar bondade espontânea, não diga <em>"Parabéns pelo esforço"</em>.
+                    Diga: <em>"Uau! Jesus acabou de compartilhar a Bondade dEle com você. Olha como ficou bonito!"</em>.
+                    Entregue o card para ele segurar como um troféu da Graça.</p>
+
+                <h3 style="color: var(--verde-terra);">2. O Pedido de Socorro (A Dependência)</h3>
+                <p style="margin-bottom: 1.5rem; line-height: 1.6;">Quando a "Paciência" faltar na casa (inclusive nos
+                    pais!), peguem o card correspondente. Coloquem na mesa e orem: <em>"Senhor Jesus, nós somos os
+                        ramos. Estamos secos agora. Precisamos da Tua seiva. Enche-nos."</em> Isso mata o orgulho e
+                    ensina o Evangelho.</p>
+
+                <h3 style="color: var(--verde-terra);">3. O Envelope "Minha Colheita"</h3>
+                <p style="margin-bottom: 1.5rem; line-height: 1.6;">Use o envelope para guardar os frutos que vocês
+                    querem pedir a Deus esta semana, ou os que vocês já viram "brotar". É o álbum de figurinhas da alma.
+                </p>
+
+                <hr style="border: 0; border-top: 1px dashed var(--borda); margin: 2rem 0;">
+
+                <!-- QR CODE ATMOSFERA -->
+                <div
+                    style="display: flex; align-items: center; gap: 1rem; background: var(--creme); padding: 10px; border-radius: 8px;">
+                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://open.spotify.com/playlist/37i9dQZF1DX2vYju3i0lNX"
+                        alt="QR Code Jardim" style="width: 60px; height: 60px; mix-blend-mode: multiply;">
+                    <div>
+                        <p
+                            style="font-family: 'Pinyon Script'; font-size: 1.4rem; color: var(--uva-profunda); line-height: 1;">
+                            Atmosfera Sonora</p>
+                        <p style="font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px;">Playlist
+                            Instrumental do Jardim</p>
+                    </div>
+                </div>
+
+                <p style="font-style: italic; color: #777;"><strong>Instruções Técnicas:</strong> Pág 3 (Cards) deve ter
+                    a Pág 4 (Verso) impressa atrás. Pág 5 é o envelope de montar.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- PÁGINA 3: CARDS -->
+    <div class="page">
+        <div class="page-label">Página 3: Frente (Cortar no pontilhado)</div>
+        <div class="grid-cards">
+            <!-- Card 1 -->
+            <div class="card">
+                <div class="card-inner">
+                    <div class="card-img-placeholder">❤️</div>
+                    <h2 class="card-header">Amor</h2>
+                    <p class="versiculo">"O amor é paciente e bondoso. O amor não arde em ciúmes..."</p>
+                    <p class="ref">1 Coríntios 13:4</p>
+                </div>
+            </div>
+            <!-- Card 2 -->
+            <div class="card">
+                <div class="card-inner">
+                    <div class="card-img-placeholder">☀️</div>
+                    <h2 class="card-header">Alegria</h2>
+                    <p class="versiculo">"Alegrem-se sempre no Senhor. Novamente direi: alegrem-se!"</p>
+                    <p class="ref">Filipenses 4:4</p>
+                </div>
+            </div>
+            <!-- Card 3 -->
+            <div class="card">
+                <div class="card-inner">
+                    <div class="card-img-placeholder">🕊️</div>
+                    <h2 class="card-header">Paz</h2>
+                    <p class="versiculo">"Deixo-lhes a paz; a minha paz lhes dou. Não a dou como o mundo a dá."</p>
+                    <p class="ref">João 14:27</p>
+                </div>
+            </div>
+            <!-- Card 4 -->
+            <div class="card">
+                <div class="card-inner">
+                    <div class="card-img-placeholder">🕰️</div>
+                    <h2 class="card-header">Paciência</h2>
+                    <p class="versiculo">"Descanse no Senhor e aguarde por ele com paciência."</p>
+                    <p class="ref">Salmo 37:7</p>
+                </div>
+            </div>
+            <!-- Card 5 -->
+            <div class="card">
+                <div class="card-inner">
+                    <div class="card-img-placeholder">🤝</div>
+                    <h2 class="card-header">Bondade</h2>
+                    <p class="versiculo">"Sejam bondosos e compassivos uns para com os outros..."</p>
+                    <p class="ref">Efésios 4:32</p>
+                </div>
+            </div>
+            <!-- Card 6 -->
+            <div class="card">
+                <div class="card-inner">
+                    <div class="card-img-placeholder">🛡️</div>
+                    <h2 class="card-header">Fidelidade</h2>
+                    <p class="versiculo">"Grande é a tua fidelidade; as tuas misericórdias se renovam a cada manhã."</p>
+                    <p class="ref">Lam. 3:23</p>
+                </div>
+            </div>
+            <!-- Card 7 -->
+            <div class="card">
+                <div class="card-inner">
+                    <div class="card-img-placeholder">🌿</div>
+                    <h2 class="card-header">Mansidão</h2>
+                    <p class="versiculo">"Bem-aventurados os mansos, pois eles herdarão a terra."</p>
+                    <p class="ref">Mateus 5:5</p>
+                </div>
+            </div>
+            <!-- Card 8 -->
+            <div class="card">
+                <div class="card-inner">
+                    <div class="card-img-placeholder">🎮</div>
+                    <h2 class="card-header">Domínio</h2>
+                    <p class="versiculo">"Porque Deus não nos deu espírito de covardia, mas de poder e amor."</p>
+                    <p class="ref">2 Timóteo 1:7</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PÁGINA 4: VERSO -->
+    <div class="page">
+        <div class="page-label">Página 4: Verso (Imprimir atrás da Pág 3)</div>
+        <div class="pattern-bg">
+            <div class="watermark">Jardim do Reino</div>
+        </div>
+    </div>
+
+    <!-- PÁGINA 5: ENVELOPE -->
+    <div class="page">
+        <div class="page-label">Página 5: Envelope Minha Colheita (Recortar e Colar)</div>
+        <div class="envelope-template">
+            <div class="flap" style="top: 2cm;">[Aba Superior: Dobrar]</div>
+            <div class="flap" style="bottom: 2cm;">[Aba Inferior: Colar]</div>
+            <div class="flap" style="left: 1cm; transform: rotate(-90deg);">[Lateral]</div>
+            <div class="flap" style="right: 1cm; transform: rotate(90deg);">[Lateral]</div>
+
+            <div class="envelope-body">
+                <div class="wax-seal">M</div>
+                <h2 class="script-font" style="font-size: 3rem; margin-bottom: 0rem; color: var(--verde-terra);">Minha
+                    Colheita</h2>
+                <p
+                    style="font-family: 'Libre Baskerville'; font-size: 0.8rem; color: var(--uva-profunda); font-style: italic; letter-spacing: 1px;">
+                    Frutos que Jesus plantou em mim</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function updateFamilyName(name) {
+            const display = document.getElementById('familyNameDisplay');
+            if (name.trim() === '') {
+                display.innerText = '';
+                display.style.textDecoration = 'none';
+            } else {
+                display.innerText = ' ' + name;
+                display.style.textDecoration = 'underline';
+                display.style.textUnderlineOffset = '5px';
+            }
+        }
+    </script>
+</body>
+
+</html>

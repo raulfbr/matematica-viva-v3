@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Capítulo 1: O Peso da Glória (Raul & Melina)</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Outfit:wght@300;400;500;600&family=Courier+New&display=swap"
+        rel="stylesheet">
+
+    <!-- EMBEDDED CSS (Solução Definitiva para o Problema de Cores) -->
+    <style>
+        /* ==========================================================================
+           RESET & TOKENS GERAIS (Base do Projeto)
+           ========================================================================== */
+        :root {
+            /* Cores Base Matemática Viva */
+            --creme-quente: #F8F5E9;
+            --verde-floresta: #304837;
+            --verde-claro: #4A6B50;
+            --dourado-antigo: #B89B5E;
+            --creme-escuro: #EDE8D5;
+            --branco: #ffffff;
+            --font-titulo: 'Libre Baskerville', serif;
+            --font-texto: 'Outfit', sans-serif;
+            --radius-md: 12px;
+            --radius-sm: 8px;
+            --shadow-soft: 0 4px 15px rgba(48, 72, 55, 0.05);
+
+            /* =========================================================
+                PALETA OUTONO ESCURO (Raul & Melina) - AJUSTADA
+                ========================================================= */
+            /* Paleta Raul (Terra & Musgo) - Mais sóbria */
+            --raul-couro: #4E342E;
+            /* Marrom Café Profundo */
+            --raul-verde: #558B2F;
+            /* Verde Musgo Vibrante */
+
+            /* Paleta Melina (Luz & Folha) - Mais natural */
+            --melina-mostarda: #F9A825;
+            /* Amarelo Ocre Intenso */
+            --melina-terracota: #BF360C;
+            /* Telha Escuro */
+
+            /* Paleta Mamae Marina (Amor & Cuidado) */
+            --mamae-rosa: #D88E8E;
+
+            /* Paleta Dumont (Ar & Aço) */
+            --dumont-aco: #607D8B;
+            --papel-antigo: #FFFBF0;
+            /* Creme Papel Velho */
+        }
+
+        /* ==========================================================================
+           ESTILO GERAL
+           ========================================================================== */
+        body {
+            font-family: var(--font-texto);
+            background-color: var(--papel-antigo);
+            color: #3e2723;
+            /* Texto Quase Preto (Marrom Café) */
+            line-height: 1.8;
+            font-size: 19px;
+            margin: 0;
+            padding: 0;
+            /* Padrão Sutil de Papel */
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23B89B5E' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+
+        .livro-container {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem 6rem;
+        }
+
+        /* Tipografia Títulos */
+        h1,
+        h2,
+        h3 {
+            font-family: var(--font-titulo);
+            color: var(--raul-couro);
+        }
+
+        /* ==========================================================================
+           HEADER (CAPÍTULO)
+           ========================================================================== */
+        .capitulo-header {
+            text-align: center;
+            margin-bottom: 3.5rem;
+            border-bottom: 2px solid var(--raul-couro);
+            padding-bottom: 2rem;
+            position: relative;
+        }
+
+        .capitulo-num {
+            font-family: var(--font-texto);
+            text-transform: uppercase;
+            letter-spacing: 0.25em;
+            font-size: 0.85rem;
+            color: var(--melina-terracota);
+            font-weight: 700;
+            display: block;
+            margin-bottom: 0.8rem;
+        }
+
+        .capitulo-titulo {
+            font-size: 2.8rem;
+            line-height: 1.2;
+            margin: 0 0 1rem;
+        }
+
+        .capitulo-tema {
+            font-family: var(--font-texto);
+            font-size: 1rem;
+            color: var(--raul-verde);
+            font-style: italic;
+        }
+
+        /* ==========================================================================
+           TEXTO NARRATIVO
+           ========================================================================== */
+        .drop-cap {
+            float: left;
+            font-family: var(--font-titulo);
+            font-size: 3.8rem;
+            line-height: 0.8;
+            margin-right: 0.6rem;
+            margin-top: 0.15rem;
+            color: var(--raul-couro);
+            font-style: italic;
+        }
+
+        /* Nomes Destacados (Identidade Visual) */
+        .char-raul {
+            color: var(--raul-verde);
+            font-weight: 600;
+        }
+
+        .char-melina {
+            color: var(--melina-terracota);
+            font-weight: 600;
+        }
+
+        .char-dumont {
+            color: var(--dumont-aco);
+            font-weight: 600;
+        }
+
+        .char-mamae {
+            color: var(--mamae-rosa);
+            font-weight: 600;
+        }
+
+        /* Citações */
+        .blockquote-artigo {
+            position: relative;
+            margin: 2.5rem 0;
+            padding: 2rem 1.5rem;
+            text-align: center;
+            font-family: var(--font-titulo);
+            font-style: italic;
+            font-size: 1.25rem;
+            color: var(--raul-couro);
+            background: linear-gradient(135deg, rgba(184, 155, 94, 0.08) 0%, rgba(184, 155, 94, 0.03) 100%);
+            border-radius: var(--radius-md);
+        }
+
+        /* ==========================================================================
+           ELEMENTOS ESPECIAIS (Margens & Caderno)
+           ========================================================================== */
+        /* Estrelinha Separadora */
+        .star-separator {
+            text-align: center;
+            color: var(--dourado-antigo);
+            font-size: 1.8rem;
+            margin: 3.5rem 0;
+            opacity: 0.7;
+            letter-spacing: 0.5rem;
+        }
+
+        /* Glossário da Melina */
+        .margem-box {
+            background: #fff;
+            border-left: 5px solid;
+            padding: 1.5rem;
+            margin: 2.5rem 0;
+            border-radius: 0 var(--radius-md) var(--radius-md) 0;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+            font-size: 0.95rem;
+        }
+
+        .margem-melina {
+            border-color: var(--melina-mostarda);
+            background: linear-gradient(to right, #FFFDE7, #ffffff);
+            font-style: italic;
+            color: #5D4037;
+        }
+
+        /* Caderno do Raul */
+        .math-notebook {
+            background-color: #fff;
+            /* Grid Azulado de Caderno */
+            background-image:
+                linear-gradient(#E3F2FD 1px, transparent 1px),
+                linear-gradient(90deg, #E3F2FD 1px, transparent 1px);
+            background-size: 24px 24px;
+            border: 1px solid #BBDEFB;
+            padding: 2.5rem;
+            margin: 3.5rem 0 2rem;
+            border-radius: 4px;
+            /* Canto mais reto de caderno */
+            box-shadow: 4px 6px 15px rgba(0, 0, 0, 0.1);
+            position: relative;
+            transform: rotate(-1deg);
+        }
+
+        .math-notebook:before {
+            /* Espiral ou detalhe */
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 20px;
+            bottom: 0;
+            width: 2px;
+            background: rgba(255, 0, 0, 0.1);
+            /* Margem vermelha de caderno */
+        }
+
+        .math-notebook h3 {
+            font-family: 'Courier New', monospace;
+            color: #1A237E;
+            /* Azul Caneta */
+            border-bottom: 2px dashed #1A237E;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+            font-size: 1.4rem;
+        }
+
+        .math-notebook p {
+            font-family: 'Courier New', monospace;
+            /* Fonte Monospaced */
+            font-size: 1.1rem;
+            color: #333;
+        }
+
+        /* ==========================================================================
+           PORTAL BREAK
+           ========================================================================== */
+        .portal-break {
+            text-align: center;
+            margin: 3rem 0;
+            color: var(--dourado-antigo);
+            font-size: 1.8rem;
+            line-height: 1;
+        }
+
+        /* ==========================================================================
+           RESPONSIVIDADE (Mobile First)
+           ========================================================================== */
+        @media (max-width: 600px) {
+            .math-notebook {
+                transform: none;
+                margin-left: -1.5rem;
+                margin-right: -1.5rem;
+                border-left: none;
+                border-right: none;
+                border-radius: 0;
+                padding: 1.5rem;
+            }
+
+            .capitulo-titulo {
+                font-size: 2.2rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="livro-container">
+
+        <!-- Header do Capítulo -->
+        <header class="capitulo-header">
+            <span class="capitulo-num">Capítulo Um</span>
+            <h1 class="capitulo-titulo">O Peso da Glória</h1>
+            <p class="capitulo-tema">Conceito: Subtração e Humildade</p>
+        </header>
+
+        <!-- Texto da História -->
+        <article class="artigo-content">
+            <!-- Parte 0: Mamãe Marina -->
+            <p><span class="drop-cap">A</span> sala de estar estava silenciosa, exceto pelo som de chuva lá fora. <span
+                    class="char-raul">Raul</span> estava sentado no tapete felpudo cor de terra, com o grande
+                <strong>Livro Dourado</strong> aberto nos joelhos.</p>
+
+            <p>— Com licença, meus exploradores. — A voz doce da <span class="char-mamae">mamãe Marina</span> quebrou o
+                silêncio.</p>
+
+            <p>Ela entrou na sala trazendo uma bandeja com fatias de maçã e chá de camomila. Mamãe sempre cuidava para
+                que o corpo fosse tão bem alimentado quanto a mente. Ela ajeitou a gola da camisa de Raul com carinho e
+                passou a mão nos cachos de Melina.</p>
+
+            <p>— Antes de viajar para longe, lembrem-se de quem vocês são — disse ela, olhando nos olhos de Raul. —
+                Vocês são filhos amados de Deus. A inteligência é um presente Dele, usem para a Glória Dele.</p>
+
+            <p>— Sim, mamãe. — respondeu Raul, sentindo a paz que ela sempre trazia.<br>
+                — Amém! — completou Melina, pegando uma maçã.</p>
+
+            <p>Marina sorriu, aquele sorriso que iluminava a casa, e saiu devagar. Ela sabia que a aventura agora era
+                deles.</p>
+
+            <div class="star-separator">★</div>
+
+            <p>Raul voltou os olhos para o livro. Ele passava o dedo pelas letras brilhantes da capa: <em>Alberto Santos
+                    Dumont</em>.</p>
+
+            <p><span class="char-melina">Melina</span> rodopiava pela sala cantarolando.<br>
+                — <em>Pom-pom-pom... O trem faz tchu-tchu...</em></p>
+
+            <p>— Melina, senta aqui — pediu Raul, batendo no tapete. — A gente vai entrar agora.<br>
+                — Já vou, Comandante! — Ela se jogou ao lado dele, amassando o vestido cor de <span
+                    style="color:var(--melina-mostarda); font-weight:600;">mostarda</span>.</p>
+
+            <p>Quando Raul virou a primeira página, o cheiro de chuva sumiu. De repente, a sala cheirou a café forte e
+                madeira cortada. O som da chuva virou o chiado de vapor.</p>
+
+            <div class="portal-break">
+                ✦ ✦ ✦<br>
+                <span style="font-size:0.9rem; font-style:italic; letter-spacing:1px; display:block; margin-top:10px;">O
+                    Portal se Abre</span>
+            </div>
+
+            <p>Eles pisaram em um chão que brilhava como ouro líquido.<br>
+                — Uau... — suspirou Melina. — É macio, Raul! Parece o vestido de festa da mamãe.</p>
+
+            <p>— Cuidado — avisou Raul, estendendo a mão para ela com firmeza. — Isso é seda envernizada. Escorrega.</p>
+
+            <p>— <em>Entrez, mes amis!</em> — Uma voz fina e alegre ecoou entre as cestas gigantes.</p>
+
+            <p>Um homem baixinho saiu de trás de uma hélice. Ele vestia um terno xadrez impecável e um colarinho tão
+                alto que parecia querer sustentar sua cabeça nas nuvens.<br>
+                — <em>Entrez!</em> Entrem! — repetiu ele.</p>
+
+            <p>Melina riu e imitou o biquinho dele.<br>
+                — "Entrê"! Parece barulho de trem, Raul!</p>
+
+            <p>O homem caminhou até eles. Ele era realmente baixo. Quase da altura de Raul. Ele apertou a mão do
+                menino.<br>
+                — <em>Magnifique!</em> Crianças no meu laboratório! Eu sou Alberto. Mas aqui em Paris, me chamam de
+                <span class="char-dumont">Petit Santos</span>.</p>
+
+            <p>Melina arregalou os olhos.<br>
+                — Petit? Igual o iogurte?<br>
+                — <em>Non, ma chérie</em> — riu Alberto. — <em>Petit</em> quer dizer Pequeno.</p>
+
+            <p>Melina olhou para o irmão e soltou, sem pensar:<br>
+                — Igual você, Raulzinho! O Raulzinho também é petit!</p>
+
+            <p>Raul sentiu o rosto esquentar. A fumaça subiu em sua cabeça. Ele odiava aquele apelido. Ele queria ser
+                grande. Ele abriu a boca para dar uma resposta ríspida, mas lembrou-se: <em>O homem forte domina a sua
+                    ira.</em></p>
+
+            <p>Ele engoliu o grito, respirou fundo e disse, sério:<br>
+                — Melina, meu nome é Raul. Eu não sou pequeno.</p>
+
+            <p>Alberto percebeu a tensão. O inventor olhou para Raul, depois para uma balança de farmácia no canto da
+                sala.<br>
+                — Venha cá, Raul. Vamos ver o que a Matemática diz sobre ser pequeno.</p>
+
+            <p>Alberto subiu na balança: <strong>50 kg</strong>. Raul subiu: <strong>35 kg</strong>.</p>
+
+            <p>— Você acha que ser grande é melhor, Raul? — perguntou Alberto.<br>
+                — Sim. Os grandes são fortes. Os grandes constroem prédios.</p>
+
+            <blockquote class="blockquote-artigo">
+                "Deus desenhou o elefante para ser forte na terra. Mas desenhou o beija-flor para ser livre no céu."
+            </blockquote>
+
+            <p>— Se eu pesasse 100 quilos, precisaria de um balão do tamanho de uma cidade. Mas como sou <em>petit</em>,
+                como sou leve... eu posso subir com um balão que cabe na minha mala. <strong>Eficiência</strong>, meu
+                jovem!</p>
+
+            <p>A raiva no peito de Raul sumiu. A Verdade fez sentido. Ele não era "falta de homem". Ele era um "projeto
+                aerodinâmico".</p>
+
+            <!-- Glossário Lateral -->
+            <aside class="margem-box margem-melina">
+                <div style="font-size:1.5rem; margin-bottom:5px;">🧪</div>
+                <strong>Glossário da Melina</strong><br>
+                <em>Petit</em> (fala-se "pêtí"): Significa Pequeno. Mas lembre-se: diamantes também são petits!
+            </aside>
+
+            <p>— Bom... — disse Raul, pegando seu caderno de couro. — Se leveza é poder, o que a gente precisa tirar
+                desse balão para ele subir hoje?</p>
+
+            <p>Alberto sorriu.<br>
+                — O gás aguenta 80 kg. Estamos pesando 95. Precisamos <strong>subtrair 15 kg</strong>.</p>
+
+            <p>Raul olhou para a cesta linda, cheia de verniz e bordas decoradas.<br>
+                — Vai doer, Mel — disse Raul, com gentileza. — Mas a gente vai ter que tirar a parte bonita para
+                conseguir voar.</p>
+
+            <div class="star-separator">★ ★ ★</div>
+
+            <h3>O Retorno</h3>
+            <p>Quando a lição acabou, o cheiro de café sumiu. O chão de seda virou o tapete da sala.<br>
+                Melina olhou para o irmão.<br>
+                — Raul... sua bochecha tá suja.</p>
+
+            <p>Raul passou a mão no rosto. Seus dedos ficaram pretos de graxa. Ele sorriu.</p>
+
+            <!-- Caderno Matemático -->
+            <div class="math-notebook">
+                <h3>📐 O Caderno do Raul</h3>
+                <p><strong>Lição 1:</strong> Deus desenhou os pequenos para voarem.</p>
+                <p><strong>Cálculo do dia (Subtração):</strong><br>
+                    &nbsp;&nbsp;95 kg (Peso Atual)<br>
+                    - 15 kg (Peso Retirado)<br>
+                    _______<br>
+                    = 80 kg (Voo Livre!)</p>
+            </div>
+
+            <div style="text-align:center; font-size:2rem; color:var(--raul-couro); margin-top:3rem;">❦</div>
+        </article>
+    </div>
+</body>
+
+</html>

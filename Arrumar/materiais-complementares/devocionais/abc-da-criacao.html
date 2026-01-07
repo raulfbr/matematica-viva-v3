@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ABC da Criação | Poster Ultra-Premium</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Outfit:wght@300;400;500;600&family=Pinyon+Script&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --azul-ceu: #6B8F71;
+            /* Verde Folha */
+            --azul-noite: #304837;
+            /* Verde Floresta */
+            --dourado-sol: #B89B5E;
+            --verde-eden: #4A6354;
+            --creme: #FAF8F3;
+            --papel: #FFFDF7;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        body {
+            background: #e0e0e0;
+            font-family: 'Outfit', sans-serif;
+            padding: 2cm;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        /* FORMATO A4 (Padrão Impressão) */
+        .poster-page {
+            background: white;
+            width: 21cm;
+            /* A4 Width */
+            height: 29.7cm;
+            /* A4 Height */
+            padding: 1.5cm;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid var(--dourado-sol);
+            padding-bottom: 1rem;
+        }
+
+        .title {
+            font-family: 'Libre Baskerville', serif;
+            font-weight: 700;
+            font-size: 4rem;
+            color: var(--azul-noite);
+            line-height: 1;
+        }
+
+        .subtitle {
+            font-family: 'Libre Baskerville', serif;
+            font-style: italic;
+            color: var(--verde-eden);
+            font-size: 1.2rem;
+            margin-top: 0.5rem;
+        }
+
+        .abc-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            flex-grow: 1;
+        }
+
+        .letter-card {
+            border: 1px solid #eee;
+            background: var(--papel);
+            padding: 8px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            border-radius: 8px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .letter-big {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--dourado-sol);
+            opacity: 0.3;
+            position: absolute;
+            top: -5px;
+            left: 5px;
+        }
+
+        .word {
+            font-family: 'Libre Baskerville', serif;
+            font-style: italic;
+            font-size: 1.4rem;
+            /* Adjusted for better reading */
+            color: var(--azul-noite);
+            margin-top: 0.5rem;
+            font-weight: 700;
+            z-index: 1;
+        }
+
+        .meaning {
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.7rem;
+            font-weight: 300;
+            color: #555;
+            line-height: 1.2;
+            margin-top: 2px;
+        }
+
+        .footer {
+            margin-top: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-family: 'Libre Baskerville', serif;
+            font-size: 0.8rem;
+            color: #999;
+            border-top: 1px solid #eee;
+            padding-top: 1rem;
+        }
+
+        .no-print {
+            text-align: center;
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            max-width: 600px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            border-top: 5px solid var(--azul-ceu);
+        }
+
+        @media print {
+            @page {
+                size: A4;
+                margin: 0;
+            }
+
+            body {
+                background: none;
+                padding: 0;
+            }
+
+            .no-print {
+                display: none;
+            }
+
+            .poster-page {
+                box-shadow: none;
+                margin: 0;
+                page-break-after: always;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="no-print">
+        <h1 class="serif-font" style="color: var(--azul-noite); font-size: 3rem; font-weight: 700;">ABC da Criação</h1>
+        <p style="font-family: 'Libre Baskerville'; font-style: italic;">Edição Expandida (3 Páginas)</p>
+
+        <!-- PERSONALIZAÇÃO -->
+        <div
+            style="background: var(--creme); padding: 1rem; border-radius: 8px; margin: 1rem 0; border: 1px solid var(--azul-ceu); width: 100%; max-width: 400px; display: inline-block;">
+            <label
+                style="font-family: 'Outfit'; font-size: 0.9rem; color: var(--azul-noite); display: block; margin-bottom: 0.5rem;">💎
+                Sobrenome da Família:</label>
+            <input type="text" id="familyNameInput" placeholder="Ex: Família Souza"
+                style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; font-family: 'Libre Baskerville'; text-align: center;"
+                oninput="updateFamilyName(this.value)">
+        </div>
+
+        <hr style="border: 0; border-top: 1px solid #eee; margin: 1.5rem 0;">
+
+        <!-- INSTRUÇÕES DE IMPRESSÃO -->
+        <div
+            style="background: white; padding: 1.5rem; border-radius: 8px; border-left: 4px solid var(--dourado-sol); margin-bottom: 2rem; text-align: left;">
+            <h3 style="color: var(--azul-noite); margin-bottom: 0.5rem;">🖨️ Orientação de Impressão (Mastery Guide)
+            </h3>
+            <ul style="font-size: 0.9rem; line-height: 1.6; color: #555; list-style-type: none;">
+                <li style="margin-bottom: 0.5rem;">📄 <strong>Papel:</strong> Use papel de gramatura <strong>120g a
+                        180g</strong> (Couché Fosco ou Offset) para firmeza.</li>
+                <li style="margin-bottom: 0.5rem;">📐 <strong>Formato:</strong> Projetado para <strong>A4</strong>. Se
+                    imprimir em A3, os cards viram "posters de parede".</li>
+                <li style="margin-bottom: 0.5rem;">✂️ <strong>Acabamento:</strong> Se desejar cartões individuais,
+                    recorte nas linhas pontilhadas cinza claro.</li>
+                <li>🎨 <strong>Dica:</strong> Emoldure a Página 1 (Manifesto) ou coloque-a na capa do fichário da
+                    criança.</li>
+            </ul>
+        </div>
+
+        <button onclick="window.print()"
+            style="padding: 12px 25px; background: var(--azul-noite); color: white; border: none; font-size: 1.1rem; cursor: pointer; border-radius: 50px; font-family: 'Outfit'; font-weight: 500; box-shadow: 0 4px 10px rgba(42, 61, 79, 0.3);">🖨️
+            Imprimir Coleção</button>
+        <br><br>
+        <a href="catalogo.html" style="color: var(--azul-ceu); text-decoration: none;">← Voltar ao Catálogo</a>
+        <p style="margin-top: 2rem; font-size: 0.75rem; color: #aaa; border-top: 1px solid #eee; padding-top: 1rem;">
+            Este material foi criado por <strong>Sementes de Sabedoria</strong> • Parte do projeto <a
+                href="https://matematicaviva.com" style="color: var(--dourado-sol);">Matemática Viva</a><br>
+            <em>"Revelando a ordem de Deus — na Palavra e nos Números"</em>
+        </p>
+    </div>
+
+    <!-- PÁGINA 1: MANIFESTO & CAPA -->
+    <div class="poster-page">
+        <div class="header" style="border: none; margin-bottom: 2rem;">
+            <h1 class="title" style="font-size: 5rem;">ABC da Criação</h1>
+            <p class="subtitle" style="font-size: 1.4rem;">O Alfabeto do Mundo de Deus</p>
+            <p
+                style="font-family: 'Outfit'; font-size: 0.8rem; color: #777; text-transform: uppercase; letter-spacing: 1px; margin-top: 1rem;">
+                Propósito: Encantamento, Doxologia & Alfabetização</p>
+        </div>
+
+        <div
+            style="padding: 2rem; background: var(--papel); border: 1px solid var(--dourado-sol); border-radius: 12px; position: relative;">
+            <div
+                style="position: absolute; top: -15px; left: 50%; transform: translateX(-50%); background: white; padding: 0 20px; color: var(--dourado-sol); font-family: 'Outfit'; font-weight: 600; text-transform: uppercase;">
+                Manifesto da Alfabetização</div>
+
+            <div
+                style="font-family: 'Libre Baskerville'; font-size: 1.1rem; line-height: 1.8; color: #444; text-align: justify;">
+                <p>Querida <span id="familyNameDisplay" style="color: var(--azul-noite); font-weight: bold;">Família
+                        Exploradora</span>,</p>
+                <br>
+                <p>O alfabeto não é apenas um código humano para escrever bilhetes de compras. As letras são os átomos
+                    da linguagem que Deus usou para falar o mundo à existência. <em>"Disse Deus: Haja..."</em> e houve.
+                </p>
+                <p>Ao apresentar o ABC para a criança, não estamos apenas ensinando "ferramentas de leitura". Estamos
+                    entregando as chaves para decifrar a Revelação Geral (Criação) e a Revelação Especial (Escritura).
+                </p>
+                <p>Este material foi desenhado para que cada letra aponte para uma Verdade Eterna. O <strong>A</strong>
+                    não é apenas de "Abelha", é de <strong>Água</strong>, sobre a qual o Espírito pairava. O
+                    <strong>Z</strong> não é o fim, é a <strong>Zebra</strong>, desenhada pelo dedo do Artista Divino.
+                </p>
+                <p>Que cada card seja uma janela. Que cada letra seja um degrau para o assombro.</p>
+                <br>
+                <p style="text-align: right; font-style: italic;">— Soli Deo Gloria.</p>
+            </div>
+        </div>
+
+        <div style="margin-top: auto; text-align: center;">
+            <!-- QR CODE ATMOSFERA -->
+            <div
+                style="display: inline-flex; align-items: center; gap: 1rem; background: var(--creme); padding: 15px 25px; border-radius: 50px; border: 1px dashed var(--dourado-sol);">
+                <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://open.spotify.com/playlist/37i9dQZF1DX2vYju3i0lNX"
+                    alt="QR Atmosfera" style="width: 50px; mix-blend-mode: multiply;">
+                <div style="text-align: left;">
+                    <p
+                        style="font-family: 'Libre Baskerville'; font-style: italic; font-size: 1.2rem; color: var(--azul-noite); line-height: 1; font-weight: 700;">
+                        Atmosfera Sonora</p>
+                    <p
+                        style="font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; color: var(--verde-eden);">
+                        Hinos Instrumentais para Estudo</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PÁGINA 2: LETRAS A - M -->
+    <div class="poster-page">
+        <div class="page-label">Parte I: Do Princípio ao Meio (A-M)</div>
+        <div class="abc-grid" style="grid-template-columns: repeat(3, 1fr); grid-template-rows: repeat(4, 1fr);">
+            <!-- A -->
+            <div class="letter-card">
+                <span class="letter-big">A</span>
+                <div class="word">Água</div>
+                <div class="meaning">Que o Espírito sobrevoou no princípio.</div>
+            </div>
+            <!-- B -->
+            <div class="letter-card">
+                <span class="letter-big">B</span>
+                <div class="word">Baleia</div>
+                <div class="meaning">O grande monstro marinho que Ele criou.</div>
+            </div>
+            <!-- C -->
+            <div class="letter-card">
+                <span class="letter-big">C</span>
+                <div class="word">Céu</div>
+                <div class="meaning">Onde Ele pendurou o sol e a lua.</div>
+            </div>
+
+            <!-- D -->
+            <div class="letter-card">
+                <span class="letter-big">D</span>
+                <div class="word">Dia</div>
+                <div class="meaning">Quando a luz venceu a escuridão.</div>
+            </div>
+            <!-- E -->
+            <div class="letter-card">
+                <span class="letter-big">E</span>
+                <div class="word">Estrelas</div>
+                <div class="meaning">Que Ele chama, uma por uma, pelo nome.</div>
+            </div>
+            <!-- F -->
+            <div class="letter-card">
+                <span class="letter-big">F</span>
+                <div class="word">Fruto</div>
+                <div class="meaning">Cada árvore dando semente conforme sua espécie.</div>
+            </div>
+
+            <!-- G -->
+            <div class="letter-card">
+                <span class="letter-big">G</span>
+                <div class="word">Girafa</div>
+                <div class="meaning">A obra de arte de pescoço comprido.</div>
+            </div>
+            <!-- H -->
+            <div class="letter-card">
+                <span class="letter-big">H</span>
+                <div class="word">Homem</div>
+                <div class="meaning">Feito do pó, mas com o fôlego de Deus.</div>
+            </div>
+            <!-- I -->
+            <div class="letter-card">
+                <span class="letter-big">I</span>
+                <div class="word">Início</div>
+                <div class="meaning">"No princípio, criou Deus..."</div>
+            </div>
+
+            <!-- J -->
+            <div class="letter-card">
+                <span class="letter-big">J</span>
+                <div class="word">Jardim</div>
+                <div class="meaning">Onde Deus passeava na viração do dia.</div>
+            </div>
+            <!-- K -->
+            <div class="letter-card">
+                <span class="letter-big">K</span>
+                <div class="word">Krill</div>
+                <div class="meaning">O pequenino alimento da grande baleia.</div>
+            </div>
+            <!-- L -->
+            <div class="letter-card">
+                <span class="letter-big">L</span>
+                <div class="word">Leão</div>
+                <div class="meaning">O rei dos animais que Ele formou.</div>
+            </div>
+            <!-- M -->
+            <div class="letter-card" style="grid-column: span 3;">
+                <span class="letter-big">M</span>
+                <div class="word">Mar</div>
+                <div class="meaning">Que tem limites: "Daqui não passarás".</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PÁGINA 3: LETRAS N - Z -->
+    <div class="poster-page">
+        <div class="page-label">Parte II: Do Descanso à Eternidade (N-Z)</div>
+        <div class="abc-grid" style="grid-template-columns: repeat(3, 1fr); grid-template-rows: repeat(4, 1fr);">
+
+            <!-- N -->
+            <div class="letter-card">
+                <span class="letter-big">N</span>
+                <div class="word">Noite</div>
+                <div class="meaning">O tempo de descanso que Ele nos deu.</div>
+            </div>
+            <!-- O -->
+            <div class="letter-card">
+                <span class="letter-big">O</span>
+                <div class="word">Ovelha</div>
+                <div class="meaning">Que conhece a voz do seu Pastor.</div>
+            </div>
+            <!-- P -->
+            <div class="letter-card">
+                <span class="letter-big">P</span>
+                <div class="word">Pássaro</div>
+                <div class="meaning">Que não planta, mas Deus alimenta.</div>
+            </div>
+
+            <!-- Q -->
+            <div class="letter-card">
+                <span class="letter-big">Q</span>
+                <div class="word">Quatro</div>
+                <div class="meaning">Estações que Ele ordenou para a Terra.</div>
+            </div>
+            <!-- R -->
+            <div class="letter-card">
+                <span class="letter-big">R</span>
+                <div class="word">Rio</div>
+                <div class="meaning">Que regava o jardim do Éden.</div>
+            </div>
+            <!-- S -->
+            <div class="letter-card">
+                <span class="letter-big">S</span>
+                <div class="word">Sol</div>
+                <div class="meaning">O luminar maior para governar o dia.</div>
+            </div>
+
+            <!-- T -->
+            <div class="letter-card">
+                <span class="letter-big">T</span>
+                <div class="word">Terra</div>
+                <div class="meaning">O estrado dos pés do Senhor.</div>
+            </div>
+            <!-- U -->
+            <div class="letter-card">
+                <span class="letter-big">U</span>
+                <div class="word">Universo</div>
+                <div class="meaning">Tudo o que os céus não podem conter.</div>
+            </div>
+            <!-- V -->
+            <div class="letter-card">
+                <span class="letter-big">V</span>
+                <div class="word">Vento</div>
+                <div class="meaning">Que sopra onde quer, como o Espírito.</div>
+            </div>
+
+            <!-- W -->
+            <div class="letter-card">
+                <span class="letter-big">W</span>
+                <div class="word">World</div>
+                <div class="meaning">"Mundo" em inglês: Deus amou o mundo...</div>
+            </div>
+            <!-- X -->
+            <div class="letter-card">
+                <span class="letter-big">X</span>
+                <div class="word">Xisto</div>
+                <div class="meaning">As pedras preciosas que Ele escondeu.</div>
+            </div>
+            <!-- Y -->
+            <div class="letter-card">
+                <span class="letter-big">Y</span>
+                <div class="word">Yahweh</div>
+                <div class="meaning">O nome dAquele que fez tudo isso.</div>
+            </div>
+
+            <!-- Z -->
+            <div class="letter-card" style="grid-column: span 3;">
+                <span class="letter-big">Z</span>
+                <div class="word">Zebra</div>
+                <div class="meaning">Com suas listras desenhadas a mão.</div>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        function updateFamilyName(name) {
+            const display = document.getElementById('familyNameDisplay');
+            if (name.trim() === '') {
+                display.innerText = 'Família Exploradora';
+            } else {
+                display.innerText = 'Família ' + name;
+            }
+        }
+    </script>
+</body>
+
+</html>

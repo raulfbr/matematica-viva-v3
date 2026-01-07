@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 | Perdido no Reino?</title>
+    <link rel="stylesheet" href="assets/css/noble.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600&family=Merriweather:ital,wght@0,300;0,700;1,400&display=swap"
+        rel="stylesheet">
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            text-align: center;
+            background-color: var(--cor-fundo-reino);
+        }
+
+        .error-card {
+            max-width: 500px;
+            padding: 3rem;
+            background: var(--cor-papel-fundo);
+            border-radius: var(--raio-card);
+            box-shadow: var(--sombra-flutuante);
+            border-top: 5px solid var(--cor-celeste);
+        }
+
+        .emoji-guardiao {
+            font-size: 5rem;
+            margin-bottom: 1rem;
+            display: block;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+
+            100% {
+                transform: translateY(0px);
+            }
+        }
+
+        h1 {
+            font-family: var(--fonte-titulo);
+            color: var(--cor-tinta-primaria);
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        p {
+            color: var(--cor-tinta-secundaria);
+            margin-bottom: 2rem;
+            font-family: var(--fonte-ui);
+        }
+
+        .btn-home {
+            display: inline-block;
+            background-color: var(--cor-celeste);
+            color: white;
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            font-family: var(--fonte-ui);
+            transition: transform 0.2s;
+        }
+
+        .btn-home:hover {
+            transform: scale(1.05);
+            background-color: #d6956b;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="error-card">
+        <span class="emoji-guardiao">🦊</span>
+        <h1>Ops! Caminho errado?</h1>
+        <p>Parece que Celeste, a Raposa Curiosa, nos levou longe demais. Esta página não existe no mapa do Reino.</p>
+
+        <a href="index.html" class="btn-home">Voltar para o Grande Salão</a>
+    </div>
+
+</body>
+
+</html>

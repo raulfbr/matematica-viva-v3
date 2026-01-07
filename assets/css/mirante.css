@@ -1,0 +1,133 @@
+/* 
+   🌳 MIRANTE DO REINO PREMIUM MODULE v3.5
+   Estética de Alto Valor para o Dashboard da Família
+   Foco: Warm Glassmorphism & Árvore da Maturidade
+*/
+
+:root {
+    --mirante-dark: #304837;
+    /* Verde Floresta Profundo */
+    --mirante-creme: #F8F5E9;
+    /* Creme Nobre */
+    --mirante-gold: #B89B5E;
+    /* Dourado Antigo */
+    --mirante-emerald: #4A6B50;
+    /* Lápis Verde */
+    --mirante-glass: rgba(255, 255, 255, 0.7);
+    /* Vidro claro */
+    --mirante-glass-dark: rgba(48, 72, 55, 0.05);
+    /* Vidro escuro sutil */
+    --mirante-blur: blur(10px);
+}
+
+/* 🌳 CORPO DO DASHBOARD (O Mirante) */
+body.dashboard-mirante {
+    background: radial-gradient(circle at top left, #FFFFFF, var(--mirante-creme));
+    color: var(--mirante-dark);
+    min-height: 100vh;
+}
+
+/* 🌳 A ÁRVORE DA MATURIDADE (SVG Container) */
+.tree-container {
+    width: 100%;
+    max-width: 900px;
+    margin: 2rem auto;
+    position: relative;
+    padding: 2rem;
+    background: var(--mirante-glass);
+    border-radius: 24px;
+    border: 1px solid rgba(48, 72, 55, 0.1);
+    backdrop-filter: var(--mirante-blur);
+    box-shadow: 0 15px 35px rgba(48, 72, 55, 0.05);
+}
+
+/* 🃏 CARDS GLASSMORPHISM */
+.lesson-card-mirante {
+    background: white;
+    border: 1px solid rgba(48, 72, 55, 0.1);
+    border-radius: 16px;
+    padding: 1.2rem;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    text-decoration: none;
+    color: var(--mirante-dark);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(48, 72, 55, 0.04);
+}
+
+.lesson-card-mirante:hover {
+    background: white;
+    border-color: var(--mirante-gold);
+    transform: translateY(-5px);
+    box-shadow: 0 12px 24px rgba(48, 72, 55, 0.1);
+}
+
+.lesson-card-mirante::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: var(--phase-color, var(--mirante-gold));
+    opacity: 0.6;
+}
+
+/* 🎖️ HERALDRY ICONS */
+.guardian-icon-mirante {
+    font-size: 1.5rem;
+    filter: drop-shadow(0 0 5px rgba(184, 155, 94, 0.2));
+}
+
+/* 📊 PROGRESS BARS (Sovereign Style) */
+.progress-bar {
+    width: 100%;
+    height: 6px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 3px;
+    margin-top: 8px;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--mirante-gold), var(--mirante-emerald));
+    border-radius: 3px;
+    box-shadow: 0 0 10px rgba(184, 155, 94, 0.3);
+}
+
+/* 🏺 TYPOGRAPHY */
+.mirante-title {
+    font-family: 'Merriweather', serif;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: var(--mirante-gold);
+}
+
+.mirante-subtitle {
+    font-family: 'Outfit', sans-serif;
+    color: var(--mirante-emerald);
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+    opacity: 0.8;
+}
+
+/* 🎨 PHASE COLORS */
+.phase-seeds {
+    --phase-color: #50C878;
+}
+
+.phase-roots {
+    --phase-color: #D4AF37;
+}
+
+.phase-logic {
+    --phase-color: #E8A87C;
+}
+
+.phase-legacy {
+    --phase-color: #B89B5E;
+}

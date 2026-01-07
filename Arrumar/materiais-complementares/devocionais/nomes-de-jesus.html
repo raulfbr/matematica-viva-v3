@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nomes de Jesus | Kit Ultra-Premium</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Outfit:wght@300;400;500;600&family=Pinyon+Script&display=swap"
+        rel="stylesheet">
+
+    <style>
+        :root {
+            --verde-escuro: #304837;
+            --verde-claro: #5C7C65;
+            --dourado: #B89B5E;
+            --creme: #FAF8F3;
+            --papel: #FFFDF7;
+            --borda: #EAE2D0;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        body {
+            background: #e0e0e0;
+            font-family: 'Outfit', sans-serif;
+            padding: 2cm;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        /* TIPOGRAFIA PREMIUM */
+        .script-font {
+            font-family: 'Libre Baskerville', serif;
+            font-style: italic;
+            font-weight: 700;
+        }
+
+        .serif-font {
+            font-family: 'Libre Baskerville', serif;
+        }
+
+        /* ESTILOS DE PÁGINA A4 */
+        .page {
+            background: white;
+            width: 21cm;
+            height: 29.7cm;
+            padding: 1.5cm;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            position: relative;
+            page-break-after: always;
+            overflow: hidden;
+        }
+
+        .page-label {
+            position: absolute;
+            top: 0.5cm;
+            left: 1.5cm;
+            font-size: 0.7rem;
+            color: #ccc;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* --- PÁGINA 1: CAPA/CARTA --- */
+        .cover-content {
+            height: 100%;
+            border: 1px solid var(--dourado);
+            outline: 4px double var(--dourado);
+            outline-offset: -6px;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            text-align: center;
+            color: var(--verde-escuro);
+            background-image:
+                linear-gradient(rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.95)),
+                url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23B89B5E' fill-opacity='0.1' fill-rule='evenodd'%3E%3Ccircle cx='3' cy='3' r='1'/%3E%3Ccircle cx='13' cy='13' r='1'/%3E%3C/g%3E%3C/svg%3E");
+        }
+
+        .cover-title {
+            font-family: 'Libre Baskerville', serif;
+            font-weight: 700;
+            font-size: 4.5rem;
+            margin-bottom: 0rem;
+            color: var(--dourado);
+            line-height: 1;
+        }
+
+        .cover-subtitle {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 3rem;
+            color: var(--verde-escuro);
+            border-top: 1px solid var(--borda);
+            border-bottom: 1px solid var(--borda);
+            padding: 0.5rem 0;
+            display: inline-block;
+            align-self: center;
+        }
+
+        .cover-objective {
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.8rem;
+            color: #777;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: -2rem;
+            margin-bottom: 2rem;
+        }
+
+        .letter-body {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 1.15rem;
+            line-height: 1.9;
+            margin-bottom: 3rem;
+            text-align: justify;
+            padding: 1rem;
+        }
+
+        .instructions-box {
+            background: var(--creme);
+            padding: 2rem;
+            border-radius: 4px;
+            text-align: left;
+            position: relative;
+            border: 1px solid var(--borda);
+        }
+
+        .instructions-box h3 {
+            color: var(--dourado);
+            margin-bottom: 1rem;
+            font-size: 1.4rem;
+            font-family: 'Libre Baskerville', serif;
+            font-style: italic;
+            font-weight: 700;
+        }
+
+        /* --- PÁGINA 2: CARDS (FRENTE) --- */
+        .grid-cards {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-template-rows: repeat(4, 1fr);
+            gap: 15px;
+            height: 100%;
+        }
+
+        .card {
+            background: var(--papel);
+            border: 1px solid #eee;
+            padding: 8px;
+            display: flex;
+        }
+
+        .card-inner {
+            border: 2px solid var(--dourado);
+            outline: 1px solid var(--borda);
+            outline-offset: -4px;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 0.5rem;
+            position: relative;
+            background: white;
+            box-shadow: inset 0 0 20px rgba(184, 155, 94, 0.05);
+        }
+
+        .card-header {
+            font-family: 'Pinyon Script', cursive;
+            font-size: 2.2rem;
+            color: var(--verde-escuro);
+            margin-bottom: 0.2rem;
+            margin-top: 0.5rem;
+            line-height: 1;
+        }
+
+        .card-img-placeholder {
+            width: 70px;
+            height: 70px;
+            background: var(--creme);
+            border-radius: 50%;
+            margin-bottom: 0px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            color: #ccc;
+            border: 1px solid var(--dourado);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .card .versiculo {
+            font-family: 'Libre Baskerville', serif;
+            font-style: italic;
+            font-size: 0.75rem;
+            color: #555;
+            margin: 0.5rem 0;
+            text-align: center;
+            line-height: 1.4;
+            max-width: 90%;
+            flex-grow: 1;
+            display: flex;
+            align-items: center;
+        }
+
+        .card .ref {
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.6rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--dourado);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            border-top: 1px solid var(--borda);
+            padding-top: 4px;
+            width: 50%;
+            text-align: center;
+        }
+
+        /* --- PÁGINA 3: VERSO (PADRÃO) --- */
+        .pattern-bg {
+            width: 100%;
+            height: 100%;
+            background-color: var(--papel);
+            background-image:
+                radial-gradient(var(--dourado) 0.5px, transparent 0.5px),
+                radial-gradient(var(--verde-escuro) 0.5px, transparent 0.5px);
+            background-size: 20px 20px;
+            background-position: 0 0, 10px 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 20px solid white;
+        }
+
+        .watermark {
+            font-family: 'Pinyon Script', cursive;
+            font-size: 4rem;
+            color: var(--dourado);
+            opacity: 0.2;
+            transform: rotate(-15deg);
+        }
+
+        /* --- PÁGINA 4: ENVELOPE --- */
+        .envelope-template {
+            width: 100%;
+            height: 100%;
+            border: 1px dashed #ccc;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .envelope-body {
+            width: 72%;
+            height: 62%;
+            border: 2px solid var(--dourado);
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .wax-seal {
+            width: 60px;
+            height: 60px;
+            background: var(--dourado);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255, 255, 255, 0.8);
+            font-family: 'Pinyon Script', cursive;
+            font-size: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2), inset 0 2px 5px rgba(255, 255, 255, 0.2);
+            border: 4px solid rgba(0, 0, 0, 0.1);
+            margin-bottom: 1rem;
+        }
+
+        .flap {
+            position: absolute;
+            font-size: 0.7rem;
+            color: #999;
+            text-transform: uppercase;
+        }
+
+        /* NÃO IMPRIMIR NA TELA */
+        .no-print {
+            text-align: center;
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            max-width: 600px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            border-top: 5px solid var(--dourado);
+        }
+
+        @media print {
+            @page {
+                margin: 0;
+            }
+
+            body {
+                background: none;
+                padding: 0;
+                display: block;
+            }
+
+
+            .no-print {
+                display: none;
+            }
+
+            .page {
+                box-shadow: none;
+                margin: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="no-print">
+        <h1 class="script-font" style="color: var(--dourado); font-size: 3rem;">Nomes de Jesus</h1>
+        <p style="font-family: 'Libre Baskerville'; font-style: italic;">Edição Ultra-Premium (5 Páginas)</p>
+
+        <!-- PERSONALIZAÇÃO -->
+        <div
+            style="background: var(--creme); padding: 1rem; border-radius: 8px; margin: 1rem 0; border: 1px solid var(--dourado); width: 100%; max-width: 400px; display: inline-block;">
+            <label
+                style="font-family: 'Outfit'; font-size: 0.9rem; color: var(--verde-escuro); display: block; margin-bottom: 0.5rem;">💎
+                Personalize para sua casa:</label>
+            <input type="text" id="familyNameInput" placeholder="Sobrenome da Família (Ex: Silva)"
+                style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; font-family: 'Libre Baskerville'; text-align: center;"
+                oninput="updateFamilyName(this.value)">
+        </div>
+
+        <hr style="border: 0; border-top: 1px solid #eee; margin: 1.5rem 0;">
+        <button onclick="window.print()"
+            style="padding: 12px 25px; background: var(--dourado); color: white; border: none; font-size: 1.1rem; cursor: pointer; border-radius: 50px; font-family: 'Outfit'; font-weight: 500; box-shadow: 0 4px 10px rgba(184, 155, 94, 0.3);">🖨️
+            Imprimir Tesouro</button>
+        <br><br>
+        <a href="catalogo.html" style="color: var(--verde-claro); text-decoration: none; font-size: 0.9rem;">← Voltar ao
+            Catálogo</a>
+        <p style="margin-top: 2rem; font-size: 0.75rem; color: #aaa; border-top: 1px solid #eee; padding-top: 1rem;">
+            Este material foi criado por <strong>Sementes de Sabedoria</strong> • Parte do projeto <a
+                href="https://matematicaviva.com" style="color: var(--dourado);">Matemática Viva</a><br>
+            <em>"Revelando a ordem de Deus — na Palavra e nos Números"</em>
+        </p>
+    </div>
+
+    <!-- PÁGINA 1: MANIFESTO TEOLÓGICO -->
+    <div class="page">
+        <div class="page-label">Página 1: Manifesto de Abertura</div>
+        <div class="cover-content">
+            <h1 class="cover-title">Nomes de Jesus</h1>
+            <p class="cover-subtitle">O Nome acima de todo nome</p>
+
+            <div class="cover-objective">Propósito: Refúgio na Soberania & Fé</div>
+
+            <div class="letter-body" style="font-size: 1.25rem;">
+                <p>Querida Família <span id="familyNameDisplay"
+                        style="color: var(--dourado); font-weight: bold;">Pioneira</span>,</p>
+                <p>Vivemos dias em que muitos nomes competem pela atenção dos nossos filhos. Marcas, influenciadores,
+                    personagens... todos clamam por espaço na imaginação deles. Mas existe um Nome que, quando
+                    pronunciado, faz a tempestade acalmar e o medo recuar.</p>
+                <p>Conhecer os <strong>Nomes de Jesus</strong> não é um exercício de memorização escolar. É uma
+                    estratégia de sobrevivência espiritual.</p>
+                <p>Em Provérbios 18:10, lemos: <em>"Torre forte é o nome do Senhor; para ela corre o justo e está
+                        seguro."</em></p>
+                <p>Para a criança pequena, o mundo pode ser grande e assustador. Ela precisa saber que não está sozinha.
+                    Quando o escuro do quarto assusta, Ele é a <strong>Luz</strong>. Quando a fome de sentido aperta,
+                    Ele é o <strong>Pão</strong>. Quando se sentem perdidos, Ele é o <strong>Bom Pastor</strong>.</p>
+                <p>Este material não é apenas "atividade". São tijolos para construir essa Torre Forte na mente e no
+                    coração da sua casa.</p>
+
+                <br>
+                <p style="text-align: right; font-family: 'Pinyon Script'; font-size: 2.5rem; color: var(--dourado);">
+                    Matemática Viva</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- PÁGINA 2: GUIA PRÁTICO -->
+    <div class="page">
+        <div class="page-label">Página 2: Como Usar este Tesouro</div>
+        <div class="cover-content" style="border-style: dashed; border-color: #ddd; background: none;">
+            <h2 class="script-font" style="color: var(--verde-escuro); font-size: 3rem; margin-bottom: 2rem;">Liturgia
+                do Lar</h2>
+
+            <div class="instructions-box" style="background: white; border: 1px solid var(--dourado);">
+                <h3 style="color: var(--dourado);">1. O Ritual da Manhã (A Âncora)</h3>
+                <p style="margin-bottom: 1.5rem; line-height: 1.6;">Escolham um Nome para a semana (ex: <strong>O Bom
+                        Pastor</strong>). Coloque o card no centro da mesa de café ou preso no espelho do banheiro. Leia
+                    o versículo enquanto arrumam a mesa. Pergunte: <em>"Como o Pastor cuida da ovelhinha hoje?"</em>.
+                </p>
+
+                <h3 style="color: var(--dourado);">2. O Momento da Necessidade (O Refúgio)</h3>
+                <p style="margin-bottom: 1.5rem; line-height: 1.6;">Guarde os cards no envelope <strong>"Tesouros do
+                        Reino"</strong>. Quando seu filho estiver com medo, triste ou ansioso, não dê apenas conselhos
+                    humanos. Peguem o envelope juntos. Digam: <em>"Vamos ver quem Jesus é para nós agora?"</em>. Tirem o
+                    card da Paz ou do Leão de Judá. Orem usando aquele Nome.</p>
+
+                <h3 style="color: var(--dourado);">3. A Coleção da Beleza</h3>
+                <p style="margin-bottom: 1.5rem; line-height: 1.6;">Permita que a criança manuseie, recorte e cuide dos
+                    cards. Charlotte Mason nos ensina que a beleza educa. Tratem estes cards não como lixo reciclável,
+                    mas como pequenas obras de arte sacra.</p>
+
+                <hr style="border: 0; border-top: 1px dashed var(--borda); margin: 2rem 0;">
+
+                <!-- QR CODE ATMOSFERA -->
+                <div
+                    style="display: flex; align-items: center; gap: 1rem; background: var(--creme); padding: 10px; border-radius: 8px;">
+                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://open.spotify.com/playlist/37i9dQZF1DX2vYju3i0lNX"
+                        alt="QR Code Hinos" style="width: 60px; height: 60px; mix-blend-mode: multiply;">
+                    <div>
+                        <p
+                            style="font-family: 'Pinyon Script'; font-size: 1.4rem; color: var(--dourado); line-height: 1;">
+                            Atmosfera Sonora</p>
+                        <p style="font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px;">Playlist
+                            Instrumental para a Atividade</p>
+                    </div>
+                </div>
+
+                <p style="font-style: italic; color: #777;"><strong>Instruções Técnicas:</strong> Imprima as próximas
+                    páginas em papel firme (180g). Recorte nas linhas pontilhadas. O envelope (Pág 5) deve ser dobrado e
+                    colado para guardar a coleção.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- PÁGINA 3: CARDS -->
+    <div class="page">
+        <div class="page-label">Página 3: Frente (Cortar no pontilhado)</div>
+        <div class="grid-cards">
+            <!-- Card 1 -->
+            <div class="card">
+                <div class="card-inner">
+                    <div class="card-img-placeholder">🐑</div>
+                    <h2 class="card-header">Bom Pastor</h2>
+                    <p class="versiculo">"Eu sou o bom pastor. O bom pastor dá a sua vida pelas ovelhas."</p>
+                    <p class="ref">João 10:11</p>
+                </div>
+            </div>
+            <!-- Card 2 -->
+            <div class="card">
+                <div class="card-inner">
+                    <div class="card-img-placeholder">🍞</div>
+                    <h2 class="card-header">Pão da Vida</h2>
+                    <p class="versiculo">"Eu sou o pão da vida. Aquele que vem a mim nunca terá fome."</p>
+                    <p class="ref">João 6:35</p>
+                </div>
+            </div>
+            <!-- Card 3 -->
+            <div class="card">
+                <div class="card-inner">
+                    <div class="card-img-placeholder">🦁</div>
+                    <h2 class="card-header">Leão de Judá</h2>
+                    <p class="versiculo">"Eis que o Leão da tribo de Judá, a Raiz de Davi, venceu."</p>
+                    <p class="ref">Apocalipse 5:5</p>
+                </div>
+            </div>
+            <!-- Card 4 -->
+            <div class="card">
+                <div class="card-inner">
+                    <div class="card-img-placeholder">💡</div>
+                    <h2 class="card-header">Luz do Mundo</h2>
+                    <p class="versiculo">"Eu sou a luz do mundo. Quem me segue não andará em trevas."</p>
+                    <p class="ref">João 8:12</p>
+                </div>
+            </div>
+            <!-- Card 5 -->
+            <div class="card">
+                <div class="card-inner">
+                    <div class="card-img-placeholder">⛺</div>
+                    <h2 class="card-header">Emanuel</h2>
+                    <p class="versiculo">"E o chamarão Emanuel, que significa: Deus conosco."</p>
+                    <p class="ref">Mateus 1:23</p>
+                </div>
+            </div>
+            <!-- Card 6 -->
+            <div class="card">
+                <div class="card-inner">
+                    <div class="card-img-placeholder">🍇</div>
+                    <h2 class="card-header">A Videira</h2>
+                    <p class="versiculo">"Eu sou a videira; vocês são os ramos. Quem permanece em mim..."</p>
+                    <p class="ref">João 15:5</p>
+                </div>
+            </div>
+            <!-- Card 7 -->
+            <div class="card">
+                <div class="card-inner">
+                    <div class="card-img-placeholder">🛣️</div>
+                    <h2 class="card-header">O Caminho</h2>
+                    <p class="versiculo">"Eu sou o caminho, a verdade e a vida. Ninguém vem ao Pai..."</p>
+                    <p class="ref">João 14:6</p>
+                </div>
+            </div>
+            <!-- Card 8 -->
+            <div class="card">
+                <div class="card-inner">
+                    <div class="card-img-placeholder">🕊️</div>
+                    <h2 class="card-header">O Cordeiro</h2>
+                    <p class="versiculo">"Vejam! É o Cordeiro de Deus, que tira o pecado do mundo!"</p>
+                    <p class="ref">João 1:29</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PÁGINA 4: VERSO -->
+    <div class="page">
+        <div class="page-label">Página 4: Verso (Imprimir atrás da Pág 3)</div>
+        <div class="pattern-bg">
+            <div class="watermark">Matemática Viva</div>
+        </div>
+    </div>
+
+    <!-- PÁGINA 5: ENVELOPE -->
+    <div class="page">
+        <div class="page-label">Página 5: Envelope Tesouro (Recortar e Colar)</div>
+        <div class="envelope-template">
+            <div class="flap" style="top: 2cm;">[Aba Superior: Dobrar]</div>
+            <div class="flap" style="bottom: 2cm;">[Aba Inferior: Colar]</div>
+            <div class="flap" style="left: 1cm; transform: rotate(-90deg);">[Lateral]</div>
+            <div class="flap" style="right: 1cm; transform: rotate(90deg);">[Lateral]</div>
+
+            <div class="envelope-body">
+                <div class="wax-seal">✝️</div>
+                <h2 class="script-font" style="font-size: 3rem; margin-bottom: 0rem; color: var(--dourado);">Tesouros do
+                    Reino</h2>
+                <p
+                    style="font-family: 'Libre Baskerville'; font-size: 0.8rem; color: var(--verde-escuro); font-style: italic; letter-spacing: 1px;">
+                    Verdades para guardar no coração</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function updateFamilyName(name) {
+            const display = document.getElementById('familyNameDisplay');
+            if (name.trim() === '') {
+                display.innerText = 'Pioneira';
+                display.style.textDecoration = 'none';
+            } else {
+                display.innerText = name;
+                display.style.textDecoration = 'underline';
+                display.style.textUnderlineOffset = '5px';
+            }
+        }
+    </script>
+
+</body>
+
+</html>

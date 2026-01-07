@@ -1,0 +1,152 @@
+/* ==========================================================================
+   LIVRO DUMONT - ESTILO VISUAL
+   Tema: Outono Escuro (Dark Autumn)
+   ========================================================================== */
+
+:root {
+    /* Paleta Raul (Terra & Couro) */
+    --raul-couro: #5D4037;
+    --raul-verde: #33691E;
+
+    /* Paleta Melina (Luz & Folha) */
+    --melina-mostarda: #FBC02D;
+    --melina-terracota: #D84315;
+
+    /* Paleta Dumont (Ar & Aço) */
+    --dumont-aco: #78909C;
+    --dumont-seda: #FFFDE7;
+
+    /* Ambiente */
+    --papel-antigo: #FDFBF7;
+}
+
+/* Fundo do Livro */
+body.livro-dumont {
+    background-color: var(--papel-antigo);
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23B89B5E' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+
+/* Título do Capítulo */
+.capitulo-header {
+    text-align: center;
+    margin-bottom: 3rem;
+    border-bottom: 2px solid var(--raul-couro);
+    padding-bottom: 2rem;
+}
+
+.capitulo-num {
+    font-family: var(--font-texto);
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    font-size: 0.9rem;
+    color: var(--melina-terracota);
+    font-weight: 700;
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.capitulo-titulo {
+    font-size: 2.5rem;
+    color: var(--raul-couro);
+    margin-bottom: 1rem;
+}
+
+.capitulo-tema {
+    font-family: var(--font-texto);
+    font-size: 1rem;
+    color: var(--raul-verde);
+    font-style: italic;
+}
+
+/* Personagens (Destaque no Texto) */
+.char-raul {
+    color: var(--raul-verde);
+    font-weight: 600;
+}
+
+.char-melina {
+    color: var(--melina-terracota);
+    font-weight: 600;
+}
+
+.char-dumont {
+    color: var(--dumont-aco);
+    font-weight: 600;
+}
+
+/* Margens Vivas (Glossário e Notas) */
+.margem-box {
+    background: #fff;
+    border-left: 4px solid;
+    padding: 1.5rem;
+    margin: 2rem 0;
+    border-radius: 0 var(--radius-md) var(--radius-md) 0;
+    box-shadow: var(--shadow-soft);
+    font-size: 0.95rem;
+}
+
+.margem-melina {
+    border-color: var(--melina-mostarda);
+    background: linear-gradient(to right, #FFFDE7, #fff);
+}
+
+.margem-raul {
+    border-color: var(--raul-verde);
+    background: linear-gradient(to right, #F1F8E9, #fff);
+}
+
+.margem-icon {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+/* Seção de Matemática (O Caderno) */
+.math-notebook {
+    background-color: #fff;
+    background-image:
+        linear-gradient(#E1F5FE 1px, transparent 1px),
+        linear-gradient(90deg, #E1F5FE 1px, transparent 1px);
+    background-size: 20px 20px;
+    border: 1px solid #B3E5FC;
+    padding: 2rem;
+    margin: 3rem 0;
+    border-radius: var(--radius-sm);
+    box-shadow: 5px 5px 0px rgba(0, 0, 0, 0.1);
+    transform: rotate(-1deg);
+}
+
+.math-notebook h3 {
+    font-family: 'Courier New', monospace;
+    color: var(--raul-couro);
+    border-bottom: 2px dashed var(--raul-couro);
+    padding-bottom: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+/* Portal Effect (Transição) */
+.portal-break {
+    text-align: center;
+    margin: 4rem 0;
+    color: var(--dourado-antigo);
+    font-size: 2rem;
+    opacity: 0.5;
+}
+
+/* Mobile Adjustments */
+@media (max-width: 768px) {
+    .capitulo-titulo {
+        font-size: 2rem;
+    }
+
+    .math-notebook {
+        transform: none;
+        padding: 1.5rem;
+        width: 100vw;
+        margin-left: -1.5rem;
+        /* Full bleed on mobile */
+        border-radius: 0;
+        border-right: none;
+        border-left: none;
+    }
+}

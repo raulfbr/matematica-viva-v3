@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="{{ meta.cor_theme | default('#7B68B8') }}">
+    <title>{{ meta.titulo }} | Matemática Viva</title>
+
+    <!-- Noble CSS -->
+    <link rel="stylesheet" href="{{ meta.root_path }}/assets/css/noble.css">
+
+    <!-- Google Fonts (Merriweather + Inter) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Merriweather:ital,wght@0,400;0,700;1,400&display=swap"
+        rel="stylesheet">
+    <!-- Open Graph Metadata (Social Share) -->
+    <meta property="og:title" content="{{ meta.titulo }} | Matemática Viva">
+    <meta property="og:description"
+        content="Uma lição de {{ meta.fase }} com {{ meta.guardia }}. Tempo estimado: {{ meta.tempo }}.">
+    <meta property="og:type" content="article">
+    <meta property="og:locale" content="pt_BR">
+</head>
+
+<body>
+
+    <main class="container">
+        <!-- BREADCRUMBS (Fio de Ariadne) -->
+        <!-- NAVEGAÇÃO SUPERIOR (Breadcrumbs + Prev/Next) -->
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+            <nav class="breadcrumbs" style="font-size: 0.85em; color: var(--cor-tinta-secundaria);">
+                <a href="{{ meta.root_path }}/index.html" style="text-decoration: none; color: inherit;">🏠 Reino</a>
+                <span style="color: var(--cor-destaque-dourado);">›</span>
+                <span style="text-transform: uppercase;">{{ meta.fase }}</span>
+            </nav>
+
+            <div class="top-nav"
+                style="font-size: 0.85em; font-family: var(--fonte-ui); display: flex; align-items: center;">
+                <!-- ECO-BELA TOGGLE -->
+                <button onclick="toggleEcoBela()" class="eco-bela-toggle"
+                    style="background: none; border: 1px solid var(--cor-tinta-secundaria); border-radius: 4px; color: var(--cor-tinta-secundaria); cursor: pointer; padding: 2px 8px; margin-right: 20px; font-size: 0.8em;"
+                    title="Modo Economia (Impressão)">
+                    🌿 Eco-Bela
+                </button>
+
+                {% if meta.prev %}
+                <a href="{{ meta.prev.url }}"
+                    style="text-decoration: none; color: var(--cor-tinta-primaria); margin-right: 15px;"
+                    title="{{ meta.prev.title }}">
+                    ⬅️ Anterior
+                </a>
+                {% endif %}
+
+                {% if meta.next %}
+                <a href="{{ meta.next.url }}" style="text-decoration: none; color: var(--cor-tinta-primaria);"
+                    title="{{ meta.next.title }}">
+                    Próxima ➡️
+                </a>
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- CABEÇALHO DA LIÇÃO -->
+        <header class="lesson-header">
+            <span class="badge-fase"
+                style="background-color: {{ meta.cor_theme }}; color: var(--cor-papel-fundo); padding: 4px 10px; border-radius: 4px; font-size: 0.75rem; text-transform: uppercase; font-weight: bold; letter-spacing: 1px; font-family: var(--fonte-ui);">
+                {{ meta.fase }}
+            </span>
+            <h1>{{ meta.titulo }}</h1>
+
+            <div class="meta-info">
+                <span>⏱️ {{ meta.tempo }}</span> •
+                <span>🗺️ {{ meta.local }}</span> •
+                <span style="color: {{ meta.cor_guardiao }}; font-weight: 600;">{{ meta.guardia_icon }} {{ meta.guardia
+                    }}</span>
+            </div>
+
+            {% if meta.meta %}
+            <p class="mission-meta"
+                style="margin-top: 1.5rem; font-style: italic; color: var(--cor-tinta-secundaria); font-size: 1.05rem; max-width: 500px; margin-left: auto; margin-right: auto; line-height: 1.4;">
+                <span style="color: var(--cor-destaque-dourado); font-weight: bold; font-style: normal;">Meta:</span> {{
+                meta.meta }}
+            </p>
+            {% endif %}
+
+            {% if meta.clima %}
+            <div class="clima-tag" style="margin-top: 5px; font-weight: bold; color: var(--cor-destaque-dourado);">
+                {{ meta.clima }}
+            </div>
+            {% endif %}
+        </header>
+
+        {% if meta.tgtb %}
+        <div class="tgtb-reference"
+            style="text-align: center; margin-top: 1rem; font-size: 0.8em; color: var(--cor-tinta-secundaria); font-style: italic;">
+            📘 Base Curricular: <span style="color: var(--cor-destaque-dourado); font-weight: bold;">{{ meta.tgtb
+                }}</span>
+        </div>
+        {% endif %}
+
+        <hr style="border: 0; border-top: var(--borda-fina); margin: 2rem 0;">
+
+        <!-- CONTEÚDO PROCESSADO -->
+        <div class="content-body">
+            {{ content_html | safe }}
+        </div>
+
+        <!-- NAVEGAÇÃO SEQUENCIAL (O Fluxo do Rio) -->
+        <nav class="nav-footer">
+            <!-- PREVIOUS -->
+            {% if meta.prev %}
+            <a href="{{ meta.prev.url }}" class="nav-card prev">
+                <small>⬅️ Anterior</small>
+                <strong>{{ meta.prev.title }}</strong>
+            </a>
+            {% else %}
+            <div class="nav-card prev" style="opacity: 0.3; border-style: dashed; cursor: default;">
+                <small>Início</small>
+                <strong>Jornada</strong>
+            </div>
+            {% endif %}
+
+            <!-- MAPA (Central) -->
+            <a href="{{ meta.root_path }}/index.html" class="nav-map-btn" title="Voltar ao Mapa">
+                <span style="font-size: 1.5rem;">🧭</span>
+                <span style="font-size: 0.7rem; display: none;">MAPA</span>
+                <!-- Visible on mobile via CSS if needed, but icon is enough -->
+            </a>
+
+            <!-- NEXT -->
+            {% if meta.next %}
+            <a href="{{ meta.next.url }}" class="nav-card next">
+                <small>Próxima ➡️</small>
+                <strong>{{ meta.next.title }}</strong>
+            </a>
+            {% else %}
+            <div class="nav-card next" style="opacity: 0.3; border-style: dashed; cursor: default;">
+                <small>Fim</small>
+                <strong>Aguarde...</strong>
+            </div>
+            {% endif %}
+        </nav>
+
+        <!-- RODAPÉ -->
+        <footer
+            style="text-align: center; margin-top: 4rem; padding-top: 2rem; border-top: var(--borda-fina); font-size: 0.8em; color: var(--cor-tinta-secundaria);">
+            <p>Matemática Viva v3.0</p>
+            <p>
+                <a href="{{ meta.root_path }}/familia.html"
+                    style="color: var(--cor-lapis-verde); text-decoration: none; font-weight: bold;">
+                    🛡️ Validado pela Família Rodrigues
+                </a>
+            </p>
+            <p>Reino Contado © 2026. Família Rodrigues 2026.</p>
+        </footer>
+    </main>
+
+    <!-- PRINT FOOTER (Only visible on print) -->
+    <div class="print-footer">
+        Matemática Viva - {{ meta.fase }} | {{ meta.titulo }} | Família Rodrigues 2026
+    </div>
+
+    <!-- Scripts do Reino -->
+    <script>
+        function toggleEcoBela() {
+            document.body.classList.toggle('mode-eco-bela');
+            const isActive = document.body.classList.contains('mode-eco-bela');
+            localStorage.setItem('mode-eco-bela', isActive);
+
+            // Log de Maestria
+            console.log(isActive ? "🌿 Modo Eco-Bela Ativado (Impressão)." : "🦁 Modo Premium Ativado.");
+        }
+
+        // Recupera preferência
+        if (localStorage.getItem('mode-eco-bela') === 'true') {
+            document.body.classList.add('mode-eco-bela');
+        }
+
+        document.querySelectorAll('input[type="checkbox"]').forEach(box => {
+            box.addEventListener('change', (e) => {
+                const parent = e.target.parentElement;
+                if (e.target.checked) {
+                    parent.style.textDecoration = "line-through";
+                    parent.style.opacity = "0.6";
+                    parent.style.transition = "all 0.3s ease";
+                } else {
+                    parent.style.textDecoration = "none";
+                    parent.style.opacity = "1";
+                }
+            });
+        });
+    </script>
+
+</body>
+
+</html>

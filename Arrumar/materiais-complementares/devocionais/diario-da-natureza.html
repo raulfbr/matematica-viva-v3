@@ -1,0 +1,913 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>O Diário da Natureza | Nature Study Starter</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Outfit:wght@300;400;500;600&family=Pinyon+Script&display=swap"
+        rel="stylesheet">
+
+    <style>
+        :root {
+            --verde-escuro: #304837;
+            --verde-claro: #5C7C65;
+            --dourado: #B89B5E;
+            --creme: #FAF8F3;
+            --papel: #FFFDF7;
+            --borda: #EAE2D0;
+            --terracota: #A85E46;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        body {
+            background: #e0e0e0;
+            font-family: 'Outfit', sans-serif;
+            padding: 2cm;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .script-font {
+            font-family: 'Libre Baskerville', serif;
+            font-style: italic;
+            font-weight: 700;
+        }
+
+        .cursive-font {
+            font-family: 'Pinyon Script', cursive;
+        }
+
+        .page {
+            background: white;
+            width: 21cm;
+            height: 29.7cm;
+            padding: 1.5cm;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            position: relative;
+            page-break-after: always;
+            overflow: hidden;
+        }
+
+        .page-label {
+            position: absolute;
+            top: 0.5cm;
+            left: 1.5cm;
+            font-size: 0.7rem;
+            color: #ccc;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Capa Premium */
+        .cover-content {
+            height: 100%;
+            border: 2px solid var(--verde-claro);
+            outline: 1px solid var(--dourado);
+            outline-offset: 4px;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            text-align: center;
+            color: var(--verde-escuro);
+            background-image: radial-gradient(circle at center, transparent 0%, rgba(250, 248, 243, 0.5) 100%);
+            position: relative;
+        }
+
+        /* Cantoneiras Ornamentais (CSS Puro) */
+        .corner {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            border: 3px solid var(--dourado);
+            transition: all 0.3s ease;
+        }
+
+        .tl {
+            top: 10px;
+            left: 10px;
+            border-right: none;
+            border-bottom: none;
+        }
+
+        .tr {
+            top: 10px;
+            right: 10px;
+            border-left: none;
+            border-bottom: none;
+        }
+
+        .bl {
+            bottom: 10px;
+            left: 10px;
+            border-right: none;
+            border-top: none;
+        }
+
+        .br {
+            bottom: 10px;
+            right: 10px;
+            border-left: none;
+            border-top: none;
+        }
+
+        .cover-title {
+            font-family: 'Libre Baskerville', serif;
+            font-weight: 700;
+            font-size: 3.8rem;
+            color: var(--verde-escuro);
+            line-height: 1;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 0px rgba(184, 155, 94, 0.2);
+        }
+
+        .cover-subtitle {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            color: var(--dourado);
+            margin-bottom: 3rem;
+        }
+
+        /* Brasão do Explorador */
+        .shield-area {
+            width: 120px;
+            height: 140px;
+            border: 2px dashed var(--dourado);
+            margin: 0 auto 2rem;
+            border-radius: 0 0 60px 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ccc;
+            font-family: 'Pinyon Script';
+            font-size: 1.2rem;
+            background: rgba(255, 255, 255, 0.5);
+        }
+
+        /* Textos */
+        .letter-body {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            text-align: justify;
+            padding: 1rem 2rem;
+            border-left: 2px solid var(--dourado);
+            background: rgba(250, 248, 243, 0.6);
+            margin: 0 auto;
+        }
+
+        /* Boxes Narrativa Guardiões */
+        .guardian-speech {
+            display: flex;
+            gap: 1.5rem;
+            align-items: flex-start;
+            margin-bottom: 2rem;
+            text-align: left;
+            padding: 1.5rem;
+            background: white;
+            border: 1px solid var(--borda);
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
+        }
+
+        .guardian-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: var(--creme);
+            border: 2px solid var(--dourado);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            flex-shrink: 0;
+        }
+
+        /* Cards Grid */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-template-rows: repeat(2, 1fr);
+            gap: 20px;
+            height: 100%;
+        }
+
+        .prompt-card {
+            border: 2px dashed var(--verde-claro);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            text-align: center;
+            background: white;
+            position: relative;
+        }
+
+        .prompt-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--dourado);
+        }
+
+        .prompt-title {
+            font-family: 'Libre Baskerville', serif;
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: var(--verde-escuro);
+            margin-bottom: 0.5rem;
+        }
+
+        .prompt-desc {
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: #555;
+        }
+
+        /* Journal Page Template */
+        .journal-area {
+            border: 1px solid #ddd;
+            height: 45%;
+            margin-bottom: 2rem;
+            position: relative;
+            background: #fff;
+        }
+
+        .journal-area::after {
+            content: "Cole ou desenhe aqui";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #eee;
+            font-size: 1.5rem;
+            z-index: 0;
+            font-family: 'Pinyon Script', cursive;
+        }
+
+        .journal-lines {
+            height: 35%;
+            background-image: repeating-linear-gradient(transparent, transparent 31px, #eee 32px);
+            line-height: 32px;
+            font-family: 'Pinyon Script', cursive;
+            font-size: 1.5rem;
+            color: var(--verde-escuro);
+            padding-top: 4px;
+        }
+
+        /* Checklist Styles */
+        .checklist-item {
+            display: flex;
+            align-items: start;
+            gap: 10px;
+            margin-bottom: 0.8rem;
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+
+        .checklist-box {
+            min-width: 18px;
+            height: 18px;
+            border: 1px solid var(--verde-claro);
+            border-radius: 3px;
+            background: white;
+        }
+
+        /* Low Tech / Print Help */
+        .print-tip {
+            position: absolute;
+            bottom: 1rem;
+            left: 0;
+            width: 100%;
+            text-align: center;
+            font-size: 0.75rem;
+            color: #aaa;
+            font-style: italic;
+        }
+
+        /* Header No-Print */
+        .no-print {
+            text-align: center;
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            max-width: 600px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            border-top: 5px solid var(--verde-escuro);
+        }
+
+        @media print {
+            .no-print {
+                display: none;
+            }
+
+            body {
+                background: none;
+                padding: 0;
+            }
+
+            .page {
+                box-shadow: none;
+                margin: 0;
+                background: white !important;
+            }
+
+            .instructions-box,
+            .checklist-box,
+            .prompt-card,
+            .guardian-speech {
+                background: white !important;
+                border: 1px solid #ccc;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="no-print">
+        <h1 class="script-font" style="color: var(--verde-escuro); font-size: 2.5rem;">O Diário da Natureza</h1>
+        <p style="margin-bottom: 1.5rem;">Edição Premium: Guardiões & Teologia da Atenção</p>
+        <button onclick="window.print()"
+            style="padding: 12px 25px; background: var(--dourado); color: white; border: none; font-size: 1.1rem; cursor: pointer; border-radius: 50px;">🖨️
+            Imprimir Kit Completo</button>
+        <br><br>
+        <a href="catalogo.html" style="color: var(--verde-claro); text-decoration: none;">← Voltar ao Catálogo</a>
+        <p style="margin-top: 2rem; font-size: 0.75rem; color: #aaa; border-top: 1px solid #eee; padding-top: 1rem;">
+            Este material foi criado por <strong>Sementes de Sabedoria</strong> • Parte do projeto <a
+                href="https://matematicaviva.com" style="color: var(--verde-escuro);">Matemática Viva</a><br>
+            <em>"Revelando a ordem de Deus — na Palavra e nos Números"</em>
+        </p>
+    </div>
+
+    <!-- PÁGINA 1: CAPA PREMIUM (Personalizável) -->
+    <div class="page">
+        <div class="page-label">Página 1: Edição do Explorador</div>
+        <div class="cover-content">
+            <!-- Ornamentos -->
+            <div class="corner tl"></div>
+            <div class="corner tr"></div>
+            <div class="corner bl"></div>
+            <div class="corner br"></div>
+
+            <p class="cover-subtitle" style="margin-top: 2rem;">Sementes de Sabedoria Apresenta</p>
+            <h1 class="cover-title">O Diário<br>da Natureza</h1>
+            <p style="font-family: 'Pinyon Script'; font-size: 1.8rem; color: var(--dourado); margin-bottom: 0.5rem;">
+                Sistema de Observação da Criação</p>
+            <p
+                style="font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase; color: #888; margin-bottom: 3rem;">
+                Para Exploradores de 4 a 99 anos</p>
+
+            <!-- Área de Personalização -->
+            <div class="shield-area">
+                <span style="text-align: center; color: #aaa; font-size: 1rem; font-family: 'Outfit';">Brasão
+                    da<br>Família</span>
+            </div>
+
+            <div
+                style="border-bottom: 2px solid var(--dourado); width: 70%; margin: 0 auto 1rem; padding-bottom: 0.5rem;">
+                <p style="font-family: 'Libre Baskerville'; font-size: 1.2rem; color: var(--verde-escuro);">Propriedade
+                    do Naturalista:</p>
+                <p
+                    style="font-family: 'Pinyon Script'; font-size: 2.5rem; color: var(--verde-escuro); margin-top: 0.5rem;">
+                    _______________________</p>
+            </div>
+
+            <p style="font-size: 0.9rem; color: var(--terracota); font-style: italic;">"Os céus proclamam a glória de
+                Deus." — Salmo 19:1</p>
+
+            <div class="print-tip">Dica: Deixe seu filho desenhar o brasão da família no escudo acima.</div>
+        </div>
+    </div>
+
+    <!-- PÁGINA 2: O CONVITE DOS GUARDIÕES -->
+    <div class="page">
+        <div class="page-label">Página 2: A Cerimônia de Entrada</div>
+        <div class="cover-content"
+            style="justify-content: flex-start; padding-top: 2rem; border: none; outline: none; background: none;">
+
+            <h2 class="script-font"
+                style="color: var(--verde-escuro); font-size: 2.2rem; margin-bottom: 1rem; text-align: left;">O Convite
+                dos Guardiões</h2>
+            <p style="text-align: left; margin-bottom: 2rem; color: #666;">Três figuras observam você na entrada da
+                floresta. Eles trazem presentes para sua jornada.</p>
+
+            <!-- Íris -->
+            <div class="guardian-speech">
+                <div class="guardian-avatar">🐦</div>
+                <div>
+                    <h4 style="color: var(--verde-escuro); font-family: 'Libre Baskerville'; margin-bottom: 0.5rem;">
+                        Íris, o Pardal</h4>
+                    <p style="font-size: 0.95rem; line-height: 1.5;">"Eu trago a <strong>Lente da Verdade</strong>. Com
+                        ela, você não verá apenas 'uma folha'. Você verá as veias, as manchas e as mordidas de lagarta.
+                        Pegue. Use seus olhos como se fossem lupas."</p>
+                </div>
+            </div>
+
+            <!-- Noé -->
+            <div class="guardian-speech">
+                <div class="guardian-avatar">🦉</div>
+                <div>
+                    <h4 style="color: var(--verde-escuro); font-family: 'Libre Baskerville'; margin-bottom: 0.5rem;">
+                        Noé, a Coruja</h4>
+                    <p style="font-size: 0.95rem; line-height: 1.5;">"Eu trago o <strong>Relógio Parado</strong>. Aqui
+                        fora, o tempo dos homens não existe. Se você tiver pressa, o pássaro foge. Se você esperar em
+                        silêncio... a floresta conta seus segredos."</p>
+                </div>
+            </div>
+
+            <!-- Bernardo -->
+            <div class="guardian-speech">
+                <div class="guardian-avatar">🐻</div>
+                <div>
+                    <h4 style="color: var(--verde-escuro); font-family: 'Libre Baskerville'; margin-bottom: 0.5rem;">
+                        Bernardo, o Urso</h4>
+                    <p style="font-size: 0.95rem; line-height: 1.5;">"Eu tirei a borracha do seu estojo. Na natureza,
+                        não existe erro, existe <strong>registo</strong>. Desenhou torto? Ótimo. É o seu traço. Não
+                        apague. Continue."</p>
+                </div>
+            </div>
+
+            <div
+                style="margin-top: 1rem; border-top: 1px solid var(--dourado); padding-top: 1.5rem; text-align: center;">
+                <p style="font-family: 'Pinyon Script'; font-size: 1.8rem; color: var(--terracota);">Você aceita as
+                    ferramentas?</p>
+                <div
+                    style="margin-top: 1rem; width: 30px; height: 30px; border: 2px solid var(--verde-escuro); display: inline-block; transform: rotate(45deg);">
+                </div>
+                <span style="margin-left: 10px; font-weight: bold; color: var(--verde-escuro);">Sim, eu aceito.</span>
+            </div>
+
+            <div class="print-tip">Dica de Pai: Para crianças pequenas (4-6), leia as falas dos Guardiões com vozes
+                diferentes! Crianças maiores (7+) devem ler sozinhas.</div>
+        </div>
+    </div>
+
+    <!-- PÁGINA 3: MANUAL DE CAMPO (Com Alerta Teológico) -->
+    <div class="page">
+        <div class="page-label">Página 3: Manual de Campo</div>
+        <div class="cover-content" style="justify-content: flex-start; padding-top: 2rem;">
+
+            <!-- Desenho Sem Medo -->
+            <div
+                style="background: white; border: 2px dashed var(--verde-claro); padding: 2rem; border-radius: 8px; margin-bottom: 2rem; width: 100%;">
+                <h3 class="script-font" style="color: var(--verde-escuro); font-size: 1.8rem; margin-bottom: 1rem;">🎨
+                    Desenho Sem Medo</h3>
+                <p style="text-align: left; margin-bottom: 1rem; color: #555;">Muitas crianças travam porque querem
+                    desenhar "perfeito". Ensine estes truques:</p>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; text-align: left;">
+                    <div>
+                        <strong style="color: var(--dourado);">1. A Mancha Mágica</strong>
+                        <p style="font-size: 0.9rem;">Não faça o contorno primeiro. Pinte uma mancha da cor (a forma
+                            geral). Depois, faça os riscos por cima.</p>
+                    </div>
+                    <div>
+                        <strong style="color: var(--dourado);">2. O Olho Cego</strong>
+                        <p style="font-size: 0.9rem;">Olhe 80% do tempo para a folha real e só 20% para o papel. A mão
+                            segue o olho.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Etiqueta do Explorador & Alerta Teológico -->
+            <div
+                style="background: var(--verde-escuro); color: white; padding: 2rem; border-radius: 8px; width: 100%; position: relative;">
+                <div
+                    style="position: absolute; top: -15px; left: 20px; background: var(--dourado); color: white; padding: 5px 15px; font-family: 'Libre Baskerville'; font-size: 0.9rem; text-transform: uppercase;">
+                    Código de Honra</div>
+
+                <h3 class="script-font"
+                    style="color: var(--creme); font-size: 1.8rem; margin-bottom: 1.5rem; margin-top: 0.5rem;">A
+                    Etiqueta do Guardião</h3>
+
+                <ul style="text-align: left; margin-left: 1.5rem; line-height: 1.8; margin-bottom: 1.5rem;">
+                    <li><strong>🛡️ Mordomia:</strong> Nós cuidamos do jardim de Deus. Não destruímos o que estamos
+                        admirando.</li>
+                    <li><strong>🍂 Somente Caídos:</strong> Só colha flores ou folhas que já caíram no chão. Deixe as
+                        vivas para as abelhas.</li>
+                    <li><strong>🪨 Casa de Alguém:</strong> Se você levantar uma pedra, coloque-a de volta. É o teto de
+                        alguém.</li>
+                </ul>
+
+                <div style="border-top: 1px solid rgba(255,255,255,0.2); padding-top: 1rem; margin-top: 1rem;">
+                    <p style="font-size: 0.9rem; font-style: italic; color: var(--dourado);">
+                        <strong>💡 O Alerta de Melquior:</strong><br>
+                        "Nós admiramos a pintura para elogiar o Pintor.<br>
+                        Não adoramos a árvore; adoramos Aquele que criou a árvore."
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- PÁGINA 4: PROMPTS (Lote 1) -->
+    <div class="page">
+        <div class="page-label">Página 4: Cartas de Missão (Recorte)</div>
+        <div class="cards-grid">
+            <div class="prompt-card">
+                <div class="prompt-icon">🔍</div>
+                <div class="prompt-title">O Mundo Minúsculo</div>
+                <p class="prompt-desc">Encontre algo menor que a unha do seu dedo mindinho.<br>Use uma lupa (ou apenas
+                    olhos bem abertos).<br>Quantas pernas tem? Que cor é?</p>
+            </div>
+            <div class="prompt-card">
+                <div class="prompt-icon">🦋</div>
+                <div class="prompt-title">Caça ao Movimento</div>
+                <p class="prompt-desc">Fique muito quieto.<br>Encontre algo que está se movendo.<br>É o vento? É um
+                    bicho? É a água?</p>
+            </div>
+            <div class="prompt-card">
+                <div class="prompt-icon">✋</div>
+                <div class="prompt-title">Texturas Escondidas</div>
+                <p class="prompt-desc">Feche os olhos e toque em uma árvore ou pedra.<br>É áspero? É liso? É
+                    frio?<br>Desenhe como você acha que é a textura.</p>
+            </div>
+            <div class="prompt-card">
+                <div class="prompt-icon">🎨</div>
+                <div class="prompt-title">Paleta de Cores</div>
+                <p class="prompt-desc">Encontre 3 tons de verde diferentes.<br>Cole um pedacinho de folha (se estiver no
+                    chão) ou tente copiar a cor com lápis.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- PÁGINA 5: PROMPTS (Lote 2) -->
+    <div class="page">
+        <div class="page-label">Página 5: Cartas de Missão (Recorte)</div>
+        <div class="cards-grid">
+            <div class="prompt-card">
+                <div class="prompt-icon">☁️</div>
+                <div class="prompt-title">O Céu Agora</div>
+                <p class="prompt-desc">Deite no chão e olhe para cima.<br>As nuvens parecem algodão ou lençol?<br>Elas
+                    estão correndo ou paradas?</p>
+            </div>
+            <div class="prompt-card">
+                <div class="prompt-icon">🌑</div>
+                <div class="prompt-title">O Jogo das Sombras</div>
+                <p class="prompt-desc">Olhe para o chão.<br>Onde está a sua sombra?<br>Onde está a sombra da
+                    árvore?<br>Desenhe o formato da sombra.</p>
+            </div>
+            <div class="prompt-card">
+                <div class="prompt-icon">💧</div>
+                <div class="prompt-title">Onde está a Água?</div>
+                <p class="prompt-desc">Procure por água.<br>Pode ser orvalho, poça ou chuva.<br>Se não tiver água,
+                    procure onde ela esteve (terra seca).</p>
+            </div>
+            <div class="prompt-card">
+                <div class="prompt-icon">🍂</div>
+                <div class="prompt-title">Tesouros do Chão</div>
+                <p class="prompt-desc">Encontre algo que a árvore "jogou fora".<br>Uma casca seca, uma folha velha, uma
+                    semente.<br>Por que ela caiu?</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- PÁGINA 6: MODELO DE DIÁRIO 1 (Com Clima) -->
+    <div class="page">
+        <div class="page-label">Página 6: Folha de Diário (Recorrente)</div>
+
+        <div
+            style="display: flex; justify-content: space-between; margin-bottom: 1rem; color: #999; font-size: 0.9rem; font-family: 'Outfit'; border-bottom: 1px solid #eee; padding-bottom: 0.5rem;">
+            <span>Data: ____/____/____</span>
+            <span>Local: __________________________</span>
+            <span>Clima: ☀️ ☁️ 🌧️ 🌡️_____ºC</span>
+        </div>
+
+        <div class="journal-area"></div>
+
+        <p
+            style="font-family: 'Libre Baskerville'; color: var(--verde-escuro); margin-bottom: 0.5rem; font-weight: bold;">
+            O que eu notei:</p>
+        <div class="journal-lines"></div>
+
+        <p
+            style="font-family: 'Libre Baskerville'; color: var(--verde-escuro); margin: 1rem 0 0.5rem; font-weight: bold;">
+            Minha pergunta sobre isso:</p>
+        <div style="height: 15%; border-bottom: 1px solid #eee;"></div>
+
+        <div class="print-tip">Dica de Mãe: Imprima 10 cópias desta página e encaderne para ter um diário completo!
+        </div>
+    </div>
+
+    <!-- PÁGINA 7: MODELO DE DIÁRIO 2 (DESENHO LIVRE) -->
+    <div class="page">
+        <div class="page-label">Página 7: Folha de Desenho Livre (Recorrente)</div>
+
+        <div
+            style="border: 4px double var(--dourado); height: 100%; padding: 1rem; display: flex; flex-direction: column;">
+            <div
+                style="flex: 1; border: 1px solid #eee; border-radius: 4px; display: flex; align-items: center; justify-content: center;">
+                <p style="color: #eee; font-family: 'Pinyon Script'; font-size: 2rem;">Espaço para prensar folhas ou
+                    desenhar paisagens</p>
+            </div>
+            <div style="margin-top: 1rem; text-align: center;">
+                <p style="font-family: 'Libre Baskerville'; font-style: italic; color: var(--verde-escuro);">"As obras
+                    do Senhor são grandes, e devem ser estudadas por todos os que nelas se comprazem." — Salmo 111:2</p>
+            </div>
+        </div>
+        <div class="print-tip">Dica de Mãe: Use papel mais grosso (120g ou 180g) para esta página se for usar aquarela.
+        </div>
+    </div>
+
+    <!-- PÁGINA 8: CHECKLIST SAZONAL (Gamificado) -->
+    <div class="page">
+        <div class="page-label">Página 8: Bingo das Estações</div>
+        <div class="cover-content" style="justify-content: flex-start; padding-top: 2rem;">
+            <h2 class="script-font" style="color: var(--verde-escuro); font-size: 2.2rem; margin-bottom: 0.5rem;">O
+                Relógio das Estações</h2>
+            <p style="color: #666; font-style: italic; margin-bottom: 2rem;">Marque um X no que você encontrar!</p>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; width: 100%;">
+
+                <!-- Primavera -->
+                <div
+                    style="background: #E8F5E9; padding: 1rem; border-radius: 4px; border-left: 4px solid var(--verde-claro);">
+                    <h4 style="color: var(--verde-escuro); margin-bottom: 0.8rem;">🌸 Primavera</h4>
+                    <div class="checklist-item">
+                        <div class="checklist-box"></div> <span>Novos brotos verdes nas pontas</span>
+                    </div>
+                    <div class="checklist-item">
+                        <div class="checklist-box"></div> <span>Flores minúsculas no gramado</span>
+                    </div>
+                    <div class="checklist-item">
+                        <div class="checklist-box"></div> <span>Pássaro carregando graveto</span>
+                    </div>
+                    <div class="checklist-item">
+                        <div class="checklist-box"></div> <span>Borboleta ou abelha trabalhando</span>
+                    </div>
+                </div>
+
+                <!-- Verão -->
+                <div style="background: #FFF8E1; padding: 1rem; border-radius: 4px; border-left: 4px solid #F57F17;">
+                    <h4 style="color: #F57F17; margin-bottom: 0.8rem;">☀️ Verão</h4>
+                    <div class="checklist-item">
+                        <div class="checklist-box"></div> <span>Sombra bem escura ao meio-dia</span>
+                    </div>
+                    <div class="checklist-item">
+                        <div class="checklist-box"></div> <span>Fruta madura na árvore ou chão</span>
+                    </div>
+                    <div class="checklist-item">
+                        <div class="checklist-box"></div> <span>Inseto barulhento (cigarra/grilo)</span>
+                    </div>
+                    <div class="checklist-item">
+                        <div class="checklist-box"></div> <span>Nuvem de tempestade formando</span>
+                    </div>
+                </div>
+
+                <!-- Outono -->
+                <div
+                    style="background: #FBE9E7; padding: 1rem; border-radius: 4px; border-left: 4px solid var(--terracota);">
+                    <h4 style="color: var(--terracota); margin-bottom: 0.8rem;">🍂 Outono</h4>
+                    <div class="checklist-item">
+                        <div class="checklist-box"></div> <span>Folha que mudou de cor</span>
+                    </div>
+                    <div class="checklist-item">
+                        <div class="checklist-box"></div> <span>Semente paraquate (que voa)</span>
+                    </div>
+                    <div class="checklist-item">
+                        <div class="checklist-box"></div> <span>Vento que arrepia a pele</span>
+                    </div>
+                    <div class="checklist-item">
+                        <div class="checklist-box"></div> <span>Pôr do sol dourado especial</span>
+                    </div>
+                </div>
+
+                <!-- Inverno -->
+                <div style="background: #E3F2FD; padding: 1rem; border-radius: 4px; border-left: 4px solid #1565C0;">
+                    <h4 style="color: #1565C0; margin-bottom: 0.8rem;">❄️ Inverno</h4>
+                    <div class="checklist-item">
+                        <div class="checklist-box"></div> <span>Árvore "dormindo" (sem folhas)</span>
+                    </div>
+                    <div class="checklist-item">
+                        <div class="checklist-box"></div> <span>Céu azul pálido sem nuvens</span>
+                    </div>
+                    <div class="checklist-item">
+                        <div class="checklist-box"></div> <span>Pássaro buscando comida no chão</span>
+                    </div>
+                    <div class="checklist-item">
+                        <div class="checklist-box"></div> <span>Desenho bonito de galho seco</span>
+                    </div>
+                </div>
+            </div>
+
+            <div style="margin-top: 2rem; padding: 1.5rem; border: 1px dashed var(--verde-claro); text-align: center;">
+                <p style="color: var(--verde-escuro); font-family: 'Libre Baskerville'; font-style: italic;">"Para tudo
+                    há uma ocasião, e um tempo para cada propósito debaixo do céu." <br>— Eclesiastes 3:1</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- PÁGINA 9: SALMOS -->
+    <div class="page">
+        <div class="page-label">Página 9: Liturgia da Criação</div>
+        <div class="cover-content"
+            style="background: var(--verde-escuro); color: white; border: none; outline: 4px double var(--dourado);">
+            <div
+                style="border: 1px solid rgba(255,255,255,0.2); padding: 2rem; height: 100%; display: flex; flex-direction: column; justify-content: center;">
+                <p style="font-family: 'Pinyon Script'; font-size: 1.5rem; color: var(--dourado); margin-bottom: 2rem;">
+                    A Oração do Observador</p>
+
+                <p style="font-family: 'Libre Baskerville'; font-size: 1.4rem; line-height: 1.8; margin-bottom: 2rem;">
+                    "Os céus proclamam a glória de Deus,<br>
+                    e o firmamento anuncia a obra das suas mãos.<br>
+                    Um dia discursa a outro dia,<br>
+                    e uma noite revela conhecimento a outra noite."
+                </p>
+
+                <p style="font-size: 1rem; text-transform: uppercase; letter-spacing: 2px; color: var(--verde-claro);">
+                    Salmo 19:1-2</p>
+
+                <div style="width: 50px; height: 1px; background: var(--dourado); margin: 3rem auto;"></div>
+
+                <p style="font-family: 'Libre Baskerville'; font-style: italic; font-size: 1.1rem;">
+                    Senhor, ensina-me a ver.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- PÁGINA 10: NOTAS DO EDUCADOR (Profundidade Opcional) -->
+    <div class="page" style="background: var(--creme); border: 1px solid var(--borda);">
+        <div class="page-label">Página 10: Notas do Educador (Opcional)</div>
+
+        <div class="cover-content"
+            style="border: none; outline: none; background: none; text-align: left; padding: 1rem 3rem;">
+            <h2 class="script-font"
+                style="color: var(--verde-escuro); font-size: 2rem; border-bottom: 2px solid var(--dourado); padding-bottom: 0.5rem; margin-bottom: 2rem;">
+                Bastidores Pedagógicos</h2>
+
+            <p style="font-style: italic; color: #777; margin-bottom: 2rem;">
+                "Por que estamos fazendo isso?" — Uma explicação rápida para pais que querem entender os princípios por
+                trás da prática.
+            </p>
+
+            <h3 style="color: var(--verde-escuro); font-family: 'Libre Baskerville'; margin-bottom: 0.5rem;">📚 1. O
+                Princípio Charlotte Mason</h3>
+            <p style="margin-bottom: 1.5rem; line-height: 1.6;">
+                <strong>O Hábito da Atenção:</strong> O objetivo principal deste diário <em>não</em> é ensinar biologia.
+                É ensinar a criança a <strong>ver</strong>. Charlotte Mason ensinava que a atenção não é um "dom", é um
+                hábito treinável. Quando a criança desenha uma folha, ela é forçada a parar e olhar de verdade. Esse
+                hábito de "parar e olhar" servirá para a matemática, para a leitura e para a oração.
+            </p>
+
+            <h3 style="color: var(--verde-escuro); font-family: 'Libre Baskerville'; margin-bottom: 0.5rem;">✝️ 2. A
+                Base Teológica (Doxologia)</h3>
+            <p style="margin-bottom: 1.5rem; line-height: 1.6;">
+                <strong>Revelação Geral:</strong> A Bíblia diz que "os céus proclamam a glória de Deus" (Salmo 19). Isso
+                significa que a natureza é um livro mudo que fala do Criador. Ao levar seu filho para fora, você não
+                está apenas "brincando"; você está levando-o para ler o segundo livro de Deus. O cuidado aqui é a
+                <strong>Mordomia</strong>: amamos a natureza porque ela é o jardim do Rei, não porque ela é o próprio
+                rei.
+            </p>
+
+            <h3 style="color: var(--verde-escuro); font-family: 'Libre Baskerville'; margin-bottom: 0.5rem;">🧠 3. O Que
+                Estamos Construindo</h3>
+            <ul style="margin-left: 1.5rem; line-height: 1.6; margin-bottom: 2rem;">
+                <li><strong>Vocabulário:</strong> Ao tentar descrever o que vê ("é áspero", "é verde-musgo"), a
+                    linguagem se expande.</li>
+                <li><strong>Paciência:</strong> Esperar um pássaro aparecer treina o controle inibitório.</li>
+                <li><strong>Memória:</strong> Lembrar onde viu aquela flor estimula o hipocampo e a orientação espacial.
+                </li>
+            </ul>
+
+            <div style="background: white; padding: 1.5rem; border-left: 4px solid var(--dourado); border-radius: 4px;">
+                <p style="font-weight: bold; color: var(--verde-escuro); margin-bottom: 0.5rem;">Para ir mais fundo:</p>
+                <p style="font-size: 0.9rem;">
+                    Recomendamos a leitura de <em>"Home Education"</em> (Vol. 1), Parte II: Out-of-Door Life. Lá,
+                    Charlotte Mason explica como "nunca estar dentro de casa quando se pode estar fora".
+                </p>
+            </div>
+        </div>
+        <div class="print-tip">Dica: Esta página é para leitura dos pais. Não precisa imprimir para a criança.</div>
+    </div>
+
+    <!-- PÁGINA 11: MÓDULO MESTRE - TEOLOGIA (Premium) -->
+    <div class="page">
+        <div class="page-label">Página 11: Módulo Mestre (A Profundidade)</div>
+        <div class="cover-content"
+            style="justify-content: flex-start; padding-top: 3rem; border: double 6px var(--verde-claro); outline: none;">
+
+            <div style="text-align: center; margin-bottom: 2rem;">
+                <span
+                    style="font-family: 'Outfit'; text-transform: uppercase; letter-spacing: 2px; font-size: 0.8rem; color: var(--dourado);">Formação
+                    de Pais</span>
+                <h2 class="cover-title" style="font-size: 2.2rem; margin-top: 0.5rem;">A Teologia da Atenção</h2>
+                <div style="width: 50px; height: 3px; background: var(--terracota); margin: 1rem auto;"></div>
+            </div>
+
+            <div class="letter-body" style="background: none; border: none; padding: 0; text-align: left;">
+                <p style="margin-bottom: 1.5rem;">
+                    <span
+                        style="float: left; font-size: 3.5rem; line-height: 0.8; font-family: 'Pinyon Script'; color: var(--dourado); margin-right: 10px;">V</span>
+                    ocê já se perguntou por que é tão difícil orar? Ou por que é tão difícil ler um livro difícil? A
+                    filósofa cristã <strong>Simone Weil</strong> tinha uma resposta surpreendente: o músculo é o mesmo.
+                </p>
+
+                <blockquote
+                    style="border-left: 4px solid var(--dourado); padding-left: 1.5rem; margin: 2rem 0; font-style: italic; color: #555;">
+                    "A atenção é a forma mais rara e pura de generosidade. A atenção absolutamente pura é oração."
+                </blockquote>
+
+                <h3
+                    style="color: var(--verde-escuro); font-family: 'Libre Baskerville'; margin-top: 2rem; margin-bottom: 1rem;">
+                    O Treino do "Olhar"</h3>
+                <p style="margin-bottom: 1rem;">
+                    Quando pedimos para a criança observar as nervuras de uma folha até conseguir desenhá-la, não
+                    estamos criando botânicos. Estamos criando <strong>pessoas de oração</strong>.
+                </p>
+                <p style="margin-bottom: 1rem;">
+                    Estamos ensinando o cérebro a sair de si mesmo ("eu estou entediado") e a se curvar diante da
+                    realidade externa ("isto é uma obra de Deus e merece ser vista").
+                </p>
+                <p>
+                    O Diário da Natureza é, antes de tudo, uma <strong>liturgia da atenção</strong>.
+                </p>
+            </div>
+        </div>
+        <div class="print-tip">Dica: Leitura recomendada para o "Momento do Café" dos pais.</div>
+    </div>
+
+    <!-- PÁGINA 12: MÓDULO MESTRE - CHARLOTTE MASON -->
+    <div class="page">
+        <div class="page-label">Página 12: O Método na Prática</div>
+        <div class="cover-content" style="justify-content: flex-start; padding-top: 3rem;">
+
+            <h2 class="script-font"
+                style="color: var(--verde-escuro); font-size: 2.2rem; margin-bottom: 2rem; text-align: left;">Charlotte
+                Mason Descomplicada</h2>
+
+            <div style="display: grid; grid-template-columns: 1fr; gap: 2rem;">
+
+                <!-- Conceito 1 -->
+                <div style="display: flex; gap: 1rem;">
+                    <div style="font-size: 2rem;">🔬</div>
+                    <div>
+                        <h3
+                            style="color: var(--verde-escuro); font-family: 'Libre Baskerville'; border-bottom: 1px solid var(--dourado); padding-bottom: 0.5rem; display: inline-block; margin-bottom: 0.5rem;">
+                            A Ciência das Relações</h3>
+                        <p style="font-size: 0.95rem; line-height: 1.6; color: #444;">
+                            Mason dizia que "Educação é a Ciência das Relações". A criança já nasce uma <em>pessoa</em>,
+                            pronta para se relacionar com Deus, com o universo e com os homens. Nosso trabalho não é
+                            encher um balde, mas <strong>apresentar amigos</strong>. A árvore deve ser uma amiga. O
+                            riacho deve ser um conhecido.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Conceito 2 -->
+                <div style="display: flex; gap: 1rem;">
+                    <div style="font-size: 2rem;">🗝️</div>
+                    <div>
+                        <h3
+                            style="color: var(--verde-escuro); font-family: 'Libre Baskerville'; border-bottom: 1px solid var(--dourado); padding-bottom: 0.5rem; display: inline-block; margin-bottom: 0.5rem;">
+                            Inatividade Magistral</h3>
+                        <p style="font-size: 0.95rem; line-height: 1.6; color: #444;">
+                            (Masterly Inactivity). É a arte de o professor saber quando sair da frente. Não explique
+                            demais. Não dê palestra sobre a fotossíntese agora. Deixe a criança e a natureza
+                            conversarem. Intervenha apenas para garantir o respeito ("não arranque a planta").
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Box Final -->
+                <div
+                    style="background: var(--verde-escuro); color: white; padding: 2rem; border-radius: 8px; margin-top: 1rem; text-align: center;">
+                    <h3
+                        style="font-family: 'Pinyon Script'; font-size: 2rem; color: var(--dourado); margin-bottom: 1rem;">
+                        Quer ir além?</h3>
+                    <p style="margin-bottom: 1.5rem; font-size: 0.95rem;">
+                        O Diário da Natureza é apenas uma das ferramentas do currículo <strong>Matemática Viva</strong>.
+                        Conectamos a beleza da criação com o rigor dos números.
+                    </p>
+                    <div
+                        style="border: 1px dashed var(--dourado); padding: 1rem; display: inline-block; font-size: 0.9rem;">
+                        Próximo Passo: <strong>Conheça "A Aritmética do Amor"</strong>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

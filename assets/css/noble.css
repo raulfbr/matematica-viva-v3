@@ -1,0 +1,1297 @@
+/* 
+   🏛️ NOBLE CSS FRAMEWORK v3.5 (Sovereign Positive)
+   Estilo Canônico do Matemática Viva
+   Baseado em: _LEGADO/IDENTIDADE-VISUAL.md
+   Foco: Verde Floresta, Dourado Antigo & Creme Quente
+*/
+
+:root {
+    /* 🎨 PALETA DO REINO (Cores Semânticas) */
+    --cor-fundo-reino: #F8F5E9;
+    /* Creme Quente (Base Oficial) */
+    --cor-papel-fundo: #FCFAF5;
+    /* Cartão Off-White (Contraste Suave - NÃO É BRANCO PURO) */
+    --cor-creme-cards: #FAF9F6;
+    /* Alternativa para cards */
+
+    --cor-tinta-primaria: #304837;
+    /* Verde Floresta (Texto Principal - SEM AZUL) */
+    --cor-tinta-secundaria: #4A6B50;
+    /* Verde Claro (Links & Metadata - Substitui Cinza Azulado) */
+
+    --cor-destaque-dourado: #B89B5E;
+    /* Dourado Antigo (Melquior & Títulos) */
+    --cor-lapis-verde: #4A6B50;
+    /* Verde Claro (Acertos & Ícones) */
+    --cor-erro-suave: #E74C3C;
+    /* Atenção */
+
+    /* Guardiões (Oficiais do Legacy) */
+    --cor-melquior: #D4A84B;
+    /* Sol */
+    --cor-celeste: #E8A87C;
+    /* Estrela */
+    --cor-bernardo: #8B7355;
+    /* Pedra */
+    --cor-noe: #7B68B8;
+    /* Lua */
+    --cor-iris: #7EC8C8;
+    /* Flor */
+
+    /* 🧱 ESTRUTURA & ESPAÇAMENTO */
+    --borda-fina: 1px solid rgba(48, 72, 55, 0.3);
+    /* Guide: Verde Floresta 30-50% opacidade */
+    --sombra-suave: 0 4px 20px rgba(48, 72, 55, 0.08);
+    --sombra-flutuante: 0 10px 30px rgba(48, 72, 55, 0.15);
+
+    --raio-card: 16px;
+    --raio-botao: 8px;
+
+    /* 🖋️ TIPOGRAFIA */
+    --fonte-titulo: 'Merriweather', serif;
+    /* Autoridade */
+    --fonte-corpo: 'Inter', sans-serif;
+    /* Legibilidade */
+    --fonte-ui: 'Outfit', sans-serif;
+    /* Interface */
+
+    /* ✨ TRANSLUCIDEZ (Princípio de Vermeer) - NOBLE GLASS v2 */
+    --glass-fundo: rgba(252, 250, 245, 0.75);
+    /* Creme Quente, mais translúcido */
+    --glass-fundo-hover: rgba(252, 250, 245, 0.9);
+    --glass-borda: rgba(184, 155, 94, 0.2);
+    /* Dourado Sutil em vez de Verde */
+    --glass-borda-active: rgba(184, 155, 94, 0.5);
+    --backdrop-blur: blur(12px);
+}
+
+/* 🧊 NOBLE GLASS v2 */
+.glass-card {
+    background: var(--glass-fundo);
+    backdrop-filter: var(--backdrop-blur);
+    -webkit-backdrop-filter: var(--backdrop-blur);
+    border: 1px solid var(--glass-borda);
+    box-shadow: 0 4px 20px rgba(48, 72, 55, 0.04);
+    /* Mais leve */
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glass-card:hover {
+    background: var(--glass-fundo-hover);
+    border-color: var(--glass-borda-active);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(48, 72, 55, 0.1);
+}
+
+.glass-card-dark {
+    background: rgba(48, 72, 55, 0.05);
+    backdrop-filter: var(--backdrop-blur);
+    -webkit-backdrop-filter: var(--backdrop-blur);
+    border: 1px solid rgba(48, 72, 55, 0.1);
+}
+
+/* 📱 RESET & BASE */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    -webkit-font-smoothing: antialiased;
+}
+
+body {
+    background-color: var(--cor-fundo-reino);
+    color: var(--cor-tinta-primaria);
+    font-family: var(--fonte-corpo);
+    line-height: 1.6;
+    font-size: 16px;
+    /* Base legível */
+    padding-bottom: 80px;
+    /* Espaço para nav inferior */
+}
+
+a {
+    color: var(--cor-tinta-primaria);
+    text-decoration-color: var(--cor-destaque-dourado);
+}
+
+a:hover {
+    color: var(--cor-destaque-dourado);
+}
+
+/* 📄 CONTAINER DE LEITURA (Foco Absoluto) */
+.container {
+    max-width: 680px;
+    /* Largura ideal de leitura */
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* 🏷️ CABEÇALHO DA LIÇÃO */
+.lesson-header {
+    text-align: center;
+    padding: 2rem 0;
+}
+
+.lesson-header h1 {
+    font-family: var(--fonte-titulo);
+    font-size: 2rem;
+    color: var(--cor-tinta-primaria);
+    margin: 0.5rem 0;
+    line-height: 1.3;
+}
+
+.lesson-header .meta-info {
+    font-family: var(--fonte-ui);
+    font-size: 0.9rem;
+    color: var(--cor-tinta-secundaria);
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    align-items: center;
+}
+
+/* 🃏 CARDS SEMÂNTICOS (O Coração da UI) */
+
+/* Base do Card */
+.card-ritual,
+.card-narrativa,
+.card-mestra,
+.card-atividade {
+    background: var(--cor-papel-fundo);
+    border-radius: var(--raio-card);
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    box-shadow: var(--sombra-suave);
+    border: 1px solid transparent;
+    /* Para bordas coloridas */
+    transition: transform 0.2s ease;
+    line-height: 1.8;
+    /* Sopro de Espaço interno */
+    position: relative;
+    padding-top: 2.5rem;
+    /* Espaço para o header */
+}
+
+.card-header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 0.5rem 1rem;
+    font-family: var(--fonte-ui);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 600;
+    background: rgba(48, 72, 55, 0.05);
+    border-bottom: 1px solid rgba(48, 72, 55, 0.1);
+    border-radius: var(--raio-card) var(--raio-card) 0 0;
+    color: var(--cor-tinta-secundaria);
+}
+
+/* 🔥 Ritual (Místico) */
+.card-ritual {
+    border-left: 4px solid var(--cor-noe);
+    background: linear-gradient(to right, rgba(123, 104, 184, 0.03), var(--cor-creme-cards));
+}
+
+.card-ritual p {
+    font-family: var(--fonte-titulo);
+    font-style: italic;
+    color: var(--cor-tinta-primaria);
+}
+
+/* 📜 MANIFESTO SPECIFIC */
+.manifesto-header {
+    text-align: center;
+    padding: 4rem 0;
+}
+
+.manifesto-header p.subtitle {
+    font-family: var(--fonte-ui);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--cor-tinta-secundaria);
+    font-size: 0.9rem;
+}
+
+.manifesto-header h1 {
+    font-family: var(--fonte-titulo);
+    font-size: 2.5rem;
+    color: var(--cor-tinta-primaria);
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.manifesto-header p.quote {
+    font-style: italic;
+    color: var(--cor-destaque-dourado);
+}
+
+.hierarquia-list {
+    list-style: none;
+    padding: 0;
+}
+
+.hierarquia-list li {
+    margin-bottom: 1.5rem;
+}
+
+.hierarquia-list .item-title {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 0.2rem;
+}
+
+.licenca-box {
+    background: var(--cor-fundo-reino);
+    padding: 2rem;
+    border-radius: var(--raio-card);
+    text-align: left;
+}
+
+.licenca-box ul {
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    line-height: 1.6;
+}
+
+/* 🌿 Narrativa (Imersão) */
+.card-narrativa {
+    border: 1px solid rgba(184, 155, 94, 0.2);
+    /* Dourado sutil */
+}
+
+.card-narrativa strong {
+    color: var(--cor-destaque-dourado);
+}
+
+/* 🦉 Mestra (Só para o Pai) */
+.card-mestra {
+    background: #FFFDF7;
+    /* Amarelo muito pálido, quase creme */
+    border: 1px dashed var(--cor-destaque-dourado);
+    font-size: 0.95rem;
+}
+
+.card-mestra h1,
+.card-mestra h2,
+.card-mestra h3 {
+    color: var(--cor-destaque-dourado);
+    font-family: var(--fonte-ui);
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 1rem;
+}
+
+/* 🖐️ Atividade (Mão na Massa) */
+.card-atividade {
+    border-top: 4px solid var(--cor-lapis-verde);
+}
+
+/* 🚨 Importante (Alerta de Segurança) */
+.card-importante {
+    border-left: 4px solid var(--cor-erro-suave);
+    background: #FFF5F5;
+    /* Vermelho muito pálido */
+}
+
+.card-importante .card-header {
+    color: var(--cor-erro-suave);
+    background: rgba(231, 76, 60, 0.05);
+    border-bottom: 1px solid rgba(231, 76, 60, 0.1);
+}
+
+/* 🗣️ CAIXA DE FALA (Speech Box - White Background) */
+/* O "Gatilho Visual" para o Pai falar em voz alta */
+.speech-box {
+    background: #FFFFFF;
+    /* Branco Puro */
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    /* Borda quase invisível */
+    border-left: 4px solid var(--cor-destaque-dourado);
+    /* Linha de Guia */
+    border-radius: 8px;
+    /* Cantos suaves, mas menos que os cards */
+    padding: 1.5rem 2rem;
+    margin: 2rem 0;
+    /* Respiro vertical generoso */
+    box-shadow: 0 8px 16px rgba(48, 72, 55, 0.08);
+    /* Sombra Elevation 2 */
+    position: relative;
+    font-family: var(--fonte-ui);
+    /* Fonte de Leitura Limpa */
+    font-size: 1.05rem;
+    /* Levemente maior para leitura fácil */
+    color: #2c3e50;
+    /* Cinza escuro para alto contraste */
+}
+
+.speech-box::before {
+    content: "🗣️ LER EM VOZ ALTA";
+    position: absolute;
+    top: -10px;
+    left: 1rem;
+    background: var(--cor-destaque-dourado);
+    color: white;
+    font-size: 0.65rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    padding: 2px 8px;
+    border-radius: 4px;
+    letter-spacing: 1px;
+}
+
+/* 🗣️ ROTEIRO DE FALA (Stage Directions) */
+p {
+    margin-bottom: 1rem;
+}
+
+/* Estilização para Instruções de Cena [...] capturadas pelo Gutenberg */
+.instrucao-cena {
+    display: inline-block;
+    /* Mudado para inline-block para não quebrar fluxo desnecessário */
+    color: var(--cor-destaque-dourado);
+    font-family: var(--fonte-ui);
+    font-size: 0.8rem;
+    /* Ligeiramente menor */
+    font-style: normal;
+    /* Removido itálico para usar o brilho do ouro */
+    font-weight: 500;
+    margin: 0.2rem 0;
+    padding: 0 4px;
+    background: rgba(184, 155, 94, 0.03);
+    /* Mais transparente */
+    border-radius: 4px;
+    border-left: 2px solid rgba(184, 155, 94, 0.4);
+    /* Dourado suave */
+    opacity: 0.75;
+    /* O Sopro de Bringhurst */
+}
+
+.instrucao-cena::before {
+    content: "◈ ";
+    font-size: 0.7rem;
+}
+
+/* Fallback para code inline (se não for capturado como span) */
+code {
+    background: rgba(184, 155, 94, 0.08);
+    color: var(--cor-destaque-dourado);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-family: var(--fonte-ui);
+    font-size: 0.9em;
+}
+
+/* Blocos de código (se existirem) */
+pre code {
+    display: block;
+    padding: 1rem;
+    overflow-x: auto;
+    background: var(--cor-tinta-primaria);
+    color: var(--cor-papel-fundo);
+    border-radius: 8px;
+}
+
+/* Citação de Fala */
+blockquote {
+    border-left: 3px solid var(--cor-destaque-dourado);
+    padding-left: 1rem;
+    font-family: var(--fonte-titulo);
+    margin: 1rem 0;
+    color: var(--cor-tinta-primaria);
+}
+
+/* 🧭 NAVEGAÇÃO FINAL (Previous/Next) */
+.nav-footer {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 1rem;
+    align-items: center;
+    margin-top: 4rem;
+    padding-top: 2rem;
+    border-top: var(--borda-fina);
+}
+
+.nav-card {
+    text-decoration: none;
+    color: var(--cor-tinta-primaria);
+    padding: 10px;
+    border-radius: var(--raio-botao);
+    transition: background 0.2s;
+    display: flex;
+    flex-direction: column;
+}
+
+.nav-card:hover {
+    background: rgba(48, 72, 55, 0.05);
+}
+
+.nav-card small {
+    color: var(--cor-tinta-secundaria);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    margin-bottom: 2px;
+}
+
+.nav-card strong {
+    font-size: 0.95rem;
+}
+
+.nav-card.prev {
+    text-align: left;
+}
+
+.nav-card.next {
+    text-align: right;
+}
+
+
+/* 💰 TABELA DE PREÇOS (O Tesouro) */
+.pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    align-items: start;
+    margin-top: 3rem;
+}
+
+.pricing-card {
+    background: var(--cor-creme-cards);
+    border-radius: var(--raio-card);
+    padding: 2rem;
+    text-align: center;
+    box-shadow: var(--sombra-suave);
+    border-top: 4px solid var(--cor-tinta-secundaria);
+    transition: transform 0.3s ease;
+}
+
+.pricing-card.highlight {
+    border-top: 6px solid var(--cor-destaque-dourado);
+    transform: scale(1.05);
+    box-shadow: var(--sombra-flutuante);
+    position: relative;
+    z-index: 10;
+}
+
+.pricing-card.highlight::before {
+    content: "RECOMENDADO";
+    background: var(--cor-destaque-dourado);
+    color: white;
+    padding: 0.3rem 1rem;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: bold;
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.pricing-value {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: var(--cor-tinta-primaria);
+    margin: 1.5rem 0;
+}
+
+.pricing-value span {
+    font-size: 1rem;
+    color: var(--cor-tinta-secundaria);
+    font-weight: normal;
+}
+
+.pricing-features {
+    list-style: none;
+    padding: 0;
+    text-align: left;
+    margin-bottom: 2rem;
+    font-size: 0.9rem;
+}
+
+.pricing-features li {
+    margin-bottom: 0.8rem;
+    padding-left: 1.5rem;
+    position: relative;
+}
+
+.pricing-features li::before {
+    content: "✓";
+    color: var(--cor-lapis-verde);
+    position: absolute;
+    left: 0;
+    font-weight: bold;
+}
+
+/* 📱 MOBILE FIRST AJUSTES */
+@media (max-width: 480px) {
+    .container {
+        padding: 15px;
+    }
+
+    .lesson-header h1 {
+        font-size: 1.6rem;
+    }
+
+    .card-ritual,
+    .card-narrativa,
+    .card-mestra {
+        padding: 1.2rem;
+    }
+
+    /* Ajustes Específicos Landing */
+    .hero-title {
+        font-size: 2rem !important;
+        /* Reduz de 2.8rem para caber */
+    }
+
+    .hero-subtitle {
+        font-size: 1rem !important;
+    }
+
+    .pricing-value {
+        font-size: 2rem;
+    }
+
+    .nav-footer {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    .nav-card.prev,
+    .nav-card.next {
+        text-align: center;
+    }
+}
+
+/* 🖨️ ECO-BELA: MODO DE ECONOMIA (Dual Printing) */
+body.mode-eco-bela {
+    --cor-fundo-reino: #ffffff;
+    --cor-papel-fundo: #ffffff;
+    --cor-creme-cards: #ffffff;
+    --cor-tinta-primaria: #000000;
+    --cor-tinta-secundaria: #333333;
+    --cor-destaque-dourado: #000000;
+    --sombra-suave: none;
+    --sombra-flutuante: none;
+    --glass-fundo: #ffffff;
+    --glass-borda: #000000;
+    --backdrop-blur: none;
+}
+
+.mode-eco-bela .card-ritual,
+.mode-eco-bela .card-narrativa,
+.mode-eco-bela .card-mestra,
+.mode-eco-bela .card-atividade {
+    border: 1px solid #000 !important;
+    background: #fff !important;
+    box-shadow: none !important;
+    border-left-width: 4px !important;
+}
+
+/* 🖨️ PRINT STYLES (Físico) */
+@media print {
+    body {
+        background: white !important;
+        color: black !important;
+        font-size: 12pt;
+    }
+
+    /* Força Modo Eco-Bela na impressão */
+    .card-ritual,
+    .card-narrativa,
+    .card-mestra,
+    .card-atividade {
+        box-shadow: none !important;
+        border: 1px solid #000 !important;
+        background: white !important;
+        page-break-inside: avoid;
+    }
+
+    .nav-footer,
+    .breadcrumbs,
+    .top-nav,
+    footer,
+    .eco-bela-toggle {
+        display: none !important;
+    }
+
+    .container {
+        max-width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+}
+
+/* ==========================================================================
+   📖 MÓDULO LIVING BOOK (Narrativa Rica)
+   Baseado em: CAPITULO-01-V3-A-LEVEZA.html
+   ========================================================================== */
+
+:root {
+    /* Cores dos Personagens (Mantidas do original para imersão) */
+    --cor-bento: #1565C0;
+    /* Azul Intelectual */
+    --cor-tomas: #4E342E;
+    /* Marrom Engenheiro */
+    --cor-liz: #F9A825;
+    /* Mostarda Curiosa */
+    --cor-mamae: #D88E8E;
+    /* Rosa Acolhedor */
+    --cor-dumont: #546E7A;
+    /* Aço Inventor */
+}
+
+/* Tipografia Narrativa */
+.drop-cap {
+    float: left;
+    font-family: var(--fonte-titulo);
+    font-size: 3.8rem;
+    line-height: 0.8;
+    margin-right: 0.5rem;
+    margin-top: 0.2rem;
+    color: var(--cor-destaque-dourado);
+}
+
+.separator {
+    text-align: center;
+    color: var(--cor-destaque-dourado);
+    font-size: 1.5rem;
+    margin: 3rem 0;
+    letter-spacing: 0.5rem;
+    opacity: 0.6;
+}
+
+/* Vozes dos Personagens */
+.fala-bento {
+    color: var(--cor-bento);
+    font-weight: 500;
+}
+
+.fala-tomas {
+    color: var(--cor-tomas);
+    font-weight: 500;
+}
+
+.fala-liz {
+    color: var(--cor-liz);
+    font-weight: 600;
+}
+
+.fala-mamae {
+    color: var(--cor-mamae);
+    font-weight: 500;
+}
+
+.fala-dumont {
+    color: var(--cor-dumont);
+    font-weight: 500;
+}
+
+.nome-bento {
+    color: var(--cor-bento);
+    font-weight: 600;
+}
+
+.nome-tomas {
+    color: var(--cor-tomas);
+    font-weight: 600;
+}
+
+.nome-liz {
+    color: var(--cor-liz);
+    font-weight: 700;
+}
+
+/* Caixas de Conteúdo Rico */
+/* 1. O Prisma da Liz (Glossário) */
+.prisma-box {
+    background: linear-gradient(135deg, rgba(249, 168, 37, 0.05), var(--cor-papel-fundo));
+    border-left: 4px solid var(--cor-liz);
+    padding: 1.5rem;
+    margin: 2rem 0;
+    border-radius: 0 12px 12px 0;
+}
+
+.box-title {
+    font-size: 1.1rem;
+    margin-top: 1rem;
+    font-family: var(--fonte-ui);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.prisma-box h3 {
+    color: var(--cor-liz);
+    font-size: 1.1rem;
+    margin-top: 0;
+}
+
+/* 2. Verdade Histórica */
+.verdade-historica {
+    background-color: rgba(78, 52, 46, 0.03);
+    /* Baseado no Tomás */
+    padding: 1.5rem;
+    border-left: 4px solid var(--cor-tomas);
+    margin: 2rem 0;
+    border-radius: 0 12px 12px 0;
+}
+
+.verdade-historica h3 {
+    color: var(--cor-tomas);
+    font-size: 1.1rem;
+    margin-top: 0;
+}
+
+/* 3. Caderno do Tomás (Desafio) */
+.caderno-tomas {
+    background-color: var(--cor-creme-cards);
+    background-image: linear-gradient(rgba(48, 72, 55, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(48, 72, 55, 0.1) 1px, transparent 1px);
+    background-size: 20px 20px;
+    border: 1px solid rgba(48, 72, 55, 0.2);
+    padding: 1.5rem;
+    margin: 2rem 0;
+    font-family: 'Courier New', monospace;
+    box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.05);
+    transform: rotate(-0.5deg);
+}
+
+.caderno-tomas h4 {
+    color: var(--cor-tomas);
+    margin-top: 0;
+    border-bottom: 1px dashed var(--cor-tomas);
+    padding-bottom: 5px;
+}
+
+/* 4. Box de Narração */
+.narracao-box {
+    background: linear-gradient(135deg, rgba(21, 101, 192, 0.03), var(--cor-creme-cards));
+    border: 1px dashed var(--cor-bento);
+    padding: 1.5rem;
+    margin: 2rem 0;
+    border-radius: 12px;
+}
+
+.narracao-box strong {
+    color: var(--cor-bento);
+}
+
+/* Detalhes Franceses */
+.frances {
+    background: rgba(48, 72, 55, 0.05);
+    /* Verde Floresta bem suave */
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-style: italic;
+    font-size: 0.9em;
+    color: var(--cor-tinta-primaria);
+}
+
+.ornamento-final {
+    text-align: center;
+    font-size: 2rem;
+    color: var(--cor-destaque-dourado);
+    margin-top: 3rem;
+    opacity: 0.5;
+}
+
+/* ==========================================================================
+   8. COMPONENTES DE HOSPITALIDADE (Neurodiversidade)
+   ========================================================================== */
+details.decoder {
+    background: rgba(184, 155, 94, 0.05);
+    border: 1px dashed var(--cor-destaque-dourado);
+    border-radius: 8px;
+    padding: 1rem;
+    margin: 1rem 0;
+}
+
+details.decoder summary {
+    font-family: var(--fonte-ui);
+    font-weight: 600;
+    color: var(--cor-destaque-dourado);
+    cursor: pointer;
+    list-style: none;
+    outline: none;
+}
+
+details.decoder summary::-webkit-details-marker {
+    display: none;
+}
+
+details.decoder[open] summary {
+    margin-bottom: 0.8rem;
+    border-bottom: 1px solid rgba(184, 155, 94, 0.2);
+    padding-bottom: 0.4rem;
+}
+
+/* ==========================================================================
+   🏛️ DASHBOARD SPECIFIC (v3.5 Centauro)
+   ========================================================================== */
+
+.dashboard-hero {
+    text-align: center;
+    padding: 3rem 1rem;
+    background: transparent;
+    border: none;
+}
+
+.dashboard-hero h1 {
+    font-family: var(--fonte-titulo);
+    font-size: 3.5rem;
+    color: var(--cor-tinta-primaria);
+    margin-bottom: 0.5rem;
+    letter-spacing: -1px;
+}
+
+.dashboard-hero p.subtitle {
+    color: var(--cor-tinta-secundaria);
+    font-size: 1.1rem;
+    font-family: var(--fonte-ui);
+    opacity: 0.8;
+}
+
+.dashboard-nav {
+    margin-top: 2.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+}
+
+.nav-pill {
+    padding: 0.8rem 1.8rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-family: var(--fonte-ui);
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.nav-pill:hover {
+    filter: brightness(1.1);
+}
+
+.nav-pill.gold {
+    background: rgba(184, 155, 94, 0.1);
+    border: 1px solid rgba(184, 155, 94, 0.3);
+    color: var(--cor-destaque-dourado);
+}
+
+.nav-pill.emerald {
+    background: rgba(74, 107, 80, 0.1);
+    border: 1px solid rgba(74, 107, 80, 0.3);
+    color: var(--cor-tinta-secundaria);
+}
+
+.nav-pill.light {
+    background: rgba(255, 255, 255, 0.5);
+    border: 1px solid rgba(48, 72, 55, 0.1);
+    color: var(--cor-tinta-primaria);
+}
+
+/* 🌳 Árvore de Progresso */
+.tree-container {
+    margin-top: 3rem;
+    padding: 2rem;
+}
+
+.phase-card {
+    padding: 1.8rem;
+    text-align: center;
+    border-radius: 24px;
+}
+
+.phase-icon {
+    font-size: 3rem;
+    margin-bottom: 0.8rem;
+    display: block;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
+}
+
+.progress-noble {
+    height: 6px;
+    background: rgba(48, 72, 55, 0.1);
+    border-radius: 10px;
+    margin-top: 1rem;
+    overflow: hidden;
+}
+
+.progress-noble-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--cor-destaque-dourado), var(--cor-lapis-verde));
+    border-radius: 10px;
+    transition: width 1s ease-out;
+}
+
+/* 📑 Centauro Lesson Grid */
+.lesson-card-centauro {
+    display: flex;
+    flex-direction: column;
+    padding: 1.5rem;
+    border-radius: 16px;
+    text-decoration: none;
+    background: var(--cor-papel-fundo);
+    border: 1px solid rgba(48, 72, 55, 0.08);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.02);
+    transition: all 0.3s ease;
+    min-height: 140px;
+}
+
+.lesson-card-centauro:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 25px rgba(48, 72, 55, 0.08);
+    border-color: var(--cor-destaque-dourado);
+}
+
+.lesson-card-centauro .title {
+    font-family: var(--fonte-titulo);
+    font-size: 1.15rem;
+    color: var(--cor-tinta-primaria);
+    line-height: 1.2;
+    margin-bottom: 1rem;
+}
+
+.lesson-card-centauro .meta {
+    font-size: 0.8rem;
+    color: var(--cor-tinta-secundaria);
+    font-family: var(--fonte-ui);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.lesson-card-centauro .guardian-tag {
+    font-weight: 700;
+    color: var(--cor-destaque-dourado);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.guardian-icon-centauro {
+    font-size: 1.4rem;
+    opacity: 0.9;
+}
+
+/* Specific Phase Borders */
+.phase-sementes {
+    border-left: 4px solid var(--cor-lapis-verde);
+}
+
+.phase-raízes {
+    border-left: 4px solid var(--cor-bernardo);
+}
+
+.phase-lógica {
+    border-left: 4px solid var(--cor-noe);
+}
+
+.phase-legado {
+    border-left: 4px solid var(--cor-destaque-dourado);
+}
+
+
+.guardian-avatar {
+    font-size: 1.2rem;
+}
+
+/* Mobile Adjustments for Dashboard */
+@media (max-width: 480px) {
+    .cycle-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+}
+
+/* ==========================================================================
+   7. BIBLIOTECA REAL (Estantes)
+   ========================================================================== */
+.library-hero {
+    text-align: center;
+    padding: 4rem 1rem;
+    background-color: var(--cor-papel-fundo);
+    border-bottom: 1px solid var(--cor-destaque-dourado);
+    margin-bottom: 3rem;
+}
+
+.library-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 2.5rem;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 1.5rem 4rem;
+}
+
+.book-card {
+    background: var(--cor-creme-cards);
+    border-radius: 8px;
+    box-shadow: var(--sombra-suave);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    overflow: hidden;
+    border: 1px solid rgba(48, 72, 55, 0.1);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    text-decoration: none;
+    /* Reset link style */
+}
+
+.book-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(48, 72, 55, 0.1);
+}
+
+.book-cover {
+    height: 200px;
+    background-color: var(--cor-tinta-primaria);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--cor-papel-fundo);
+    font-family: var(--fonte-titulo);
+    font-size: 1.5rem;
+    text-align: center;
+    padding: 1rem;
+    position: relative;
+}
+
+/* Capas Específicas */
+.cover-dumont {
+    background: linear-gradient(135deg, #1565C0 0%, #0D47A1 100%);
+    /* Mantendo Azul original do Dumont pois é Identidade do Livro? 
+       Visual Identity says "Avoid Blue". 
+       But this is the BOOK COVER image/art. 
+       I will keep it for now as "Art", but maybe tone it down? 
+       Let's keep it as is, it's content, not UI chrome. */
+}
+
+.cover-monet {
+    background: linear-gradient(135deg, #66BB6A 0%, #2E7D32 100%);
+}
+
+.cover-bach {
+    background: linear-gradient(135deg, #8D6E63 0%, #4E342E 100%);
+}
+
+.book-details {
+    padding: 1.5rem;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.book-title {
+    font-family: var(--fonte-titulo);
+    font-size: 1.2rem;
+    color: var(--cor-tinta-primaria);
+    margin: 0 0 0.5rem 0;
+    line-height: 1.3;
+}
+
+.book-subtitle {
+    font-size: 0.9rem;
+    color: var(--cor-tinta-secundaria);
+    margin-bottom: 1rem;
+    font-style: italic;
+}
+
+.book-badge {
+    display: inline-block;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    align-self: flex-start;
+}
+
+.badge-gold {
+    background-color: #FFF8E1;
+    color: #F57F17;
+    border: 1px solid #FFE082;
+}
+
+.badge-soon {
+    background-color: var(--cor-papel-fundo);
+    color: #999;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.book-cta {
+    margin-top: auto;
+    text-align: center;
+    padding-top: 1rem;
+    border-top: 1px dashed rgba(48, 72, 55, 0.1);
+    color: var(--cor-destaque-dourado);
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+/* Decorative spine effect */
+.book-spine {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 6px;
+    background: rgba(0, 0, 0, 0.1);
+    z-index: 2;
+}
+
+/* ==========================================================================
+   8. VISUAL CARDS (Estilo Galeria - Dieter Rams "Less is Better")
+   ========================================================================== */
+
+/* Container do Cartão Visual 
+   Menos "Card de App", mais "Moldura de Museu". */
+.visual-card {
+    background-color: transparent;
+    /* Remove fundo preto */
+    border-radius: 8px;
+    /* Cantos menos agressivos */
+    overflow: hidden;
+    margin: 2.5rem 0;
+    /* Mais respiro vertical */
+    border: none;
+    /* Sem borda, apenas a imagem e o texto */
+    box-shadow: none;
+    /* Remove sombra pesada do container, foca na imagem */
+    text-align: center;
+    /* Centraliza a legenda */
+}
+
+/* A Imagem em si - O Foco Absoluto */
+.visual-card img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 8px;
+    /* A imagem carrega a forma */
+    box-shadow:
+        0 4px 6px rgba(0, 0, 0, 0.05),
+        0 1px 3px rgba(0, 0, 0, 0.1);
+    /* Sombra sutil e realista */
+    margin-bottom: 0.8rem;
+    /* Espaço para a legenda */
+}
+
+/* Legendas Externas (Abaixo da Imagem) */
+.visual-card .card-nome {
+    position: static;
+    /* Remove sobreposição */
+    background: none;
+    color: var(--cor-tinta-primaria);
+    /* Cor do texto normal */
+    padding: 0;
+    margin-top: 0.5rem;
+
+    font-family: var(--fonte-titulo);
+    font-weight: 700;
+    font-size: 1rem;
+    letter-spacing: 0.02em;
+}
+
+.visual-card .card-subtitulo {
+    display: block;
+    font-size: 0.8rem;
+    color: var(--cor-tinta-secundaria);
+    font-family: var(--fonte-ui);
+    margin-top: 0.2rem;
+    font-weight: 500;
+}
+
+/* --- COMPONENTES DE NEURO-UX (GOLD V4) --- */
+
+/* CAIXA DE NARRATIVA (Estilo V2 - Fluidez Total)
+   Conceito: Todo o ato narrativo acontece aqui. 
+   Fundo BRANCO para o texto E para as instruções. */
+.speech-box {
+    background-color: #ffffff;
+    border-left: 5px solid #D4AF37;
+    /* Ouro Nobre */
+    padding: 2rem 2.5rem;
+    margin: 2rem 0;
+    border-radius: 0 12px 12px 0;
+    /* Canto arredondado V2 */
+    box-shadow:
+        0 4px 12px rgba(0, 0, 0, 0.08),
+        /* Sombra suave de elevação */
+        0 0 0 1px rgba(0, 0, 0, 0.02);
+    position: relative;
+    font-family: 'Merriweather', serif;
+    /* Fonte de Leitura V2 */
+}
+
+/* CAIXA DE NARRAÇÃO (Reflexão - O Momento da Colheita)
+   Mesma estrutura branca e limpa, mas com acento VERDE (Crescimento/Vida).
+   Diferencia o "Ouvir a História" do "Falar sobre ela". */
+.narration-box {
+    background-color: #ffffff;
+    border-left: 5px solid #2E7D32;
+    /* Verde Nobre (Natureza) */
+    padding: 2rem 2.5rem;
+    margin: 2rem 0;
+    border-radius: 0 12px 12px 0;
+    box-shadow:
+        0 4px 12px rgba(46, 125, 50, 0.08),
+        /* Sombra com leve tom verde */
+        0 0 0 1px rgba(0, 0, 0, 0.02);
+    position: relative;
+    font-family: 'Merriweather', serif;
+}
+
+.narration-box strong {
+    color: #2E7D32;
+    /* Títulos em Verde */
+}
+
+/* Remover etiqueta "LER EM VOZ ALTA" (poluída) se o usuário preferir, 
+   mas vamos mantê-la sutil ou removê-la se o design V2 não tinha.
+   V2 não tinha etiqueta, apenas o design visual. 
+   Vou comentar para limpar, conforme pedido de "fluidez V2". */
+.speech-box::before {
+    display: none;
+}
+
+/* Tipografia Principal (A Voz) */
+.speech-box p {
+    color: #1a1a1a;
+    font-size: 1.2rem;
+    line-height: 1.9;
+    /* Line-height generoso do V2 */
+    margin-bottom: 1.5rem;
+}
+
+/* Rubricas / Instruções do Pai (A Mente)
+   Estilo: Verde Suave, Itálico, Discreto. */
+.speech-box em,
+.speech-box .rubrica {
+    color: #4a6b50;
+    /* Verde V2 */
+    font-size: 0.95rem;
+    font-style: italic;
+    font-family: 'Outfit', sans-serif;
+    /* Contraste Sans */
+    display: inline-block;
+    /* Permite fluxo inline mas com peso */
+}
+
+.speech-box strong {
+    color: #D4AF37;
+    font-weight: 700;
+}
+
+/* ALERTA DE SEGURANÇA (O Guardião) */
+/* ALERTA DE SEGURANÇA (O Guardião) - Oculto a pedido */
+.card-importante {
+    display: none;
+}

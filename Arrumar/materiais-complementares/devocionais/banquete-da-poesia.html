@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>O Banquete da Poesia | Chá Literário</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Outfit:wght@300;400;500;600&family=Pinyon+Script&display=swap"
+        rel="stylesheet">
+
+    <style>
+        :root {
+            --verde-escuro: #304837;
+            --verde-claro: #5C7C65;
+            --dourado: #B89B5E;
+            --creme: #FAF8F3;
+            --papel: #FFFDF7;
+            --borda: #EAE2D0;
+            --vinho: #5D405D;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        body {
+            background: #e0e0e0;
+            font-family: 'Outfit', sans-serif;
+            padding: 2cm;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .script-font {
+            font-family: 'Libre Baskerville', serif;
+            font-style: italic;
+            font-weight: 700;
+        }
+
+        .page {
+            background: white;
+            width: 21cm;
+            height: 29.7cm;
+            padding: 1.5cm;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            position: relative;
+            page-break-after: always;
+            overflow: hidden;
+        }
+
+        .page-label {
+            position: absolute;
+            top: 0.5cm;
+            left: 1.5cm;
+            font-size: 0.7rem;
+            color: #ccc;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .cover-content {
+            height: 100%;
+            border: 1px solid var(--dourado);
+            outline: 4px double var(--dourado);
+            outline-offset: -6px;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            text-align: center;
+            color: var(--verde-escuro);
+        }
+
+        .cover-title {
+            font-family: 'Libre Baskerville', serif;
+            font-weight: 700;
+            font-size: 4rem;
+            color: var(--dourado);
+            line-height: 1;
+            margin-bottom: 0.5rem;
+        }
+
+        .cover-subtitle {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--verde-escuro);
+            margin-bottom: 2rem;
+        }
+
+        .letter-body {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 1.15rem;
+            line-height: 1.9;
+            text-align: justify;
+            padding: 1rem 2rem;
+            max-width: 90%;
+            margin: 0 auto;
+        }
+
+        .instructions-box {
+            background: var(--creme);
+            padding: 2rem;
+            border-radius: 4px;
+            text-align: left;
+            border: 1px solid var(--borda);
+            margin-top: 2rem;
+        }
+
+        .instructions-box h3 {
+            color: var(--dourado);
+            margin-bottom: 1rem;
+            font-family: 'Libre Baskerville', serif;
+            font-style: italic;
+        }
+
+        .instructions-box ol {
+            margin-left: 1.5rem;
+            line-height: 2;
+        }
+
+        /* Cards de Poema */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-template-rows: repeat(2, 1fr);
+            gap: 20px;
+            height: 100%;
+        }
+
+        .poem-card {
+            border: 2px solid var(--dourado);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+            text-align: center;
+            background: white;
+            position: relative;
+        }
+
+        .poem-card::before {
+            content: '🍃';
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 1.5rem;
+            opacity: 0.3;
+        }
+
+        .poem-title {
+            font-family: 'Pinyon Script', cursive;
+            font-size: 2rem;
+            color: var(--verde-escuro);
+            margin-bottom: 0.5rem;
+        }
+
+        .poem-author {
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--dourado);
+        }
+
+        .poem-text {
+            font-family: 'Libre Baskerville', serif;
+            font-style: italic;
+            font-size: 1rem;
+            line-height: 1.8;
+            color: #444;
+        }
+
+        .no-print {
+            text-align: center;
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            max-width: 600px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            border-top: 5px solid var(--dourado);
+        }
+
+        @media print {
+            .no-print {
+                display: none;
+            }
+
+            body {
+                background: none;
+                padding: 0;
+            }
+
+            .page {
+                box-shadow: none;
+                margin: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="no-print">
+        <h1 class="script-font" style="color: var(--dourado); font-size: 2.5rem;">O Banquete da Poesia</h1>
+        <p style="margin-bottom: 1.5rem;">Chá Literário Semanal (Charlotte Mason)</p>
+        <button onclick="window.print()"
+            style="padding: 12px 25px; background: var(--verde-escuro); color: white; border: none; font-size: 1.1rem; cursor: pointer; border-radius: 50px;">🖨️
+            Imprimir Kit</button>
+        <br><br>
+        <a href="catalogo.html" style="color: var(--verde-claro); text-decoration: none;">← Voltar ao Catálogo</a>
+        <p style="margin-top: 2rem; font-size: 0.75rem; color: #aaa; border-top: 1px solid #eee; padding-top: 1rem;">
+            Este material foi criado por <strong>Sementes de Sabedoria</strong> • Parte do projeto <a
+                href="https://matematicaviva.com" style="color: var(--dourado);">Matemática Viva</a><br>
+            <em>"Revelando a ordem de Deus — na Palavra e nos Números"</em>
+        </p>
+    </div>
+
+    <!-- PÁGINA 1: MANIFESTO -->
+    <div class="page">
+        <div class="page-label">Página 1: Manifesto</div>
+        <div class="cover-content">
+            <h1 class="cover-title">O Banquete<br>da Poesia</h1>
+            <p class="cover-subtitle">O Chá Literário Semanal</p>
+
+            <div class="letter-body">
+                <p><strong>Querida Família,</strong></p>
+                <p>A poesia não é "matéria escolar". É alimento para a alma.</p>
+                <p>Charlotte Mason ensinava que a mente da criança precisa de <em>ideias vivas</em> — não de resumos ou
+                    explicações, mas de beleza pura. A poesia é uma das formas mais concentradas de beleza.</p>
+                <p>Este kit convida você a criar um ritual simples: <strong>O Chá da Poesia</strong>. Uma vez por
+                    semana, reúnam-se em torno da mesa com chá (ou chocolate quente), lanches especiais, e um poema.</p>
+                <p>Não peça análise. Não faça prova. Apenas pergunte: <em>"O que você sentiu?"</em></p>
+                <br>
+                <p style="text-align: right; font-family: 'Pinyon Script'; font-size: 2rem; color: var(--dourado);">
+                    Matemática Viva</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- PÁGINA 2: INSTRUÇÕES -->
+    <div class="page">
+        <div class="page-label">Página 2: Como Fazer</div>
+        <div class="cover-content" style="justify-content: flex-start; padding-top: 3rem;">
+            <h2 class="script-font" style="color: var(--verde-escuro); font-size: 2.5rem; margin-bottom: 2rem;">Como
+                Preparar o Chá</h2>
+
+            <div class="instructions-box" style="max-width: 90%;">
+                <h3>🫖 O Ritual Semanal</h3>
+                <ol>
+                    <li><strong>Escolha o dia:</strong> Sexta à tarde é tradicional, mas qualquer dia serve.</li>
+                    <li><strong>Prepare a mesa:</strong> Toalha bonita, velas (se seguro), "louça boa", lanches
+                        especiais.</li>
+                    <li><strong>Leia o poema:</strong> Você ou a criança lê em voz alta. Leia devagar.</li>
+                    <li><strong>Pergunte:</strong> "O que você sentiu?" — não "O que significa?".</li>
+                    <li><strong>Repita:</strong> Leia o mesmo poema novamente na semana seguinte se quiser.</li>
+                </ol>
+            </div>
+
+            <div class="instructions-box"
+                style="max-width: 90%; margin-top: 1.5rem; background: white; border: 2px dashed var(--borda);">
+                <h3 style="color: var(--verde-escuro);">🌿 A Regra de Scholé (Lazer Contemplativo)</h3>
+                <p style="line-height: 1.8;">Não há cronômetro. Não há prova. Não há "objetivo pedagógico" além de
+                    <strong>alimentar a alma com beleza</strong>. Se a criança não "entender" o poema, tudo bem. A
+                    beleza entra por caminhos que não controlamos.
+                </p>
+                <p style="margin-top: 1rem; font-style: italic; color: #666;">"Pequenas práticas, ao longo do tempo,
+                    moldam-nos em quem estamos nos tornando." — Tish Harrison Warren</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- PÁGINA 3: CARDS FRENTE -->
+    <div class="page">
+        <div class="page-label">Página 3: Cards (Frente)</div>
+        <div class="cards-grid">
+            <div class="poem-card">
+                <div class="poem-title">Salmo 23</div>
+                <div class="poem-author">Bíblia Sagrada</div>
+            </div>
+            <div class="poem-card">
+                <div class="poem-title">Canção do Exílio</div>
+                <div class="poem-author">Gonçalves Dias</div>
+            </div>
+            <div class="poem-card">
+                <div class="poem-title">A Bailarina</div>
+                <div class="poem-author">Cecília Meireles</div>
+            </div>
+            <div class="poem-card">
+                <div class="poem-title">Ou Isto ou Aquilo</div>
+                <div class="poem-author">Cecília Meireles</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PÁGINA 4: CARDS VERSO -->
+    <div class="page">
+        <div class="page-label">Página 4: Cards (Verso)</div>
+        <div class="cards-grid" style="transform: scaleX(-1);">
+            <div class="poem-card" style="transform: scaleX(-1);">
+                <p class="poem-text">O Senhor é o meu pastor;<br>nada me faltará.<br>Ele me faz repousar em pastos
+                    verdejantes<br>e me conduz a águas tranquilas.</p>
+            </div>
+            <div class="poem-card" style="transform: scaleX(-1);">
+                <p class="poem-text">Minha terra tem palmeiras,<br>Onde canta o Sabiá;<br>As aves, que aqui
+                    gorjeiam,<br>Não gorjeiam como lá.</p>
+            </div>
+            <div class="poem-card" style="transform: scaleX(-1);">
+                <p class="poem-text">Esta menina tão pequenina<br>quer ser bailarina.<br>Não conhece nem dó nem
+                    ré<br>mas sabe ficar na ponta do pé.</p>
+            </div>
+            <div class="poem-card" style="transform: scaleX(-1);">
+                <p class="poem-text">Ou se tem chuva e não se tem sol,<br>ou se tem sol e não se tem chuva!<br>Ou se
+                    calça a luva e não se põe o anel,<br>ou se põe o anel e não se calça a luva!</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- PÁGINA 5: CARDS FRENTE (Lote 2) -->
+    <div class="page">
+        <div class="page-label">Página 5: Cards (Frente) — Lote 2</div>
+        <div class="cards-grid">
+            <div class="poem-card">
+                <div class="poem-title">O Pato</div>
+                <div class="poem-author">Vinícius de Moraes</div>
+            </div>
+            <div class="poem-card">
+                <div class="poem-title">As Borboletas</div>
+                <div class="poem-author">Vinícius de Moraes</div>
+            </div>
+            <div class="poem-card">
+                <div class="poem-title">Convite</div>
+                <div class="poem-author">José Paulo Paes</div>
+            </div>
+            <div class="poem-card">
+                <div class="poem-title">Salmo 19:1</div>
+                <div class="poem-author">Bíblia Sagrada</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PÁGINA 6: CARDS VERSO (Lote 2) -->
+    <div class="page">
+        <div class="page-label">Página 6: Cards (Verso) — Lote 2</div>
+        <div class="cards-grid" style="transform: scaleX(-1);">
+            <div class="poem-card" style="transform: scaleX(-1);">
+                <p class="poem-text">Lá vem o pato,<br>pata aqui, pata acolá,<br>lá vem o pato<br>para ver o que é que
+                    há.</p>
+            </div>
+            <div class="poem-card" style="transform: scaleX(-1);">
+                <p class="poem-text">Brancas, azuis, amarelas e pretas,<br>brincam na luz as belas
+                    borboletas.<br>Borboletas brancas<br>são alegres e francas.</p>
+            </div>
+            <div class="poem-card" style="transform: scaleX(-1);">
+                <p class="poem-text">Poesia<br>é brincar com palavras<br>como se brinca<br>com bola, papagaio, pião.</p>
+            </div>
+            <div class="poem-card" style="transform: scaleX(-1);">
+                <p class="poem-text">Os céus proclamam a glória de Deus<br>e o firmamento anuncia<br>as obras das suas
+                    mãos.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- PÁGINA 7: GUIA DE CONVERSA -->
+    <div class="page">
+        <div class="page-label">Página 7: Perguntas para o Chá</div>
+        <div class="cover-content" style="justify-content: flex-start; padding-top: 2rem;">
+            <h2 class="script-font" style="color: var(--verde-escuro); font-size: 2.5rem; margin-bottom: 2rem;">
+                Conversas ao Redor da Mesa</h2>
+
+            <div class="instructions-box" style="max-width: 95%; background: white; border: 2px solid var(--dourado);">
+                <h3 style="color: var(--dourado); text-align: center; font-size: 1.5rem;">🍵 Perguntas Contemplativas
+                </h3>
+                <p style="text-align: center; margin-bottom: 1.5rem; font-style: italic; color: #666;">Use estas
+                    perguntas APÓS ler o poema. Não antes.</p>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+                    <div style="padding: 1rem; background: var(--creme); border-radius: 4px;">
+                        <p style="font-weight: bold; color: var(--verde-escuro); margin-bottom: 0.5rem;">✨ Para Sentir
+                        </p>
+                        <ul style="margin-left: 1rem; line-height: 1.8; font-size: 0.95rem;">
+                            <li>"O que você sentiu?"</li>
+                            <li>"Que cor você imaginou?"</li>
+                            <li>"Que parte foi mais bonita?"</li>
+                        </ul>
+                    </div>
+                    <div style="padding: 1rem; background: var(--creme); border-radius: 4px;">
+                        <p style="font-weight: bold; color: var(--verde-escuro); margin-bottom: 0.5rem;">🌿 Para
+                            Imaginar</p>
+                        <ul style="margin-left: 1rem; line-height: 1.8; font-size: 0.95rem;">
+                            <li>"Onde você estava no poema?"</li>
+                            <li>"O que você ouviu?"</li>
+                            <li>"Que cheiro tinha?"</li>
+                        </ul>
+                    </div>
+                    <div style="padding: 1rem; background: var(--creme); border-radius: 4px;">
+                        <p style="font-weight: bold; color: var(--verde-escuro); margin-bottom: 0.5rem;">📖 Para
+                            Conectar</p>
+                        <ul style="margin-left: 1rem; line-height: 1.8; font-size: 0.95rem;">
+                            <li>"Isso te lembra algo?"</li>
+                            <li>"Onde Deus está neste poema?"</li>
+                            <li>"Você já sentiu isso?"</li>
+                        </ul>
+                    </div>
+                    <div style="padding: 1rem; background: var(--creme); border-radius: 4px;">
+                        <p style="font-weight: bold; color: var(--verde-escuro); margin-bottom: 0.5rem;">❌ O Que NÃO
+                            Perguntar</p>
+                        <ul style="margin-left: 1rem; line-height: 1.8; font-size: 0.95rem; color: #999;">
+                            <li><s>"O que significa?"</s></li>
+                            <li><s>"Qual a moral?"</s></li>
+                            <li><s>"O autor quis dizer o quê?"</s></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div
+                style="margin-top: 2rem; padding: 1.5rem; border: 1px dashed var(--borda); border-radius: 4px; max-width: 90%;">
+                <p
+                    style="font-family: 'Libre Baskerville'; font-style: italic; font-size: 1.1rem; text-align: center; color: var(--verde-escuro);">
+                    "A poesia não é para ser entendida — é para ser sentida."<br>
+                    <span style="font-size: 0.9rem; color: var(--dourado);">— Charlotte Mason</span>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- PÁGINA 8: LISTA DE POETAS -->
+    <div class="page">
+        <div class="page-label">Página 8: Sugestões de Poetas</div>
+        <div class="cover-content" style="justify-content: flex-start; padding-top: 2rem;">
+            <h2 class="script-font" style="color: var(--verde-escuro); font-size: 2.5rem; margin-bottom: 1.5rem;">Poetas
+                para o Banquete</h2>
+            <p style="font-style: italic; color: #666; margin-bottom: 2rem;">Sugestões para expandir sua coleção ao
+                longo do ano.</p>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; max-width: 95%;">
+                <div
+                    style="padding: 1.5rem; background: var(--creme); border-radius: 4px; border-left: 4px solid var(--dourado);">
+                    <h4 style="color: var(--dourado); margin-bottom: 1rem; font-family: 'Libre Baskerville';">🇧🇷
+                        Brasileiros</h4>
+                    <ul style="line-height: 2; font-size: 0.95rem;">
+                        <li><strong>Cecília Meireles</strong> — Infantil poético</li>
+                        <li><strong>Vinícius de Moraes</strong> — Arca de Noé</li>
+                        <li><strong>José Paulo Paes</strong> — Brincadeira</li>
+                        <li><strong>Manuel Bandeira</strong> — Saudade</li>
+                        <li><strong>Carlos Drummond</strong> — Cotidiano</li>
+                    </ul>
+                </div>
+                <div
+                    style="padding: 1.5rem; background: var(--creme); border-radius: 4px; border-left: 4px solid var(--verde-escuro);">
+                    <h4 style="color: var(--verde-escuro); margin-bottom: 1rem; font-family: 'Libre Baskerville';">🌍
+                        Clássicos</h4>
+                    <ul style="line-height: 2; font-size: 0.95rem;">
+                        <li><strong>Robert Louis Stevenson</strong> — A Child's Garden</li>
+                        <li><strong>Emily Dickinson</strong> — Natureza</li>
+                        <li><strong>Christina Rossetti</strong> — Cristã</li>
+                        <li><strong>G.K. Chesterton</strong> — Alegria</li>
+                        <li><strong>George Herbert</strong> — Devocional</li>
+                    </ul>
+                </div>
+                <div
+                    style="padding: 1.5rem; background: white; border-radius: 4px; border: 2px solid var(--dourado); grid-column: span 2;">
+                    <h4
+                        style="color: var(--dourado); margin-bottom: 1rem; font-family: 'Libre Baskerville'; text-align: center;">
+                        📖 Da Bíblia (A Maior Poesia)</h4>
+                    <div style="display: flex; justify-content: space-around; flex-wrap: wrap; gap: 1rem;">
+                        <span style="background: var(--creme); padding: 0.5rem 1rem; border-radius: 20px;">Salmos</span>
+                        <span style="background: var(--creme); padding: 0.5rem 1rem; border-radius: 20px;">Cântico dos
+                            Cânticos</span>
+                        <span
+                            style="background: var(--creme); padding: 0.5rem 1rem; border-radius: 20px;">Provérbios</span>
+                        <span
+                            style="background: var(--creme); padding: 0.5rem 1rem; border-radius: 20px;">Lamentações</span>
+                        <span style="background: var(--creme); padding: 0.5rem 1rem; border-radius: 20px;">Isaías</span>
+                    </div>
+                </div>
+
+                <div style="margin-top: 2rem; text-align: center;">
+                    <p style="font-size: 0.85rem; color: #999;">Este kit contém 16 poemas para as primeiras 16 semanas
+                        (1 trimestre escolar).</p>
+                    <p style="font-size: 0.85rem; color: #999;">Depois, crie sua própria coleção com os poetas acima! 📚
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- PÁGINA 9: ORAÇÃO DE ABERTURA -->
+        <div class="page">
+            <div class="page-label">Página 9: Oração de Abertura</div>
+            <div class="cover-content">
+                <h2 class="script-font" style="color: var(--verde-escuro); font-size: 2.5rem; margin-bottom: 2rem;">
+                    Antes do Banquete</h2>
+                <p style="font-style: italic; color: #666; margin-bottom: 2rem;">Uma oração para santificar o momento.
+                </p>
+
+                <div
+                    style="max-width: 80%; margin: 0 auto; padding: 3rem; border: 2px solid var(--dourado); border-radius: 4px; background: var(--creme);">
+                    <p
+                        style="font-family: 'Libre Baskerville'; font-size: 1.3rem; line-height: 2; color: var(--verde-escuro); text-align: center;">
+                        <em>Senhor,</em><br><br>
+                        Obrigado pela beleza que criaste.<br>
+                        Obrigado por nos dares olhos para ver<br>
+                        e ouvidos para ouvir.<br><br>
+                        Que as palavras deste poema<br>
+                        alimentem nossas almas<br>
+                        e nos aproximem de Ti.<br><br>
+                        Que este chá seja um banquete<br>
+                        de gratidão e alegria.<br><br>
+                        <strong>Amém.</strong>
+                    </p>
+                </div>
+
+                <div style="margin-top: 3rem; padding: 1rem; border: 1px dashed var(--borda); border-radius: 4px;">
+                    <p style="font-size: 0.9rem; color: #666; text-align: center;">
+                        💡 <strong>Dica:</strong> Deixe a criança ler a oração em voz alta. Repetição cria liturgia.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- PÁGINA 10: CARDS FRENTE (Lote 3) -->
+        <div class="page">
+            <div class="page-label">Página 10: Cards (Frente) — Lote 3</div>
+            <div class="cards-grid">
+                <div class="poem-card">
+                    <div class="poem-title">Leilão de Jardim</div>
+                    <div class="poem-author">Cecília Meireles</div>
+                </div>
+                <div class="poem-card">
+                    <div class="poem-title">A Casa</div>
+                    <div class="poem-author">Vinícius de Moraes</div>
+                </div>
+                <div class="poem-card">
+                    <div class="poem-title">Trem de Ferro</div>
+                    <div class="poem-author">Manuel Bandeira</div>
+                </div>
+                <div class="poem-card">
+                    <div class="poem-title">Salmo 8:3-4</div>
+                    <div class="poem-author">Bíblia Sagrada</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PÁGINA 11: CARDS VERSO (Lote 3) -->
+        <div class="page">
+            <div class="page-label">Página 11: Cards (Verso) — Lote 3</div>
+            <div class="cards-grid" style="transform: scaleX(-1);">
+                <div class="poem-card" style="transform: scaleX(-1);">
+                    <p class="poem-text">Quem me compra um jardim<br>com flores?<br>Borboletas de muitas
+                        cores,<br>lavadeiras e passarinhos...</p>
+                </div>
+                <div class="poem-card" style="transform: scaleX(-1);">
+                    <p class="poem-text">Era uma casa muito engraçada,<br>não tinha teto, não tinha nada.<br>Ninguém
+                        podia entrar nela, não,<br>porque na casa não tinha chão.</p>
+                </div>
+                <div class="poem-card" style="transform: scaleX(-1);">
+                    <p class="poem-text">Café com pão<br>Café com pão<br>Café com pão<br>Virge Maria que foi isso
+                        maquinista?</p>
+                </div>
+                <div class="poem-card" style="transform: scaleX(-1);">
+                    <p class="poem-text">Quando contemplo os teus céus,<br>obra dos teus dedos,<br>a lua e as estrelas
+                        que ali firmaste,<br>que é o homem, para que te lembres dele?</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- PÁGINA 12: CARDS FRENTE (Lote 4) -->
+        <div class="page">
+            <div class="page-label">Página 12: Cards (Frente) — Lote 4</div>
+            <div class="cards-grid">
+                <div class="poem-card">
+                    <div class="poem-title">A Estrela</div>
+                    <div class="poem-author">Manuel Bandeira</div>
+                </div>
+                <div class="poem-card">
+                    <div class="poem-title">Pescaria</div>
+                    <div class="poem-author">Cecília Meireles</div>
+                </div>
+                <div class="poem-card">
+                    <div class="poem-title">No Meio do Caminho</div>
+                    <div class="poem-author">Carlos Drummond</div>
+                </div>
+                <div class="poem-card">
+                    <div class="poem-title">Salmo 104:24</div>
+                    <div class="poem-author">Bíblia Sagrada</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PÁGINA 13: CARDS VERSO (Lote 4) -->
+        <div class="page">
+            <div class="page-label">Página 13: Cards (Verso) — Lote 4</div>
+            <div class="cards-grid" style="transform: scaleX(-1);">
+                <div class="poem-card" style="transform: scaleX(-1);">
+                    <p class="poem-text">Vi uma estrela tão alta,<br>vi uma estrela tão fria!<br>Vi uma estrela
+                        luzindo<br>na minha vida vazia.</p>
+                </div>
+                <div class="poem-card" style="transform: scaleX(-1);">
+                    <p class="poem-text">Cesto de peixes no chão.<br>Água de prata no anzol.<br>Água salobra no
+                        mar.<br>E água doce na chuva que vem por aí.</p>
+                </div>
+                <div class="poem-card" style="transform: scaleX(-1);">
+                    <p class="poem-text">No meio do caminho tinha uma pedra<br>tinha uma pedra no meio do
+                        caminho<br>tinha uma pedra<br>no meio do caminho tinha uma pedra.</p>
+                </div>
+                <div class="poem-card" style="transform: scaleX(-1);">
+                    <p class="poem-text">Que variedade, Senhor,<br>nas tuas obras!<br>Todas com sabedoria
+                        fizeste;<br>cheia está a terra das tuas riquezas.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- PÁGINA 14: GUIA POR IDADE -->
+        <div class="page">
+            <div class="page-label">Página 14: Adaptações por Idade</div>
+            <div class="cover-content" style="justify-content: flex-start; padding-top: 2rem;">
+                <h2 class="script-font" style="color: var(--verde-escuro); font-size: 2.5rem; margin-bottom: 1.5rem;">O
+                    Chá em Cada Fase</h2>
+                <p style="font-style: italic; color: #666; margin-bottom: 2rem;">Adapte o ritual para cada idade da
+                    casa.</p>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; max-width: 95%;">
+                    <div
+                        style="padding: 1.5rem; background: #E8F0E8; border-radius: 4px; border-left: 4px solid var(--verde-escuro);">
+                        <h4 style="color: var(--verde-escuro); margin-bottom: 1rem;">🌱 2-5 Anos</h4>
+                        <ul style="line-height: 1.8; font-size: 0.9rem;">
+                            <li>Poemas curtos e ritmados</li>
+                            <li>Bata palmas no ritmo</li>
+                            <li>Deixe-a "ler" olhando as letras</li>
+                            <li>5 minutos no máximo</li>
+                            <li>Foco: <strong>Som e Ritmo</strong></li>
+                        </ul>
+                    </div>
+                    <div
+                        style="padding: 1.5rem; background: #F0EDE8; border-radius: 4px; border-left: 4px solid var(--dourado);">
+                        <h4 style="color: var(--dourado); margin-bottom: 1rem;">🌿 6-9 Anos</h4>
+                        <ul style="line-height: 1.8; font-size: 0.9rem;">
+                            <li>A criança lê em voz alta</li>
+                            <li>Peça uma ilustração depois</li>
+                            <li>Introduza Salmos e clássicos</li>
+                            <li>10-15 minutos</li>
+                            <li>Foco: <strong>Imaginação e Beleza</strong></li>
+                        </ul>
+                    </div>
+                    <div
+                        style="padding: 1.5rem; background: #EDE8F0; border-radius: 4px; border-left: 4px solid var(--vinho);">
+                        <h4 style="color: var(--vinho); margin-bottom: 1rem;">🌳 10-12 Anos</h4>
+                        <ul style="line-height: 1.8; font-size: 0.9rem;">
+                            <li>Escolham poemas juntos</li>
+                            <li>Copie um verso no caderno</li>
+                            <li>Discuta: "O que você sentiu?"</li>
+                            <li>15-20 minutos</li>
+                            <li>Foco: <strong>Reflexão e Cópia</strong></li>
+                        </ul>
+                    </div>
+                    <div style="padding: 1.5rem; background: #E8E8F0; border-radius: 4px; border-left: 4px solid #555;">
+                        <h4 style="color: #555; margin-bottom: 1rem;">🏔️ 13+ Anos</h4>
+                        <ul style="line-height: 1.8; font-size: 0.9rem;">
+                            <li>Leia poetas mais densos</li>
+                            <li>Analise formas poéticas</li>
+                            <li>Escreva seus próprios versos</li>
+                            <li>20-30 minutos</li>
+                            <li>Foco: <strong>Técnica e Criação</strong></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div
+                    style="margin-top: 2rem; padding: 1rem; background: var(--creme); border-radius: 4px; text-align: center;">
+                    <p style="font-size: 0.9rem; color: var(--verde-escuro);">
+                        <strong>A Regra de Ouro:</strong> Nunca peça para "explicar" o poema.<br>
+                        A poesia não é para ser analisada — é para ser habitada.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- PÁGINA 15: CALENDÁRIO 12 SEMANAS -->
+        <div class="page">
+            <div class="page-label">Página 15: Calendário do Banquete</div>
+            <div class="cover-content" style="justify-content: flex-start; padding-top: 1.5rem;">
+                <h2 class="script-font" style="color: var(--verde-escuro); font-size: 2.2rem; margin-bottom: 1rem;">12
+                    Semanas de Poesia</h2>
+                <p style="font-style: italic; color: #666; margin-bottom: 1.5rem;">Marque cada semana que completarem! ✓
+                </p>
+
+                <table style="width: 100%; border-collapse: collapse; font-size: 0.85rem;">
+                    <thead>
+                        <tr style="background: var(--verde-escuro); color: white;">
+                            <th style="padding: 10px; border: 1px solid #ddd;">Sem</th>
+                            <th style="padding: 10px; border: 1px solid #ddd;">Poema</th>
+                            <th style="padding: 10px; border: 1px solid #ddd;">Autor</th>
+                            <th style="padding: 10px; border: 1px solid #ddd;">✓</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="padding: 8px; border: 1px solid #ddd; text-align: center;">1</td>
+                            <td style="padding: 8px; border: 1px solid #ddd;">Salmo 23</td>
+                            <td style="padding: 8px; border: 1px solid #ddd;">Bíblia</td>
+                            <td style="padding: 8px; border: 1px solid #ddd; text-align: center; width: 40px;">☐</td>
+                        </tr>
+                        <tr style="background: #f9f9f9;">
+                            <td style="padding: 8px; border: 1px solid #ddd; text-align: center;">2</td>
+                            <td style="padding: 8px; border: 1px solid #ddd;">Canção do Exílio</td>
+                            <td style="padding: 8px; border: 1px solid #ddd;">Gonçalves Dias</td>
+                            <td style="padding: 8px; border: 1px solid #ddd; text-align: center;">☐</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 8px; border: 1px solid #ddd; text-align: center;">3</td>
+                            <td style="padding: 8px; border: 1px solid #ddd;">A Bailarina</td>
+                            <td style="padding: 8px; border: 1px solid #ddd;">Cecília Meireles</td>
+                            <td style="padding: 8px; border: 1px solid #ddd; text-align: center;">☐</td>
+                        </tr>
+                        <tr style="background: #f9f9f9;">
+                            <td style="padding: 8px; border: 1px solid #ddd; text-align: center;">4</td>
+                            <td style="padding: 8px; border: 1px solid #ddd;">Ou Isto ou Aquilo</td>
+                            <td style="padding: 8px; border: 1px solid #ddd;">Cecília Meireles</td>
+                            <td style="padding: 8px; border: 1px solid #ddd; text-align: center;">☐</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 8px; border: 1px solid #ddd; text-align: center;">5</td>
+                            <td style="padding: 8px; border: 1px solid #ddd;">O Pato</td>
+                            <td style="padding: 8px; border: 1px solid #ddd;">Vinícius de Moraes</td>
+                            <td style="padding: 8px; border: 1px solid #ddd; text-align: center;">☐</td>
+                        </tr>
+                        <tr style="background: #f9f9f9;">
+                            <td style="padding: 8px; border: 1px solid #ddd; text-align: center;">6</td>
+                            <td style="padding: 8px; border: 1px solid #ddd;">As Borboletas</td>
+                            <td style="padding: 8px; border: 1px solid #ddd;">Vinícius de Moraes</td>
+                            <td style="padding: 8px; border: 1px solid #ddd; text-align: center;">☐</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 8px; border: 1px solid #ddd; text-align: center;">7</td>
+                            <td style="padding: 8px; border: 1px solid #ddd;">Convite</td>
+                            <td style="padding: 8px; border: 1px solid #ddd;">José Paulo Paes</td>
+                            <td style="padding: 8px; border: 1px solid #ddd; text-align: center;">☐</td>
+                        </tr>
+                        <tr style="background: #f9f9f9;">
+                            <td style="padding: 8px; border: 1px solid #ddd; text-align: center;">8</td>
+                            <td style="padding: 8px; border: 1px solid #ddd;">Salmo 19:1</td>
+                            <td style="padding: 8px; border: 1px solid #ddd;">Bíblia</td>
+                            <td style="padding: 8px; border: 1px solid #ddd; text-align: center;">☐</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 8px; border: 1px solid #ddd; text-align: center;">9</td>
+                            <td style="padding: 8px; border: 1px solid #ddd;">Leilão de Jardim</td>
+                            <td style="padding: 8px; border: 1px solid #ddd;">Cecília Meireles</td>
+                            <td style="padding: 8px; border: 1px solid #ddd; text-align: center;">☐</td>
+                        </tr>
+                        <tr style="background: #f9f9f9;">
+                            <td style="padding: 8px; border: 1px solid #ddd; text-align: center;">10</td>
+                            <td style="padding: 8px; border: 1px solid #ddd;">A Casa</td>
+                            <td style="padding: 8px; border: 1px solid #ddd;">Vinícius de Moraes</td>
+                            <td style="padding: 8px; border: 1px solid #ddd; text-align: center;">☐</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 8px; border: 1px solid #ddd; text-align: center;">11</td>
+                            <td style="padding: 8px; border: 1px solid #ddd;">Trem de Ferro</td>
+                            <td style="padding: 8px; border: 1px solid #ddd;">Manuel Bandeira</td>
+                            <td style="padding: 8px; border: 1px solid #ddd; text-align: center;">☐</td>
+                        </tr>
+                        <tr style="background: #f9f9f9;">
+                            <td style="padding: 8px; border: 1px solid #ddd; text-align: center;">12</td>
+                            <td style="padding: 8px; border: 1px solid #ddd;">Salmo 8:3-4</td>
+                            <td style="padding: 8px; border: 1px solid #ddd;">Bíblia</td>
+                            <td style="padding: 8px; border: 1px solid #ddd; text-align: center;">☐</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div
+                    style="margin-top: 1.5rem; text-align: center; padding: 1rem; border-top: 1px dashed var(--borda);">
+                    <p style="font-size: 0.85rem; color: #999;">📅 Dia do nosso Chá: _________________ (ex: Sexta às
+                        16h)</p>
+                    <p style="font-size: 0.85rem; color: #999; margin-top: 0.5rem;">🎉 Meta: Completar 12 semanas = 1
+                        trimestre de beleza!</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- PÁGINA 16: POEMAS SAZONAIS -->
+        <div class="page">
+            <div class="page-label">Página 16: Bônus — Poemas para as Estações</div>
+            <div class="cover-content" style="justify-content: flex-start; padding-top: 2rem;">
+                <h2 class="script-font" style="color: var(--verde-escuro); font-size: 2.5rem; margin-bottom: 2rem;">
+                    Poesia e Estações</h2>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; max-width: 95%;">
+                    <div
+                        style="padding: 1.5rem; background: linear-gradient(135deg, #E8F5E9, #C8E6C9); border-radius: 8px;">
+                        <h4 style="color: #2E7D32; margin-bottom: 1rem;">🌸 Primavera</h4>
+                        <p
+                            style="font-family: 'Libre Baskerville'; font-style: italic; font-size: 0.9rem; line-height: 1.6;">
+                            "Primavera" — Cecília Meireles<br>
+                            "A Abelhinha" — Vinícius de Moraes<br>
+                            Salmos sobre flores e renovação
+                        </p>
+                    </div>
+                    <div
+                        style="padding: 1.5rem; background: linear-gradient(135deg, #FFF8E1, #FFECB3); border-radius: 8px;">
+                        <h4 style="color: #F57F17; margin-bottom: 1rem;">☀️ Verão</h4>
+                        <p
+                            style="font-family: 'Libre Baskerville'; font-style: italic; font-size: 0.9rem; line-height: 1.6;">
+                            "Canção do Mar" — Dorival Caymmi<br>
+                            Poemas sobre praias e calor<br>
+                            Salmo 104 (Criação)
+                        </p>
+                    </div>
+                    <div
+                        style="padding: 1.5rem; background: linear-gradient(135deg, #FBE9E7, #FFCCBC); border-radius: 8px;">
+                        <h4 style="color: #BF360C; margin-bottom: 1rem;">🍂 Outono</h4>
+                        <p
+                            style="font-family: 'Libre Baskerville'; font-style: italic; font-size: 0.9rem; line-height: 1.6;">
+                            "Canção de Outono" — Fernando Pessoa<br>
+                            Poemas sobre folhas e mudança<br>
+                            Eclesiastes 3 (Tempo)
+                        </p>
+                    </div>
+                    <div
+                        style="padding: 1.5rem; background: linear-gradient(135deg, #E3F2FD, #BBDEFB); border-radius: 8px;">
+                        <h4 style="color: #1565C0; margin-bottom: 1rem;">❄️ Inverno</h4>
+                        <p
+                            style="font-family: 'Libre Baskerville'; font-style: italic; font-size: 0.9rem; line-height: 1.6;">
+                            Poemas natalinos (Natal)<br>
+                            "Noite Feliz" — letra como poesia<br>
+                            Isaías 9 (A Luz veio)
+                        </p>
+                    </div>
+                </div>
+
+                <div
+                    style="margin-top: 2rem; padding: 1.5rem; border: 2px solid var(--dourado); border-radius: 8px; text-align: center;">
+                    <p style="font-family: 'Pinyon Script'; font-size: 2rem; color: var(--dourado);">
+                        "Há um tempo certo para todas as coisas."
+                    </p>
+                    <p style="font-size: 0.85rem; color: #666; margin-top: 0.5rem;">Eclesiastes 3:1</p>
+                </div>
+            </div>
+        </div>
+
+</body>
+
+</html>

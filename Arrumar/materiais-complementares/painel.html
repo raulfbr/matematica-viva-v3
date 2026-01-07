@@ -1,0 +1,888 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Materiais Complementares | Reino Contado</title>
+    <meta name="description"
+        content="Devocionais, calendários e materiais especiais com os Guardiões do Reino Contado.">
+
+    <!-- Fontes -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Outfit:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+
+    <style>
+        :root {
+            --verde-escuro: #2D5A4A;
+            --verde-claro: #5A8A7A;
+            --dourado-antigo: #B89B5E;
+            --creme-base: #FAF8F3;
+            --creme-quente: #F5F0E6;
+            --texto: #3A3A3A;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Libre Baskerville', Georgia, serif;
+            background: var(--creme-base);
+            color: var(--texto);
+            line-height: 1.7;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* HEADER */
+        .header {
+            text-align: center;
+            margin-bottom: 2rem;
+            padding-bottom: 2rem;
+            border-bottom: 2px solid var(--dourado-antigo);
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            color: var(--verde-escuro);
+            margin: 1rem 0 0.5rem;
+        }
+
+        .header .subtitle {
+            font-size: 1.2rem;
+            color: var(--verde-claro);
+            font-style: italic;
+        }
+
+        /* QUICK STATS */
+        .quick-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-family: 'Outfit', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--dourado-antigo);
+        }
+
+        .stat-label {
+            font-size: 0.85rem;
+            color: var(--verde-claro);
+        }
+
+        /* PAINEL NOTAS PESSOAIS */
+        .notes-panel {
+            background: #FFF9E6;
+            border: 2px dashed var(--dourado-antigo);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .notes-panel h3 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1rem;
+            color: var(--dourado-antigo);
+            margin-bottom: 1rem;
+        }
+
+        .notes-panel ul {
+            margin-left: 1.5rem;
+            line-height: 1.8;
+        }
+
+        .notes-panel li strong {
+            color: var(--verde-escuro);
+        }
+
+        /* CATEGORIAS */
+        .categoria {
+            margin-bottom: 3rem;
+        }
+
+        .categoria-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            margin-bottom: 0.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--dourado-antigo);
+        }
+
+        .categoria-header h2 {
+            font-size: 1.5rem;
+            color: var(--verde-escuro);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .categoria-count {
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.85rem;
+            background: var(--verde-escuro);
+            color: white;
+            padding: 0.25rem 0.6rem;
+            border-radius: 12px;
+        }
+
+        .categoria-desc {
+            color: var(--verde-claro);
+            margin-bottom: 1.5rem;
+            font-style: italic;
+        }
+
+        /* SPECIALIST TAG */
+        .specialist-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.7rem;
+            padding: 0.2rem 0.5rem;
+            border-radius: 8px;
+            margin-top: 0.5rem;
+        }
+
+        .tag-teologia {
+            background: #E8D5F2;
+            color: #5B2C6F;
+        }
+
+        .tag-cm {
+            background: #D5E8D4;
+            color: #2E7D32;
+        }
+
+        .tag-business {
+            background: #FFECD2;
+            color: #E65100;
+        }
+
+        /* CARDS GRID */
+        .materiais-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .material-card {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            border: 2px solid transparent;
+            transition: transform 0.2s, box-shadow 0.2s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .material-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+        }
+
+        .material-card.destaque {
+            border-color: var(--dourado-antigo);
+            background: linear-gradient(135deg, white 0%, rgba(184, 155, 94, 0.08) 100%);
+        }
+
+        .material-card .icon {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .material-card h3 {
+            font-size: 1.2rem;
+            color: var(--verde-escuro);
+            margin-bottom: 0.3rem;
+        }
+
+        .material-card .versiculo {
+            font-size: 0.85rem;
+            color: var(--dourado-antigo);
+            font-style: italic;
+            margin-bottom: 0.5rem;
+        }
+
+        .material-card .desc {
+            font-size: 0.9rem;
+            color: var(--texto);
+            line-height: 1.6;
+            margin-bottom: 0.5rem;
+            flex-grow: 1;
+        }
+
+        /* DETAILS */
+        .material-details {
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.8rem;
+            color: var(--verde-claro);
+            margin-bottom: 0.5rem;
+        }
+
+        .material-details span {
+            display: inline-block;
+            margin-right: 1rem;
+        }
+
+        /* META */
+        .material-card .meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.85rem;
+            color: var(--verde-claro);
+            border-top: 1px solid #eee;
+            padding-top: 1rem;
+            margin-top: auto;
+        }
+
+        .material-card .preco {
+            color: var(--dourado-antigo);
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        .material-card .status {
+            padding: 0.3rem 0.6rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .status.pronto {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .status.em-breve {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .status.planejado {
+            background: #e2e3e5;
+            color: #383d41;
+        }
+
+        /* GUARDIÕES */
+        .guardioes-mini {
+            display: flex;
+            gap: 0.3rem;
+            margin: 0.5rem 0;
+        }
+
+        .guardiao-mini {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            border: 2px solid var(--dourado-antigo);
+        }
+
+        /* ROADMAP */
+        .roadmap {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .roadmap h3 {
+            margin-bottom: 1rem;
+            color: var(--verde-escuro);
+        }
+
+        .roadmap-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .roadmap-item:last-child {
+            border-bottom: none;
+        }
+
+        .roadmap-q {
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: white;
+            background: var(--verde-escuro);
+            padding: 0.3rem 0.6rem;
+            border-radius: 4px;
+            min-width: 60px;
+            text-align: center;
+        }
+
+        .roadmap-content {
+            flex-grow: 1;
+        }
+
+        .roadmap-content strong {
+            color: var(--verde-escuro);
+        }
+
+        /* FOOTER */
+        .footer {
+            text-align: center;
+            margin-top: 3rem;
+            padding: 2rem 0;
+            border-top: 2px solid var(--dourado-antigo);
+            color: var(--verde-claro);
+        }
+
+        .footer a {
+            color: var(--dourado-antigo);
+        }
+
+        /* PRINT */
+        @media print {
+            .notes-panel {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+
+        <!-- HEADER -->
+        <header class="header">
+            <a href="../index.html" style="text-decoration: none; color: var(--verde-escuro);">← Voltar ao Matemática
+                Viva</a>
+            <h1>🌱 Materiais Complementares</h1>
+            <p class="subtitle">Devocionais, calendários litúrgicos e materiais especiais com os Guardiões</p>
+        </header>
+
+        <!-- QUICK STATS -->
+        <div class="quick-stats">
+            <div class="stat">
+                <div class="stat-number">18</div>
+                <div class="stat-label">Produtos Planejados</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">4</div>
+                <div class="stat-label">Categorias</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">5</div>
+                <div class="stat-label">Guardiões</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">1</div>
+                <div class="stat-label">Protótipo Pronto</div>
+            </div>
+        </div>
+
+        <!-- NOTAS PESSOAIS (para você organizar) -->
+        <div class="notes-panel">
+            <h3>📝 Notas de Planejamento</h3>
+            <ul>
+                <li><strong>Bíblia:</strong> NVT (Nova Versão Transformadora)</li>
+                <li><strong>Público:</strong> 4-7 anos (Pré-Escola e 1º Ano)</li>
+                <li><strong>Estilo Visual:</strong> Storybook (Guardiões fofos)</li>
+                <li><strong>Formato:</strong> HTML primeiro, depois adaptar para PDF/impressão</li>
+                <li><strong>Versículos-chave:</strong> João 3:16, Efésios 6:1, Provérbios 2:6</li>
+                <li><strong>Modelo:</strong> Vender barato (R$ 4,90-29,90) para introduzir o Reino Contado</li>
+            </ul>
+        </div>
+
+        <!-- ROADMAP -->
+        <div class="roadmap">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                <h3>📅 Roadmap de Produção</h3>
+                <span
+                    style="font-family: 'Outfit'; font-size: 0.8rem; color: var(--verde-claro); opacity: 0.7;">(Expandindo
+                    em 2026)</span>
+            </div>
+
+            <div class="roadmap-item">
+                <span class="roadmap-q">Dez/25</span>
+                <div class="roadmap-content"><strong>Protótipo Melquior Dia 1</strong> — Validar estrutura e tom</div>
+            </div>
+            <div class="roadmap-item">
+                <span class="roadmap-q">Jan/26</span>
+                <div class="roadmap-content"><strong>Nomes de Jesus + Séries</strong> — Totalmente Cristocêntrico</div>
+            </div>
+            <div class="roadmap-item">
+                <span class="roadmap-q">Fev/26</span>
+                <div class="roadmap-content"><strong>Volta às Aulas + Séries Noé e Celeste</strong></div>
+            </div>
+            <div class="roadmap-item">
+                <span class="roadmap-q">Mar/26</span>
+                <div class="roadmap-content"><strong>Quaresma + Semana Santa</strong></div>
+            </div>
+        </div>
+
+        <!-- ═══════════════════════════════════════════════════════════════════ -->
+        <!-- CATEGORIA 1: DEVOCIONAIS -->
+        <!-- ═══════════════════════════════════════════════════════════════════ -->
+        <section class="categoria">
+            <div class="categoria-header">
+                <h2>📖 Devocionais com Guardiões</h2>
+                <span class="categoria-count">6 produtos</span>
+            </div>
+            <p class="categoria-desc">
+                Versículos, histórias e orações. Cada série tem 7 dias focados em uma virtude.
+            </p>
+
+            <div class="materiais-grid">
+
+                <!-- Kit Completo -->
+                <div class="material-card destaque">
+                    <div class="icon">🌱</div>
+                    <h3>Sementes de Sabedoria</h3>
+                    <p class="versiculo">"Ensinai-os a guardar tudo" — Mt 28:20</p>
+                    <p class="desc">Kit completo com os 5 Guardiões. 35 devocionais sobre as 5 virtudes fundamentais.
+                    </p>
+                    <div class="guardioes-mini">
+                        <img src="../assets/imagens/cards/web/guardioes/melquior-leao.png" alt="Melquior"
+                            class="guardiao-mini">
+                        <img src="../assets/imagens/cards/web/guardioes/noe-coruja.png" alt="Noé" class="guardiao-mini">
+                        <img src="../assets/imagens/cards/web/guardioes/celeste-raposa.png" alt="Celeste"
+                            class="guardiao-mini">
+                        <img src="../assets/imagens/cards/web/guardioes/bernardo-urso.png" alt="Bernardo"
+                            class="guardiao-mini">
+                        <img src="../assets/imagens/cards/web/guardioes/iris-passarinho.png" alt="Íris"
+                            class="guardiao-mini">
+                    </div>
+                    <div class="material-details">
+                        <span>📄 35 páginas</span>
+                        <span>⏱️ 5-10 min/dia</span>
+                    </div>
+                    <span class="specialist-tag tag-teologia">✝️ Painel Teológico aprova</span>
+                    <div class="meta">
+                        <span class="preco">R$ 29,90</span>
+                        <span class="status em-breve">Em breve</span>
+                    </div>
+                </div>
+
+                <!-- Melquior -->
+                <a href="devocionais/melquior/dia-01.html" style="text-decoration: none; color: inherit;">
+                    <div class="material-card">
+                        <div class="icon">🦁</div>
+                        <h3>Série Melquior</h3>
+                        <p class="versiculo">"O Senhor dá sabedoria" — Pv 2:6</p>
+                        <p class="desc">7 devocionais sobre <strong>Sabedoria</strong>. Aprender a buscar respostas em
+                            Deus.
+                        </p>
+                        <div class="material-details">
+                            <span>📄 7 páginas</span>
+                            <span>⏱️ 5-10 min/dia</span>
+                        </div>
+                        <div class="meta">
+                            <span class="preco">R$ 9,90</span>
+                            <span class="status pronto">Protótipo ✓</span>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Noé -->
+                <div class="material-card">
+                    <div class="icon">🦉</div>
+                    <h3>Série Noé</h3>
+                    <p class="versiculo">"A perseverança deve terminar sua obra" — Tg 1:4</p>
+                    <p class="desc">7 devocionais sobre <strong>Paciência</strong>. Esperar no tempo de Deus.</p>
+                    <div class="material-details">
+                        <span>📄 7 páginas</span>
+                        <span>⏱️ 5-10 min/dia</span>
+                    </div>
+                    <div class="meta">
+                        <span class="preco">R$ 9,90</span>
+                        <span class="status planejado">Planejado</span>
+                    </div>
+                </div>
+
+                <!-- Celeste -->
+                <div class="material-card">
+                    <div class="icon">🦊</div>
+                    <h3>Série Celeste</h3>
+                    <p class="versiculo">"É glória de Deus ocultar... investigar" — Pv 25:2</p>
+                    <p class="desc">7 devocionais sobre <strong>Curiosidade</strong>. Fazer boas perguntas a Deus.</p>
+                    <div class="material-details">
+                        <span>📄 7 páginas</span>
+                        <span>⏱️ 5-10 min/dia</span>
+                    </div>
+                    <div class="meta">
+                        <span class="preco">R$ 9,90</span>
+                        <span class="status planejado">Planejado</span>
+                    </div>
+                </div>
+
+                <!-- Bernardo -->
+                <div class="material-card">
+                    <div class="icon">🐻</div>
+                    <h3>Série Bernardo</h3>
+                    <p class="versiculo">"Corramos com perseverança" — Hb 12:1</p>
+                    <p class="desc">7 devocionais sobre <strong>Persistência</strong>. Não desistir quando é difícil.
+                    </p>
+                    <div class="material-details">
+                        <span>📄 7 páginas</span>
+                        <span>⏱️ 5-10 min/dia</span>
+                    </div>
+                    <div class="meta">
+                        <span class="preco">R$ 9,90</span>
+                        <span class="status planejado">Planejado</span>
+                    </div>
+                </div>
+
+                <!-- Íris -->
+                <div class="material-card">
+                    <div class="icon">🐦</div>
+                    <h3>Série Íris</h3>
+                    <p class="versiculo">"Olhem as aves do céu" — Mt 6:26</p>
+                    <p class="desc">7 devocionais sobre <strong>Atenção</strong>. Notar os detalhes da criação.</p>
+                    <div class="material-details">
+                        <span>📄 7 páginas</span>
+                        <span>⏱️ 5-10 min/dia</span>
+                    </div>
+                    <div class="meta">
+                        <span class="preco">R$ 9,90</span>
+                        <span class="status planejado">Planejado</span>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ═══════════════════════════════════════════════════════════════════ -->
+        <!-- CATEGORIA 2: CALENDÁRIOS LITÚRGICOS -->
+        <!-- ═══════════════════════════════════════════════════════════════════ -->
+        <section class="categoria">
+            <div class="categoria-header">
+                <h2>📅 Calendários Litúrgicos</h2>
+                <span class="categoria-count">3 produtos</span>
+            </div>
+            <p class="categoria-desc">
+                Jornadas seguindo o calendário cristão. Cada dia traz versículo, Guardião e reflexão.
+            </p>
+
+            <div class="materiais-grid">
+
+                <!-- Advento -->
+                <div class="material-card destaque">
+                    <div class="icon">🕯️</div>
+                    <h3>Advento do Reino</h3>
+                    <p class="versiculo">"Eis que a virgem conceberá..." — Is 7:14</p>
+                    <p class="desc">24 dias de preparação para o Natal. Cada semana com um Guardião: Sabedoria →
+                        Paciência → Curiosidade → Atenção.</p>
+                    <div class="material-details">
+                        <span>📄 24 páginas</span>
+                        <span>⏱️ 5 min/dia</span>
+                        <span>🗓️ 1-24 Dez</span>
+                    </div>
+                    <span class="specialist-tag tag-cm">📚 Ritmo Charlotte Mason</span>
+                    <div class="meta">
+                        <span class="preco">R$ 19,90</span>
+                        <span class="status planejado">Planejado</span>
+                    </div>
+                </div>
+
+                <!-- Quaresma -->
+                <div class="material-card">
+                    <div class="icon">✝️</div>
+                    <h3>Quaresma no Reino</h3>
+                    <p class="versiculo">"Se alguém quer vir após mim..." — Mt 16:24</p>
+                    <p class="desc">40 dias de reflexão antes da Páscoa. Temas: perdão, sacrifício, esperança,
+                        ressurreição.</p>
+                    <div class="material-details">
+                        <span>📄 40 páginas</span>
+                        <span>⏱️ 5 min/dia</span>
+                    </div>
+                    <div class="meta">
+                        <span class="preco">R$ 24,90</span>
+                        <span class="status planejado">Planejado</span>
+                    </div>
+                </div>
+
+                <!-- Semana Santa -->
+                <div class="material-card">
+                    <div class="icon">🐣</div>
+                    <h3>Semana Santa</h3>
+                    <p class="versiculo">"Ele ressuscitou!" — Mt 28:6</p>
+                    <p class="desc">7 dias especiais: Entrada em Jerusalém → Ressurreição. Narrativa adaptada para 4-7
+                        anos.</p>
+                    <div class="material-details">
+                        <span>📄 7 páginas</span>
+                        <span>⏱️ 10 min/dia</span>
+                    </div>
+                    <div class="meta">
+                        <span class="preco">R$ 9,90</span>
+                        <span class="status planejado">Planejado</span>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ═══════════════════════════════════════════════════════════════════ -->
+        <!-- CATEGORIA 3: DATAS ESPECIAIS -->
+        <!-- ═══════════════════════════════════════════════════════════════════ -->
+        <section class="categoria">
+            <div class="categoria-header">
+                <h2>🎉 Datas Especiais</h2>
+                <span class="categoria-count">6 produtos</span>
+            </div>
+            <p class="categoria-desc">
+                Materiais pontuais para celebrar momentos importantes do ano em família.
+            </p>
+
+            <div class="materiais-grid">
+
+                <div class="material-card">
+                    <div class="icon">📚</div>
+                    <h3>Volta às Aulas</h3>
+                    <p class="versiculo">"O temor do Senhor é o princípio do saber" — Pv 1:7</p>
+                    <p class="desc">Ritual de início de ano. Bênção do material escolar e oração de consagração.</p>
+                    <span class="specialist-tag tag-business">💝 Lead Magnet</span>
+                    <div class="meta">
+                        <span class="preco">Gratuito</span>
+                        <span class="status planejado">Planejado</span>
+                    </div>
+                </div>
+
+                <div class="material-card">
+                    <div class="icon">💐</div>
+                    <h3>Dia das Mães</h3>
+                    <p class="versiculo">"Honra teu pai e tua mãe" — Ef 6:2</p>
+                    <p class="desc">Devocional sobre gratidão. Atividade para fazer junto sobre o amor da mãe.</p>
+                    <span class="specialist-tag tag-business">💝 Lead Magnet</span>
+                    <div class="meta">
+                        <span class="preco">Gratuito</span>
+                        <span class="status planejado">Planejado</span>
+                    </div>
+                </div>
+
+                <div class="material-card">
+                    <div class="icon">👔</div>
+                    <h3>Dia dos Pais</h3>
+                    <p class="versiculo">"Pais, não provoquem os filhos" — Ef 6:4</p>
+                    <p class="desc">Devocional sobre liderança servidora. O papel do pai no Reino Contado.</p>
+                    <span class="specialist-tag tag-business">💝 Lead Magnet</span>
+                    <div class="meta">
+                        <span class="preco">Gratuito</span>
+                        <span class="status planejado">Planejado</span>
+                    </div>
+                </div>
+
+                <div class="material-card">
+                    <div class="icon">🎂</div>
+                    <h3>Aniversário do Reino</h3>
+                    <p class="versiculo">"Antes que eu te formasse..." — Jr 1:5</p>
+                    <p class="desc">Carta personalizada do Guardião favorito para a criança no aniversário.</p>
+                    <div class="meta">
+                        <span class="preco">R$ 4,90</span>
+                        <span class="status planejado">Planejado</span>
+                    </div>
+                </div>
+
+                <div class="material-card">
+                    <div class="icon">🌟</div>
+                    <h3>Natal no Reino</h3>
+                    <p class="versiculo">"Glória a Deus nas alturas" — Lc 2:14</p>
+                    <p class="desc">História do nascimento de Jesus pelos Guardiões. Atividade de presépio.</p>
+                    <span class="specialist-tag tag-business">💝 Lead Magnet</span>
+                    <div class="meta">
+                        <span class="preco">Gratuito</span>
+                        <span class="status planejado">Planejado</span>
+                    </div>
+                </div>
+
+                <div class="material-card">
+                    <div class="icon">🎆</div>
+                    <h3>Ano Novo</h3>
+                    <p class="versiculo">"Eis que faço novas todas as coisas" — Ap 21:5</p>
+                    <p class="desc">Ritual de passagem. Reflexão sobre o ano e esperança para o próximo.</p>
+                    <span class="specialist-tag tag-business">💝 Lead Magnet</span>
+                    <div class="meta">
+                        <span class="preco">Gratuito</span>
+                        <span class="status planejado">Planejado</span>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ═══════════════════════════════════════════════════════════════════ -->
+        <!-- CATEGORIA 4: ATEMPORAIS -->
+        <!-- ═══════════════════════════════════════════════════════════════════ -->
+        <section class="categoria">
+            <div class="categoria-header">
+                <h2>♾️ Materiais Atemporais</h2>
+                <span class="categoria-count">4 produtos</span>
+            </div>
+            <p class="categoria-desc">
+                Recursos que podem ser usados a qualquer momento do ano.
+            </p>
+
+            <div class="materiais-grid">
+
+                <div class="material-card">
+                    <div class="icon">🙏</div>
+                    <h3>Pequenas Orações</h3>
+                    <p class="versiculo">"Senhor, ensina-nos a orar" — Lc 11:1</p>
+                    <p class="desc">Conversas com o Rei: orações para manhã, noite, medo e gratidão.</p>
+                    <div class="material-details">
+                        <span>📄 12 orações</span>
+                    </div>
+                    <div class="meta">
+                        <span class="preco">R$ 9,90</span>
+                        <span class="status planejado">Planejado</span>
+                    </div>
+                </div>
+
+                <div class="material-card">
+                    <div class="icon">📜</div>
+                    <h3>Versículos Ilustrados</h3>
+                    <p class="versiculo">"Escondi a tua palavra no coração" — Sl 119:11</p>
+                    <p class="desc">12 versículos-chave com ilustrações dos Guardiões. Para memorização e decoração.</p>
+                    <div class="material-details">
+                        <span>📄 12 cards</span>
+                        <span>🖨️ Imprimível</span>
+                    </div>
+                    <div class="meta">
+                        <span class="preco">R$ 14,90</span>
+                        <span class="status planejado">Planejado</span>
+                    </div>
+                </div>
+
+                <div class="material-card">
+                    <div class="icon">🎭</div>
+                    <h3>Teatro dos Guardiões</h3>
+                    <p class="desc">5 scripts curtos para encenação em família. Cada Guardião ensina uma virtude através
+                        de história.</p>
+                    <div class="material-details">
+                        <span>📄 5 peças</span>
+                        <span>⏱️ 10-15 min cada</span>
+                    </div>
+                    <div class="meta">
+                        <span class="preco">R$ 19,90</span>
+                        <span class="status planejado">Planejado</span>
+                    </div>
+                </div>
+
+                <div class="material-card">
+                    <div class="icon">🎵</div>
+                    <h3>Canções do Reino</h3>
+                    <p class="desc">Letras e melodias simples para cantar. Temas das 5 virtudes dos Guardiões.</p>
+                    <div class="material-details">
+                        <span>🎼 5 canções</span>
+                    </div>
+                    <div class="meta">
+                        <span class="preco">R$ 9,90</span>
+                        <span class="status planejado">Planejado</span>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ═══════════════════════════════════════════════════════════════════ -->
+        <!-- CATEGORIA 5: CRISTOCÊNTRICOS (NOVO) -->
+        <!-- ═══════════════════════════════════════════════════════════════════ -->
+        <section class="categoria">
+            <div class="categoria-header">
+                <h2>✝️ Foco em Cristo</h2>
+                <span class="categoria-count">3 novos</span>
+            </div>
+            <p class="categoria-desc">
+                Séries devocionais totalmente focadas na pessoa e obra de Jesus Cristo.
+            </p>
+
+            <div class="materiais-grid">
+
+                <div class="material-card destaque">
+                    <div class="icon">👑</div>
+                    <h3>Nomes de Jesus</h3>
+                    <p class="versiculo">"Eu sou a luz do mundo" — Jo 8:12</p>
+                    <p class="desc">7 dias explorando quem Jesus é: O Bom Pastor, O Pão da Vida, A Videira...</p>
+                    <div class="material-details">
+                        <span>📄 7 páginas</span>
+                        <span>⏱️ 5-10 min/dia</span>
+                    </div>
+                    <span class="specialist-tag tag-teologia">✝️ 100% Cristocêntrico</span>
+                    <div class="meta">
+                        <span class="preco">R$ 14,90</span>
+                        <span class="status planejado">Prioridade Jan</span>
+                    </div>
+                </div>
+
+                <div class="material-card">
+                    <div class="icon">🍇</div>
+                    <h3>Frutos do Espírito</h3>
+                    <p class="versiculo">"O fruto do Espírito é amor..." — Gl 5:22</p>
+                    <p class="desc">9 dias sobre o caráter de Cristo em nós. Amor, Alegria, Paz, Paciência...</p>
+                    <div class="material-details">
+                        <span>📄 9 páginas</span>
+                        <span>⏱️ 5-10 min/dia</span>
+                    </div>
+                    <div class="meta">
+                        <span class="preco">R$ 14,90</span>
+                        <span class="status planejado">Planejado</span>
+                    </div>
+                </div>
+
+                <div class="material-card">
+                    <div class="icon">🌾</div>
+                    <h3>Parábolas de Jesus</h3>
+                    <p class="versiculo">"E lhes falava muitas coisas..." — Mt 13:3</p>
+                    <p class="desc">As histórias que Jesus contou, narradas pelos Guardiões.</p>
+                    <div class="material-details">
+                        <span>📄 7 páginas</span>
+                        <span>⏱️ Histórias longas</span>
+                    </div>
+                    <div class="meta">
+                        <span class="preco">R$ 14,90</span>
+                        <span class="status planejado">Planejado</span>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- FOOTER -->
+        <footer class="footer">
+            <p><strong>Materiais Complementares</strong> — Reino Contado</p>
+            <p style="margin-top: 0.5rem;">
+                <a href="../index.html">← Início</a> |
+                <a href="../faq.html">FAQ</a> |
+                <a href="devocionais/melquior/dia-01.html">Ver Protótipo</a>
+            </p>
+            <p style="margin-top: 1rem; font-size: 0.85rem;">
+                Última atualização: 22/12/2025
+            </p>
+        </footer>
+
+    </div>
+</body>
+
+</html>
