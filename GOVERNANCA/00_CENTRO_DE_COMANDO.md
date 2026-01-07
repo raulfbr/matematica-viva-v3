@@ -33,6 +33,12 @@ status: Canônico (HUB Central)
 - **Ação:** Execute o ofício operacional com precisão. Consulte para rituais no lar e calibração de Prompts IA.
 - **Guardião:** Arquiteto IA.
 
+### 🏛️ [SISTEMA DE EXCELÊNCIA](file:///c:/Users/Raul/OneDrive/!RF%202026/Gravity%20Google/Projeto011-MatVivaV3RaulPessoal/GOVERNANCA/05_SISTEMA_EXCELENCIA.md) (O CRIVO)
+- **Essência:** Arquitetura Multi-Agente (Orquestrador + 5 Mesas).
+- **Ação:** O Arquiteto roteia automaticamente para `/conselho-v3` (Decisão) ou `/verificar` (Qualidade v2.0).
+- **Base Técnica:** [SSOT](file:///c:/Users/Raul/OneDrive/!RF%202026/Gravity%20Google/Projeto011-MatVivaV3RaulPessoal/.agent/SSOT.md) (Verdade Única).
+- **Guardião:** Charlotte Mason (Veto Pedagógico).
+
 ---
 
 ## 👥 ONTOLOGIA SOBERANA (Os Atores do Sistema)
@@ -50,7 +56,7 @@ status: Canônico (HUB Central)
 
 ## 🧭 RITUAIS DE COMANDO (O Modo de Operar)
 - **Sincronia:** Leia o [99_TEMPORARIO](file:///c:/Users/Raul/OneDrive/!RF%202026/Gravity%20Google/Projeto011-MatVivaV3RaulPessoal/GOVERNANCA/99_TEMPORARIO.md) para alinhar o contexto da sessão atual.
-- **Veredito:** Use o `/conselho` para decisões que alterem a estrutura fundamental do Pentateuco.
+- **Veredito:** Use o `/conselho-v3` para decisões que alterem a estrutura fundamental do Pentateuco.
 - **Continuidade:** Atualize o `00_CONTEXTO_RETOMADA.md` ao final de cada jornada.
 
 ---
